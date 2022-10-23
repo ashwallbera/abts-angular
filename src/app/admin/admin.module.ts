@@ -14,6 +14,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatIconModule,
     MatMenuModule,
     MatToolbarModule,
+    MatButtonModule,
   ]
 })
 export class AdminModule { }
