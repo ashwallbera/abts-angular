@@ -4,37 +4,36 @@
 
 .card{
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
-    width: 249px;
-    height: 209px;
+    width: 200px;
+    height: 150px;
 }
 
 .t_title{
     text-align: center;
     font-weight: 500;
-    font-size: 24px;
-    
+    font-size: 18px;
 }
 
 hr{
     border: 1px solid rgba(0, 0, 0, 0.59);
     width: 218px;
     height: 0px;
-    margin-top: 18%;
+    
 }
 
 .truck_svg{
-    height: 46.75px !important;
-    width: 45px !important;
-    margin-top: 25%;
+    height: 70px !important;
+    width: 70px !important;
+    margin-top: 12%;
     margin-left: 5%;
 }
 
 .truck_number{
-    margin-top: 32%;
+    margin-top: 25%;
 
 
     font-weight: 500;
-    font-size: 48px;
+    font-size: 32px;
     line-height: 20px;
 }
 
