@@ -3,4 +3,125 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 html, body { height: 100%; }
-body { margin: 0; font-family: 'Poppins', sans-serif !important; font-weight: bold; }
+body { margin: 0; font-family: 'Poppins', sans-serif !important; font-weight: bold; 
+
+    /**TABLE/
+                                                                                        /* TABLE */
+* {
+    box-sizing: border-box;
+  }
+  
+  .row {
+    margin-left:-5px;
+    margin-right:-5px;
+  }
+    
+  .column {
+    float: left;
+    width: 50%;
+    padding: 5px;
+  }
+  
+  /* Clearfix (clear floats) */
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+  }
+  
+  .table_size{
+      margin: 5%;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 16px;
+  }
+  
+  th{
+      background-color: #10227A;
+      color: white;
+  }
+  
+  
+    @media screen and (max-width: 600px) {
+      table {
+        border: 0;
+      }
+    
+      table caption {
+        font-size: 1.3em;
+      }
+      
+      table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+      }
+      
+      table tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .625em;
+      }
+      
+      table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+      }
+      
+      table td::before {
+       
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      
+      table td:last-child {
+        border-bottom: 0;
+      }
+    }
+  
+  
+
+    //BUTTONS
+    .edit_btn{
+        background-color: #10227A;
+        color: white;
+        border: none;
+        height: 29px;
+        width: 48px;
+        border-radius: 5px;
+        margin-right: 5%;
+    }
+    
+    .del_btn{
+        background-color: #AF0015;
+        color: white;
+        border: none;
+        height: 29px;
+        width: 48px;
+        border-radius: 5px;
+    }
+
+    .del_btn:hover, .edit_btn:hover{
+        background-color: #C0C0C0;
+    }
+
+
+}
