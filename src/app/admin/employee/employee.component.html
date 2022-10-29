@@ -18,23 +18,23 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td data-label="Staff">Tom Jerry</td>
-            <td data-label="Contact Number">0912345678</td>
+          <tr *ngFor="let d of persnalinfo">
+            <td data-label="Staff">{{d.name}}</td>
+            <td data-label="Contact Number">{{d.contactno}}</td>
             <td data-label="Action">
                 <button class="edit_btn col"><mat-icon>edit</mat-icon></button>
                 <button class="del_btn col"><mat-icon>delete_outline</mat-icon></button>
             </td>
             
           </tr>
-          <tr>
+          <!-- <tr>
             <td data-label="Staff">Jerry Tom</td>
             <td data-label="Contact Number">0978945612</td>
             <td data-label="Action">
                 <button class="edit_btn col"><mat-icon>edit</mat-icon></button>
                 <button class="del_btn col"><mat-icon>delete_outline</mat-icon></button>
             </td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
 
