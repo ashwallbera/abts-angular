@@ -17,6 +17,11 @@ const routes: Routes = [
     path:'landingpage',
     loadChildren: () => 
     import('./landingpage/landingpage-routing.module').then((m) => m.LandingpageRoutingModule),
+  },
+  {
+    path:'staff',
+    loadChildren: () => 
+    import('./staff/staff-routing.module').then((m) => m.StaffRoutingModule),
   }
 ];
 

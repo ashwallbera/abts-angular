@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminModule } from './admin/admin.module';
 import { RouterManagerComponent } from './router-manager/router-manager.component';
 import { MatIconModule } from '@angular/material/icon';
+import { StaffModule } from './staff/staff.module';
 
 @NgModule({
   declarations: [AppComponent, RouterManagerComponent],
@@ -16,7 +17,8 @@ import { MatIconModule } from '@angular/material/icon';
     BrowserAnimationsModule,
     AdminModule,
     MatSidenavModule,
-    MatIconModule
+    MatIconModule,
+    StaffModule
   ],
   providers: [],
   bootstrap: [AppComponent],
