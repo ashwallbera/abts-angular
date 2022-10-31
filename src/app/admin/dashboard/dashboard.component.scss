@@ -30,8 +30,6 @@ hr{
 
 .truck_number{
     margin-top: 25%;
-
-
     font-weight: 500;
     font-size: 32px;
     line-height: 20px;
@@ -43,4 +41,22 @@ hr{
 
 .num{
     margin-left: 30%;
+}
+
+.right{
+    margin-left: 300px;
+}
+
+.card_chart, #myChart{
+    width: 841px;
+    height: 420px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
+    position: absolute;
+
+}
+
+
+.three{
+    margin: 0%;
+    margin-top: 3%;
 }

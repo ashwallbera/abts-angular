@@ -15,6 +15,11 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog/delete-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import Chart from 'chart.js/auto';
+import { getRelativePosition } from 'chart.js/helpers';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +30,8 @@ import {MatButtonModule} from '@angular/material/button';
     RecordsComponent,
     MainComponent,
     HeaderComponent,
-    SidenavComponent
+    SidenavComponent,
+    DeleteDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -35,6 +41,7 @@ import {MatButtonModule} from '@angular/material/button';
     MatMenuModule,
     MatToolbarModule,
     MatButtonModule,
+    MatDialogModule,
   ]
 })
 export class AdminModule { }

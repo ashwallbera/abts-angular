@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeModel } from 'src/app/model/employee_model';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-employee',
@@ -8,7 +10,7 @@ import { EmployeeModel } from 'src/app/model/employee_model';
 })
 export class EmployeeComponent implements OnInit {
   persnalinfo: EmployeeModel[] = [];
-  constructor() {
+  constructor(public dialog: MatDialog) {
     this.persnalinfo.push(
       { name: 'arjon kawmarura', contactno: '0999999' },
       { name: 'arjon kawmarura', contactno: '0999999' }
@@ -16,4 +18,13 @@ export class EmployeeComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  openDeleteDialog(){
+
+    
+    this.dialog.open(DeleteDialogComponent, {
+      width: '250px',
+      
+    });
+  }
 }

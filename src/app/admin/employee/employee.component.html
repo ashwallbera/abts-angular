@@ -23,7 +23,7 @@
             <td data-label="Contact Number">{{d.contactno}}</td>
             <td data-label="Action">
                 <button class="edit_btn col"><mat-icon>edit</mat-icon></button>
-                <button class="del_btn col"><mat-icon>delete_outline</mat-icon></button>
+                <button (click)="openDeleteDialog()" class="del_btn col" ><mat-icon>delete_outline</mat-icon></button>
             </td>
             
           </tr>
@@ -43,6 +43,7 @@
 <div class="close">
     <button class="btn cls_btn">Close</button>
 </div>
+
 
 <!--HELPER TABLE-->
 <!-- 

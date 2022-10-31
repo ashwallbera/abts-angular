@@ -20,5 +20,6 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   providers: [],
   bootstrap: [AppComponent],
+  entryComponents:[]
 })
 export class AppModule {}
