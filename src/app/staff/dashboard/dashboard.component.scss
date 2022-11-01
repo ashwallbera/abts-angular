@@ -1,0 +1,62 @@
+.row{
+    margin: 5%;
+}
+
+.card{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
+    width: 200px;
+    height: 150px;
+}
+
+.t_title{
+    text-align: center;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+hr{
+    border: 1px solid rgba(0, 0, 0, 0.59);
+    width: 218px;
+    height: 0px;
+    
+}
+
+.truck_svg{
+    height: 70px !important;
+    width: 70px !important;
+    margin-top: 12%;
+    margin-left: 5%;
+}
+
+.truck_number{
+    margin-top: 25%;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 20px;
+}
+
+.below{
+    margin-top: 5%;
+}
+
+.num{
+    margin-left: 30%;
+}
+
+.right{
+    margin-left: 300px;
+}
+
+.card_chart, #myChart{
+    width: 841px;
+    height: 420px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
+    position: absolute;
+
+}
+
+
+.three{
+    margin: 0%;
+    margin-top: 3%;
+}
