@@ -19,6 +19,7 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog/delete-dial
 import {MatDialogModule} from '@angular/material/dialog';
 import Chart from 'chart.js/auto';
 import { getRelativePosition } from 'chart.js/helpers';
+import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { getRelativePosition } from 'chart.js/helpers';
     HeaderComponent,
     SidenavComponent,
     DeleteDialogComponent,
+    EditDialogComponent,
   ],
   imports: [
     CommonModule,

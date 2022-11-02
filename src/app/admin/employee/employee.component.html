@@ -22,7 +22,7 @@
             <td data-label="Staff">{{d.name}}</td>
             <td data-label="Contact Number">{{d.contactno}}</td>
             <td data-label="Action">
-                <button class="edit_btn col"><mat-icon>edit</mat-icon></button>
+                <button (click)="openEditDialog()" class="edit_btn col"><mat-icon>edit</mat-icon></button>
                 <button (click)="openDeleteDialog()" class="del_btn col" ><mat-icon>delete_outline</mat-icon></button>
             </td>
             

@@ -1,38 +1,38 @@
 .search{
-    padding: 2%
+    padding: 2%;
+    padding-right: 0%;
 
 }
 .inp{
-
-
     width: 348px !important;
     height: 34px !important;
-
     background: rgba(217, 217, 217, 0.5);
     border-radius: 5px;
-
- 
+    border: none;
 }
 
-
+.date{
+    padding-left: 5%;
+    padding-top: 5%;
+    padding-bottom: 2%;
+}
 
 .se1{
-    float:right;
-
-    margin:10px;
-
+    float: right !important;
     border:none;
-    margin-right:0%
+   
 }
 
 
 .gen{
-    margin-right: 50%;
     width: 224px;
     height: 41.32px;
-    left: 10px;
-    top: 173px;
     border:none;
     background: #0EB11E;
     border-radius: 5px;
+    margin-right: 33.3%;
+}
+
+.gene{
+    margin-left: 5%;
 }
