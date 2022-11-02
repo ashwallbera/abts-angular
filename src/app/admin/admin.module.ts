@@ -20,6 +20,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import Chart from 'chart.js/auto';
 import { getRelativePosition } from 'chart.js/helpers';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
+import { AddDialogComponent } from './add-dialog/add-dialog.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
     SidenavComponent,
     DeleteDialogComponent,
     EditDialogComponent,
+    AddDialogComponent,
   ],
   imports: [
     CommonModule,
