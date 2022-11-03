@@ -37,7 +37,7 @@ export class EmployeeComponent implements OnInit {
 
   openAddDialog(){
     this.dialog.open(AddDialogComponent,{
-      width: '500px',
+      width: '1000px',
     })
   }
 }
