@@ -1,6 +1,3 @@
-.add-dialog{
-    
-}
 .title{
     background-color: #10227A;
     width: 100%;
@@ -20,6 +17,11 @@ p{
 .inps{
     color: black;
     padding: 1%;
+   
+}
+.inp{
+    width: 299px !important;
+    height: 37px !important;
 }
 
 .add_btn{
@@ -32,3 +34,8 @@ p{
     border: none;
     margin-left: 45%;
 }
+
+.space{
+    width: 90px !important;
+}
+
