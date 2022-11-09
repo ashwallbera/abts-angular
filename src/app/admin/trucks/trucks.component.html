@@ -1,6 +1,6 @@
 <div class="search row">
  
-    <button class="add_btn btn">Add</button>
+    <button (click)="openAddDialog()" class="add_btn btn">Add</button>
 </div>
 
 <div class="table_size">
@@ -19,7 +19,7 @@
             <td data-label="Contact Number">42345tewdsv</td>
             <td data-label="Status">Available</td>
             <td data-label="Action">
-                <button class="deploy_btn col">Deploy</button> 
+                <button (click)="openDeployDialog()" class="deploy_btn col">Deploy</button> 
                 <button class="edit_btn col"><mat-icon>edit</mat-icon></button>
                 <button class="del_btn col"><mat-icon>delete_outline</mat-icon></button>
             </td>
