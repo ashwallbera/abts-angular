@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AddDialogComponent } from './add-dialog/add-dialog.component';
-import { TrucksModel } from 'src/app/model/trucks_model';
+//import { TrucksModel } from 'src/app/model/trucks_model';
 import { MatDialog } from '@angular/material/dialog';
 import { DeployDialogComponent } from './deploy-dialog/deploy-dialog.component';
 @Component({
