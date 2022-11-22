@@ -8,6 +8,8 @@ import { AdminModule } from './admin/admin.module';
 import { RouterManagerComponent } from './router-manager/router-manager.component';
 import { MatIconModule } from '@angular/material/icon';
 import { StaffModule } from './staff/staff.module';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [AppComponent, RouterManagerComponent],
@@ -18,7 +20,9 @@ import { StaffModule } from './staff/staff.module';
     AdminModule,
     MatSidenavModule,
     MatIconModule,
-    StaffModule
+    StaffModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent],

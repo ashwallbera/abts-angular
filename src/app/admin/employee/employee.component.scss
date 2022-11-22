@@ -16,17 +16,17 @@
     border: none;
 }
 
-.staff_btn,.driver_btn,.helper_btn{
+.staff_btn,.driver_btn,.helper_btn,.all_btn,.add_btn{
     text-decoration: underline;
 }
 
-.staff_btn:hover,.driver_btn:hover,.helper_btn:hover{
+.staff_btn:hover,.driver_btn:hover,.helper_btn:hover,.all_btn:hover{
     background-color: #10227A;
     color: white;
 }
 
 .staff_btn{
-    margin-left: 20%;
+    margin-left: 10%;
 }
 
 

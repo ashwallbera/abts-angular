@@ -25,6 +25,7 @@
     "chart.js": "^3.9.1",
     "chartjs-adapter-luxon": "^1.2.0",
     "express": "^4.18.2",
+    "firebase": "^9.14.0",
     "path": "^0.12.7",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

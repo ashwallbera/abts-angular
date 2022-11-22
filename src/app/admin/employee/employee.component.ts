@@ -1,43 +1,111 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeModel } from 'src/app/model/employee_model';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog/delete-dialog.component';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 import { AddDialogComponent } from '../add-dialog/add-dialog.component';
+import { getDatabase, onValue, push, ref, set } from 'firebase/database';
+import { initializeApp } from 'firebase/app';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.scss'],
 })
 export class EmployeeComponent implements OnInit {
-  persnalinfo: EmployeeModel[] = [];
+  userList: EmployeeModel[] = [];
+  userListTemp: EmployeeModel[] = [];
   constructor(public dialog: MatDialog) {
-    this.persnalinfo.push(
-      { name: 'arjon kawmarura', contactno: '0999999' },
-      { name: 'arjon kawmarura', contactno: '0999999' }
-    );
+    // this.userList.push(
+    //   {
+    //     uid: '',
+    //     fname: 'fname',
+    //     lname: 'lname',
+    //     contactno: 'contact',
+    //     email: 'email',
+    //     position: 'staff',
+    //     role: 'staff',
+    //     age: 'age',
+    //   },
+    //   {
+    //     uid: '',
+    //     fname: 'fname',
+    //     lname: 'lname',
+    //     contactno: 'contact',
+    //     email: 'email',
+    //     position: 'driver',
+    //     role: 'staff',
+    //     age: 'age',
+    //   },
+    //   {
+    //     uid: '',
+    //     fname: 'fname',
+    //     lname: 'lname',
+    //     contactno: 'contact',
+    //     email: 'email',
+    //     position: 'helper',
+    //     role: 'staff',
+    //     age: 'age',
+    //   }
+    // );
+    this.readEmployee();
   }
 
   ngOnInit(): void {}
 
-  openDeleteDialog(){
-
-    
-    this.dialog.open(DeleteDialogComponent, {
+  openDeleteDialog(employeeModel: EmployeeModel) {
+    const ref = this.dialog.open(DeleteDialogComponent, {
       width: '250px',
-      
+    });
+    ref.afterClosed().subscribe((data) => {
+      if (data == true) {
+        console.log('delete');
+        this.deleteEmployee(employeeModel);
+      }
     });
   }
 
-  openEditDialog(){
-    this.dialog.open(EditDialogComponent,{
-      width: '1000px',
-    })
+  openEditDialog(employeeModel: EmployeeModel) {
+    this.dialog.open(EditDialogComponent, {
+      data: employeeModel,
+    });
   }
 
-  openAddDialog(){
-    this.dialog.open(AddDialogComponent,{
-      width: '1000px',
-    })
+  openAddDialog() {
+    this.dialog.open(AddDialogComponent, {});
+  }
+
+  filterByPosition(position: string) {
+    if (position == 'all') {
+      this.userList = this.userListTemp;
+    } else {
+      var filtered = this.userListTemp.filter(function (e) {
+        return e.position == position;
+      });
+      this.userList = filtered;
+      console.log(this.userList);
+    }
+  }
+
+  readEmployee() {
+    const app = initializeApp(environment.firebaseConfig);
+    const db = getDatabase();
+    const starCountRef = ref(db, 'users/');
+    onValue(starCountRef, (snapshot) => {
+      this.userList.splice(0, this.userList.length);
+      const data = snapshot.val();
+      snapshot.forEach((child) => {
+        this.userList.push(child.val());
+      });
+      this.userListTemp = this.userList;
+      console.log(data);
+    });
+  }
+
+  deleteEmployee(employeeModel: EmployeeModel) {
+    const app = initializeApp(environment.firebaseConfig);
+    const db = getDatabase(app);
+
+    set(ref(db, 'users/' + employeeModel.uid + '/'), null);
   }
 }

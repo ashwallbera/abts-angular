@@ -1,33 +1,41 @@
 <!--STAFF TABLE-->
 <div class="search row">
-    <p class="search col">Search</p>
-    <input class="inp search col" type="text">
-    <button class="staff_btn btn col active">Staff</button>
-    <button class="driver_btn btn col">Driver</button>
-    <button class="helper_btn btn col">Helper</button>
-    <button (click)="openAddDialog()" class="add_btn btn col">Add</button>
+  <p class="search col">Search</p>
+  <input class="inp search col" type="text" />
+  <button class="staff_btn btn col active" (click)="filterByPosition('staff')">Staff</button>
+  <button class="driver_btn btn col" (click)="filterByPosition('driver')">Driver</button>
+  <button class="helper_btn btn col" (click)="filterByPosition('helper')">Helper</button>
+  <button class="all_btn btn col" (click)="filterByPosition('all')">All</button>
+  <button (click)="openAddDialog()" class="add_btn btn col">Add</button>
 </div>
 
 <div class="table_size">
-    <table>
-        <thead>
-          <tr>
-            <th scope="col">Staff</th>
-            <th scope="col">Contact Number</th>
-            <th class="ac" scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let d of persnalinfo">
-            <td data-label="Staff">{{d.name}}</td>
-            <td data-label="Contact Number">{{d.contactno}}</td>
-            <td data-label="Action">
-                <button (click)="openEditDialog()" class="edit_btn col"><mat-icon>edit</mat-icon></button>
-                <button (click)="openDeleteDialog()" class="del_btn col" ><mat-icon>delete_outline</mat-icon></button>
-            </td>
-            
-          </tr>
-          <!-- <tr>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Staff</th>
+        <th scope="col">Email</th>
+        <th scope="col">Position</th>
+        <th scope="col">Contact No.</th>
+        <th class="ac" scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let d of userList">
+        <td data-label="Staff">{{ d.fname }} {{d.lname}}</td>
+        <td data-label="Email">{{ d.email }}</td>
+        <td data-label="Position">{{ d.position }}</td>
+        <td data-label="Contact Number">{{ d.contactno }}</td>
+        <td data-label="Action">
+          <button (click)="openEditDialog(d)" class="edit_btn col">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button (click)="openDeleteDialog(d)" class="del_btn col">
+            <mat-icon>delete_outline</mat-icon>
+          </button>
+        </td>
+      </tr>
+      <!-- <tr>
             <td data-label="Staff">Jerry Tom</td>
             <td data-label="Contact Number">0978945612</td>
             <td data-label="Action">
@@ -35,15 +43,13 @@
                 <button class="del_btn col"><mat-icon>delete_outline</mat-icon></button>
             </td>
           </tr> -->
-        </tbody>
-      </table>
-
+    </tbody>
+  </table>
 </div>
 
 <div class="close">
-    <button class="btn cls_btn">Close</button>
+  <button class="btn cls_btn">Close</button>
 </div>
-
 
 <!--HELPER TABLE-->
 <!-- 
@@ -89,10 +95,6 @@
     <button class="btn cls">Close</button>
 </div> -->
 
-
-
-
-
 <!--DRIVER TABLE-->
 <!-- 
 
@@ -137,7 +139,3 @@
 <div class="close">
     <button class="btn cls">Close</button>
 </div> -->
-
-
-
-

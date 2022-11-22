@@ -1,35 +1,102 @@
-<div class="add-dialog">
-    <div class="title">
-        <p>Staff Details</p>
-    </div>
+<h1 matDialogTitle>ADD EMPLOYEE</h1>
 
-    <form>
+<mat-dialog-content>
+  <form #employeeForm="ngForm" [formGroup]="formGroup">
+    <mat-form-field appearance="outline">
+      <mat-label>First name</mat-label>
+      <input formControlName="fname" matInput placeholder="First name" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Last name</mat-label>
+      <input formControlName="lname" matInput placeholder="Last name" />
+    </mat-form-field>
 
-        <div class="dia-content-main">
-            <div class="dia-content row">
-                <div class="dia-content row">
-                    <p class="inps row col name">Name</p><input class="inp col" >
-                    <p class="col space"></p>
-                    <p class="inps row col email">Email</p><input class="inp col">
-                </div>
-            
-                <div class="dia-content row">
-                    <p class="inps row col">Age</p><input class="inp col" type="text">
-                    <p class="col"></p>
-                    <p class="inps row col">Password</p><input class="inp col" type="text">
-                </div>
-            
-                <div class="dia-content row">
-                    <p class="inps row col">Address</p><input class="inp col" type="text">
-                    <p class="col"></p>
-                    <p class="inps row col">Contact No.</p><input class="inp col" type="text">
-                </div>
-            </div>
-           
-        </div>
-        
-        <div class="add-btn">
-            <button class="add_btn">ADD</button>
-        </div>
-    </form>
-</div>
+    <br />
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input formControlName="email" matInput placeholder="Email" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Contact no</mat-label>
+      <input formControlName="contactno" matInput placeholder="Contact no" />
+    </mat-form-field>
+
+    <br />
+
+    <mat-form-field appearance="outline">
+      <mat-label>Birthdate</mat-label>
+      <input formControlName="birthdate" matInput placeholder="Birthdate" />
+    </mat-form-field>
+
+    <br />
+    <mat-form-field appearance="outline" style="width: 100% !important">
+      <mat-label>Address</mat-label>
+      <input formControlName="address" matInput placeholder="Address" />
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="outline">
+      <mat-label>Position</mat-label>
+      <mat-select formControlName="position" name="Position">
+        <mat-option *ngFor="let p of position" [value]="p">
+          {{ p }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input
+        formControlName="password"
+        matInput
+        placeholder="Password"
+        [type]="hide ? 'password' : 'text'"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Confirm password</mat-label>
+      <input
+        formControlName="cpassword"
+        matInput
+        placeholder="Confirm password"
+        [type]="hide1 ? 'password' : 'text'"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide1 = !hide1"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide1"
+      >
+        <mat-icon>{{ hide1 ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <br />
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button matDialogClose>CLOSE</button>
+  <button
+    mat-button
+    color="primary"
+    [disabled]="!formGroup.valid"
+    (click)="addEmployee(employeeForm.value)"
+    matDialogClose
+  >
+    ADD
+  </button>
+</mat-dialog-actions>
+
+<!-- [disabled]="!formGroup.valid" -->

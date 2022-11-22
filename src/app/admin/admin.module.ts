@@ -21,7 +21,11 @@ import Chart from 'chart.js/auto';
 import { getRelativePosition } from 'chart.js/helpers';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { AddDialogComponent } from './add-dialog/add-dialog.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -46,6 +50,12 @@ import { AddDialogComponent } from './add-dialog/add-dialog.component';
     MatToolbarModule,
     MatButtonModule,
     MatDialogModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatOptionModule,
   ]
 })
 export class AdminModule { }

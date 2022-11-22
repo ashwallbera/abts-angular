@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class MainComponent implements OnInit {
 
   constructor(public router: Router) {
-   router.navigate(['admin/dashboard']);
+   router.navigate(['admin/employee']);
    }
 
   ngOnInit(): void {
