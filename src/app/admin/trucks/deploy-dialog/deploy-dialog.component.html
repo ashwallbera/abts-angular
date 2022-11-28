@@ -1,18 +1,104 @@
-<div class="deploy-dialog-content">
-    <div class="head row">
-        <svg class="truckl col" width="188" height="188" viewBox="0 0 188 188" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="72.1359" cy="117.473" rx="9.80435" ry="6.70704" stroke="#0019ED" stroke-width="5"/>
-            <ellipse cx="134.884" cy="117.473" rx="9.80436" ry="6.70704" stroke="#0019ED" stroke-width="5"/>
-            <path d="M123.609 82.2613L123.609 71.5239C123.609 70.9716 123.161 70.5239 122.609 70.5239H48.625C48.0727 70.5239 47.625 70.9716 47.625 71.5239V106.413C47.625 106.965 48.0727 107.413 48.625 107.413H50.0761M123.609 82.2613L123.828 107.413M123.609 82.2613H135.864M148.613 116.421H159.375C159.927 116.421 160.375 115.973 160.375 115.421V100.706M121.742 116.421H111.793M85.7969 116.421H94.1957M59.2286 116.421C59.2286 116.421 53.9285 116.421 50.5324 116.421V116.421C50.2804 116.421 50.0761 116.216 50.0761 115.964V107.413M50.0761 107.413H94.1957M123.609 107.413H123.828M94.1957 116.421V107.413M94.1957 116.421H111.793M94.1957 107.413H111.793M111.793 116.421V107.413M111.793 107.413H123.828M135.864 82.2613H143.217L158.198 92.5094C159.56 93.4413 160.375 94.9856 160.375 96.6361V100.706M135.864 82.2613V99.7056C135.864 100.258 136.312 100.706 136.864 100.706H160.375" stroke="#0019ED" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M183 94C183 143.153 143.153 183 94 183C44.8467 183 5 143.153 5 94C5 44.8467 44.8467 5 94 5C143.153 5 183 44.8467 183 94Z" fill="black" fill-opacity="0.08" stroke="#10227A" stroke-width="10"/>
-            </svg>
-        <div class="row col">
-            <h2 class="tp">TRUCK  PLATE #.
-                <p class="col">ADASAF335</p>
-            </h2>
-            <h2 class="tty">Truck type:
-                <p>scsdvds</p>
-            </h2>
+<h1 matDialogTitle>Title</h1>
+
+<mat-dialog-content>
+  <table>
+    <tr>
+      <img
+        src="../../../../assets/images/trucklogo.svg"
+        alt=""
+        style="margin-top: 20px"
+      />
+      <!-- Display truck details from trucks component -->
+      <td style="width: 100%">
+        <div class="d-flex justify-content-around td-height">
+          <div><b>Truck type:</b> {{ data.type }}</div>
+          <div><b>Max load capacity:</b> {{ data.capacity }}</div>
         </div>
-    </div>
-</div>
+        <div class="d-flex justify-content-around td-height">
+          <div><b>Plate number:</b> {{ data.plateno }}</div>
+          <div><b>Engine number:</b> {{ data.engineno }}</div>
+        </div>
+        <div class="d-flex justify-content-around td-height">
+          <div><b>Chassis Number: </b> {{ data.chassis }}</div>
+          <div><b>Year model:</b> {{ data.yearmodel }}</div>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <div class="details">
+    <mat-tab-group>
+      <mat-tab label="Sender Details">
+        <mat-form-field appearance="outline">
+          <mat-label>FULL NAME</mat-label>
+          <input matInput placeholder="ENTER FULL NAME" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>CONTACT NO.</mat-label>
+          <input matInput placeholder="ENTER CONTACT NO." />
+        </mat-form-field>
+        <br />
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>ADDRESS</mat-label>
+          <input matInput placeholder="ENTER ADDRESS" />
+        </mat-form-field>
+      </mat-tab>
+      <mat-tab label="Recipient Details">
+        <mat-form-field appearance="outline">
+          <mat-label>FULL NAME</mat-label>
+          <input matInput placeholder="ENTER FULL NAME" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>CONTACT NO.</mat-label>
+          <input matInput placeholder="ENTER CONTACT NO." />
+        </mat-form-field>
+        <br />
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>ADDRESS</mat-label>
+          <input matInput placeholder="ENTER ADDRESS" />
+        </mat-form-field>
+      </mat-tab>
+      <!-- other details -->
+      <mat-tab label="Other Details">
+        <mat-form-field appearance="outline">
+          <mat-label>SAMPLE</mat-label>
+          <input matInput placeholder="SAMPLE" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>SAMPLE</mat-label>
+          <input matInput placeholder="SAMPLE" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>SAMPLE</mat-label>
+          <input matInput placeholder="SAMPLE" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>SAMPLE</mat-label>
+          <input matInput placeholder="SAMPLE" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>SAMPLE</mat-label>
+          <input matInput placeholder="SAMPLE" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>SAMPLE</mat-label>
+          <input matInput placeholder="SAMPLE" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>SAMPLE</mat-label>
+          <input matInput placeholder="SAMPLE" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>SAMPLE</mat-label>
+          <input matInput placeholder="SAMPLE" />
+        </mat-form-field>
+      </mat-tab>
+    </mat-tab-group>
+
+    <!-- data -->
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <button mat-button matDialogClose>DEPLOY</button>
+</mat-dialog-actions>

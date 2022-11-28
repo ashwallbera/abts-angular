@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { TruckModel } from 'src/app/model/truck_model';
 
 @Component({
   selector: 'app-deploy-dialog',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeployDialogComponent implements OnInit {
 
-  constructor() { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: TruckModel) { }
 
   ngOnInit(): void {
   }

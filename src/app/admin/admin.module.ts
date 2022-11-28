@@ -28,6 +28,8 @@ import { MatOptionModule } from '@angular/material/core';
 import { AddDialogComponent } from './add-dialog/add-dialog.component';
 import { AddTruckDialogComponent } from './trucks/add-truck-dialog/add-truck-dialog.component';
 import { EditTruckDialogComponent } from './trucks/edit-truck-dialog/edit-truck-dialog.component';
+import { DeployDialogComponent } from './trucks/deploy-dialog/deploy-dialog.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { EditTruckDialogComponent } from './trucks/edit-truck-dialog/edit-truck-
     EditDialogComponent,
     AddDialogComponent,
     AddTruckDialogComponent,
-    EditTruckDialogComponent
+    EditTruckDialogComponent,
+    DeployDialogComponent
   ],
   imports: [
     CommonModule,
@@ -60,6 +63,7 @@ import { EditTruckDialogComponent } from './trucks/edit-truck-dialog/edit-truck-
     MatInputModule,
     MatSelectModule,
     MatOptionModule,
+    MatTabsModule
   ]
 })
 export class AdminModule { }

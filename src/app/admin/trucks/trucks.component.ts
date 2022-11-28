@@ -48,9 +48,10 @@ export class TrucksComponent implements OnInit {
     });
   }
 
-  openDeployDialog(){
+  openDeployDialog(truckModel: TruckModel){
     this.dialog.open(DeployDialogComponent,{
-      width: '1000px'
+      width:"1000px",
+      data:truckModel,
     })
 
   }

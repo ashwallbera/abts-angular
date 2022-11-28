@@ -8,3 +8,46 @@
 p{
     color: gray;
 }
+.td-height{
+    height: 50px;
+}
+table{
+    height: 100%;
+    width: 100%;
+}
+
+mat-form-field{
+    padding: 2px;
+}
+.details{
+    margin-top: 50px;
+}
+
+.example-small-box, .example-large-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 16px;
+    padding: 16px;
+    border-radius: 8px;
+  }
+  
+  .example-small-box {
+    height: 100px;
+    width: 100px;
+  }
+  
+  .example-large-box {
+    height: 300px;
+    width: 300px;
+  }
+
+  ::ng-deep.mat-tab-label .mat-tab-label-content {
+  flex-wrap: wrap!important;
+}
+
+::ng-deep.mat-tab-label .mat-tab-label-content span{
+  display: flex!important;
+  flex: 1 0 100%!important;
+  justify-content: center!important;
+}

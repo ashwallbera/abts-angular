@@ -22,7 +22,7 @@
             <td data-label="Contact Number">{{truck.type}}</td>
             <td data-label="Status">{{truck.isAvailable ? 'AVAILABLE' : 'NOT AVAILABLE'}}</td>
             <td data-label="Action">
-                <button (click)="openDeployDialog()" class="deploy_btn col">Deploy</button> 
+                <button (click)="openDeployDialog(truck)" class="deploy_btn col">Deploy</button> 
                 <button class="edit_btn col" (click)="openEditDialog(truck)"><mat-icon>edit</mat-icon></button>
                 <button class="del_btn col" (click)="openDeleteDialog(truck)"><mat-icon>delete_outline</mat-icon></button>
             </td>
