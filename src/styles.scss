@@ -121,11 +121,11 @@ body { margin: 0; font-family: 'Poppins', sans-serif !important; font-weight: bo
         border-radius: 5px;
     }
 
-    .del_btn:hover, .edit_btn:hover, .deployed_btn:hover, .deploy_btn:hover, .add_btn:hover{
+    .del_btn:hover, .edit_btn:hover, .deployed_btn:hover, .deploy_btn:hover, .add_btn:hover,.available:hover,.all:hover{
         background-color: #C0C0C0;
     }
 
-    .add_btn{
+    .add_btn,.available,.all{
       background-color: #10227A;
       color: white;
     }

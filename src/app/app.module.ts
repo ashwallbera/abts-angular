@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { StaffModule } from './staff/staff.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [AppComponent, RouterManagerComponent],
@@ -22,7 +23,8 @@ import {MatInputModule} from '@angular/material/input';
     MatIconModule,
     StaffModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent],

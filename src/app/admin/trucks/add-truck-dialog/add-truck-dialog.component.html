@@ -1,0 +1,54 @@
+<h1 matDialogTitle>TRUCK DETAILS</h1>
+
+<mat-dialog-content>
+  <form #truckForm="ngForm" [formGroup]="truckFormGroup">
+    <mat-form-field appearance="outline">
+      <mat-label>TRUCK TYPE</mat-label>
+      <input formControlName="type" matInput placeholder="TRUCK TYPE" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>MAX LOAD CAPACITY</mat-label>
+      <input
+        formControlName="capacity"
+        matInput
+        placeholder="MAX LOAD CAPACITY"
+      />
+    </mat-form-field>
+
+    <br />
+
+    <mat-form-field appearance="outline">
+      <mat-label>PLATE NO.</mat-label>
+      <input formControlName="plateno" matInput placeholder="PLATE NO." />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>ENGINE NO.</mat-label>
+      <input formControlName="engineno" matInput placeholder="ENGINE NO." />
+    </mat-form-field>
+
+    <br />
+
+    <mat-form-field appearance="outline">
+      <mat-label>CHASSIS</mat-label>
+      <input formControlName="chassis" matInput placeholder="CHASSIS" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>MODEL NO.</mat-label>
+      <input formControlName="yearmodel" matInput placeholder="MODEL NO." />
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button matDialogClose>CLOSE</button>
+  <button
+    mat-button
+    [disabled]="!truckFormGroup.valid"
+    (click)="addTruck(truckFormGroup.value)"
+    matDialogClose
+  >
+    ADD
+  </button>
+</mat-dialog-actions>

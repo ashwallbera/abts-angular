@@ -20,12 +20,14 @@ import {MatDialogModule} from '@angular/material/dialog';
 import Chart from 'chart.js/auto';
 import { getRelativePosition } from 'chart.js/helpers';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
-import { AddDialogComponent } from './add-dialog/add-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import { AddDialogComponent } from './add-dialog/add-dialog.component';
+import { AddTruckDialogComponent } from './trucks/add-truck-dialog/add-truck-dialog.component';
+import { EditTruckDialogComponent } from './trucks/edit-truck-dialog/edit-truck-dialog.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { MatOptionModule } from '@angular/material/core';
     DeleteDialogComponent,
     EditDialogComponent,
     AddDialogComponent,
+    AddTruckDialogComponent,
+    EditTruckDialogComponent
   ],
   imports: [
     CommonModule,
