@@ -27,78 +27,75 @@
   </table>
 
   <div class="details">
-    <mat-tab-group>
-      <mat-tab label="Sender Details">
-        <mat-form-field appearance="outline">
-          <mat-label>FULL NAME</mat-label>
-          <input matInput placeholder="ENTER FULL NAME" />
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>CONTACT NO.</mat-label>
-          <input matInput placeholder="ENTER CONTACT NO." />
-        </mat-form-field>
-        <br />
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>ADDRESS</mat-label>
-          <input matInput placeholder="ENTER ADDRESS" />
-        </mat-form-field>
-      </mat-tab>
-      <mat-tab label="Recipient Details">
-        <mat-form-field appearance="outline">
-          <mat-label>FULL NAME</mat-label>
-          <input matInput placeholder="ENTER FULL NAME" />
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>CONTACT NO.</mat-label>
-          <input matInput placeholder="ENTER CONTACT NO." />
-        </mat-form-field>
-        <br />
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>ADDRESS</mat-label>
-          <input matInput placeholder="ENTER ADDRESS" />
-        </mat-form-field>
-      </mat-tab>
-      <!-- other details -->
-      <mat-tab label="Other Details">
-        <mat-form-field appearance="outline">
-          <mat-label>SAMPLE</mat-label>
-          <input matInput placeholder="SAMPLE" />
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>SAMPLE</mat-label>
-          <input matInput placeholder="SAMPLE" />
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>SAMPLE</mat-label>
-          <input matInput placeholder="SAMPLE" />
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>SAMPLE</mat-label>
-          <input matInput placeholder="SAMPLE" />
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>SAMPLE</mat-label>
-          <input matInput placeholder="SAMPLE" />
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>SAMPLE</mat-label>
-          <input matInput placeholder="SAMPLE" />
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>SAMPLE</mat-label>
-          <input matInput placeholder="SAMPLE" />
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>SAMPLE</mat-label>
-          <input matInput placeholder="SAMPLE" />
-        </mat-form-field>
-      </mat-tab>
-    </mat-tab-group>
+    <form #deployForm [formGroup]="deployFormGroup" > 
+      <mat-tab-group>
+        <!-- SENDER -->
+        <mat-tab label="Sender Details">
+          <mat-form-field appearance="outline">
+            <mat-label>FULL NAME</mat-label>
+            <input formControlName="sfullname" matInput placeholder="ENTER FULL NAME" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>CONTACT NO.</mat-label>
+            <input formControlName="scontactno" matInput placeholder="ENTER CONTACT NO." />
+          </mat-form-field>
+          <br />
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>ADDRESS</mat-label>
+            <input formControlName="saddress" matInput placeholder="ENTER ADDRESS" />
+          </mat-form-field>
+        </mat-tab>
+        <!-- RECIPIENT -->
+        <mat-tab label="Recipient Details">
+          <mat-form-field appearance="outline">
+            <mat-label>FULL NAME</mat-label>
+            <input formControlName="rfullname" matInput placeholder="ENTER FULL NAME" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>CONTACT NO.</mat-label>
+            <input formControlName="rcontactno" matInput placeholder="ENTER CONTACT NO." />
+          </mat-form-field>
+          <br />
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>ADDRESS</mat-label>
+            <input formControlName="raddress" matInput placeholder="ENTER ADDRESS" />
+          </mat-form-field>
+        </mat-tab>
+        <!-- other details -->
+        <mat-tab label="Other Details">
+          <mat-form-field appearance="outline">
+            <mat-label>DRIVER</mat-label>
+            <input formControlName="driver" matInput placeholder="DRIVER" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>CONTAINER VAN NO.</mat-label>
+            <input formControlName="containervanno" matInput placeholder="CONTAINER VAN NO." />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>HELPER</mat-label>
+            <input formControlName="helper1" matInput placeholder="HELPER" />
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="outline">
+            <mat-label>EXTRA HELPER</mat-label>
+            <input formControlName="helper2" matInput placeholder="EXTRA HELPER" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>EXTRA HELPER</mat-label>
+            <input formControlName="helper3" matInput placeholder="EXTRA HELPER" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>EXTRA HELPER</mat-label>
+            <input formControlName="helper4" matInput placeholder="EXTRA HELPER" />
+          </mat-form-field>
+        </mat-tab>
+      </mat-tab-group>
+    </form>
 
     <!-- data -->
   </div>
 </mat-dialog-content>
 
 <mat-dialog-actions align="center">
-  <button mat-button matDialogClose>DEPLOY</button>
+  <button mat-button matDialogClose [disabled]="!deployFormGroup.valid" (click)="deploy(deployFormGroup.value)">DEPLOY</button>
 </mat-dialog-actions>

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RouterManagerComponent } from '../router-manager/router-manager.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { DeployComponent } from './deploy/deploy.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { MainComponent } from './main/main.component';
 import { RecordsComponent } from './records/records.component';
@@ -28,6 +29,10 @@ const routes: Routes = [
       {
         path: 'status',
         component: StatusComponent,
+      },
+      {
+        path: 'deployed',
+        component: DeployComponent,
       },
       {
         path: 'records',

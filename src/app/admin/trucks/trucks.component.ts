@@ -83,7 +83,10 @@ export class TrucksComponent implements OnInit {
       this.truckList.splice(0, this.truckList.length);
       const data = snapshot.val();
       snapshot.forEach((child) => {
-        this.truckList.push(child.val());
+        if(child.val().isAvailable){
+          this.truckList.push(child.val());
+        }
+        
       });
       this.truckTemp = this.truckList;
       console.log(data);

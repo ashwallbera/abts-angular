@@ -30,6 +30,7 @@ import { AddTruckDialogComponent } from './trucks/add-truck-dialog/add-truck-dia
 import { EditTruckDialogComponent } from './trucks/edit-truck-dialog/edit-truck-dialog.component';
 import { DeployDialogComponent } from './trucks/deploy-dialog/deploy-dialog.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import { DeployComponent } from './deploy/deploy.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     AddDialogComponent,
     AddTruckDialogComponent,
     EditTruckDialogComponent,
-    DeployDialogComponent
+    DeployDialogComponent,
+    DeployComponent
   ],
   imports: [
     CommonModule,
