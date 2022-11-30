@@ -1,1 +1,49 @@
-<p>deploy works!</p>
+<div class="search row">
+  <!-- <button (click)="openAddDialog()" class="add_btn btn">ADD NEW</button>
+    <button class="available btn" (click)="filterByPosition(true)">AVAILABLE</button>
+    <button class="available btn" (click)="filterByPosition(false)">NOT AVAILABLE</button>
+    <button class="all btn" (click)="filterByPosition('all')">ALL</button> -->
+</div>
+
+<div class="table_size">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Truck Plate No.</th>
+        <th scope="col">Truck Type</th>
+        <th scope="col">Status</th>
+        <th class="ac" scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let deploy of deployedList">
+        <td data-label="Staff">{{ deploy.truck.plateno}}</td>
+        <td data-label="Contact Number">{{ deploy.truck.type }}</td>
+        <td data-label="Status">
+            {{ deploy.status }}
+        </td>
+        <td data-label="Action">
+            <button class="edit_btn col" (click)="openViewDeployedDialog(deploy)"><mat-icon>remove_red_eye</mat-icon></button>
+          <!-- <button class="edit_btn col"><mat-icon>edit</mat-icon></button>
+          <button class="del_btn col" >
+            <mat-icon>delete_outline</mat-icon>
+          </button> -->
+        </td>
+      </tr>
+      <!-- <tr>
+            <td data-label="Staff">42345tewdsv</td>
+            <td data-label="Contact Number">42345tewdsv</td>
+            <td data-label="Status">Not Available</td>
+            <td data-label="Action">
+                <button class="deployed_btn col">Deployed</button> 
+                <button class="edit_btn col"><mat-icon>edit</mat-icon></button>
+                <button class="del_btn col"><mat-icon>delete_outline</mat-icon></button>
+            </td>
+          </tr> -->
+    </tbody>
+  </table>
+</div>
+
+<!-- <div class="close">
+    <button class="btn cls_btn">Close</button>
+</div> -->

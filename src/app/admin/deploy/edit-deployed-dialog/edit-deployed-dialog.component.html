@@ -1,0 +1,152 @@
+<h1 matDialogTitle>EDIT DEPLOYED TRUCK</h1>
+
+<mat-dialog-content>
+  <table>
+    <tr>
+      <img
+        src="../../../../assets/images/trucklogo.svg"
+        alt=""
+        style="margin-top: 20px"
+      />
+      <!-- Display truck details from trucks component -->
+      <td style="width: 100%">
+        <div class="d-flex justify-content-around td-height">
+          <div><b>Truck type:</b> {{ data.truck.type }}</div>
+          <div><b>Max load capacity:</b> {{ data.truck.capacity }}</div>
+        </div>
+        <div class="d-flex justify-content-around td-height">
+          <div><b>Plate number:</b> {{ data.truck.plateno }}</div>
+          <div><b>Engine number:</b> {{ data.truck.engineno }}</div>
+        </div>
+        <div class="d-flex justify-content-around td-height">
+          <div><b>Chassis Number: </b> {{ data.truck.chassis }}</div>
+          <div><b>Year model:</b> {{ data.truck.yearmodel }}</div>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <div class="details">
+    <form #deployForm [formGroup]="deployFormGroup">
+      <mat-tab-group>
+        <!-- SENDER -->
+        <mat-tab label="Sender Details">
+          <br />
+          <mat-form-field appearance="outline">
+            <mat-label>FULL NAME</mat-label>
+            <input
+              [(ngModel)]="data.sfullname"
+              formControlName="sfullname"
+              matInput
+              placeholder="ENTER FULL NAME"
+            />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>CONTACT NO.</mat-label>
+            <input [(ngModel)]="data.scontactno"
+              formControlName="scontactno"
+              matInput
+              placeholder="ENTER CONTACT NO."
+            />
+          </mat-form-field>
+          <br />
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>ADDRESS</mat-label>
+            <input [(ngModel)]="data.saddress"
+              formControlName="saddress"
+              matInput
+              placeholder="ENTER ADDRESS"
+            />
+          </mat-form-field>
+        </mat-tab>
+        <!-- RECIPIENT -->
+        <mat-tab label="Recipient Details">
+          <br />
+          <mat-form-field appearance="outline">
+            <mat-label>FULL NAME</mat-label>
+            <input [(ngModel)]="data.rfullname"
+              formControlName="rfullname"
+              matInput
+              placeholder="ENTER FULL NAME"
+            />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>CONTACT NO.</mat-label>
+            <input [(ngModel)]="data.rcontactno"
+              formControlName="rcontactno"
+              matInput
+              placeholder="ENTER CONTACT NO."
+            />
+          </mat-form-field>
+          <br />
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>ADDRESS</mat-label>
+            <input [(ngModel)]="data.raddress"
+              formControlName="raddress"
+              matInput
+              placeholder="ENTER ADDRESS"
+            />
+          </mat-form-field>
+        </mat-tab>
+        <!-- other details -->
+        <mat-tab label="Other Details">
+          <br />
+          <mat-form-field appearance="outline">
+            <mat-label>DRIVER</mat-label>
+            <input [(ngModel)]="data.driver" formControlName="driver" matInput placeholder="DRIVER" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>CONTAINER VAN NO.</mat-label>
+            <input [(ngModel)]="data.containervanno"
+              formControlName="containervanno"
+              matInput
+              placeholder="CONTAINER VAN NO."
+            />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>HELPER</mat-label>
+            <input [(ngModel)]="data.helper1" formControlName="helper1" matInput placeholder="HELPER" />
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="outline">
+            <mat-label>EXTRA HELPER</mat-label>
+            <input [(ngModel)]="data.helper2"
+              formControlName="helper2"
+              matInput
+              placeholder="EXTRA HELPER"
+            />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>EXTRA HELPER</mat-label>
+            <input [(ngModel)]="data.helper3"
+              formControlName="helper3"
+              matInput
+              placeholder="EXTRA HELPER"
+            />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>EXTRA HELPER</mat-label>
+            <input [(ngModel)]="data.helper4"
+              formControlName="helper4"
+              matInput
+              placeholder="EXTRA HELPER"
+            />
+          </mat-form-field>
+        </mat-tab>
+      </mat-tab-group>
+    </form>
+
+    <!-- data -->
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <button
+    mat-button
+    matDialogClose
+    [disabled]="!deployFormGroup.valid"
+    (click)="updateTruck(deployFormGroup.value)"
+  >
+    UPDATE
+  </button>
+</mat-dialog-actions>

@@ -3,7 +3,7 @@ import { TruckModel } from "./truck_model";
 export interface DeployModel{
     id: string;
     sfullname: string;
-    scontactn: string;
+    scontactno: string;
     saddress: string;
     rfullname: string;
     rcontactno: string;
@@ -14,5 +14,6 @@ export interface DeployModel{
     helper2: string;
     helper3: string;
     helper4: string;
+    status: string;
     truck:TruckModel;
 }

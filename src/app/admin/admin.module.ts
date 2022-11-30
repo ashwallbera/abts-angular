@@ -31,6 +31,8 @@ import { EditTruckDialogComponent } from './trucks/edit-truck-dialog/edit-truck-
 import { DeployDialogComponent } from './trucks/deploy-dialog/deploy-dialog.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { DeployComponent } from './deploy/deploy.component';
+import { ViewDeployedDialogComponent } from './deploy/view-deployed-dialog/view-deployed-dialog.component';
+import { EditDeployedDialogComponent } from './deploy/edit-deployed-dialog/edit-deployed-dialog.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { DeployComponent } from './deploy/deploy.component';
     AddTruckDialogComponent,
     EditTruckDialogComponent,
     DeployDialogComponent,
-    DeployComponent
+    DeployComponent,
+    ViewDeployedDialogComponent,
+    EditDeployedDialogComponent
   ],
   imports: [
     CommonModule,
@@ -59,7 +63,7 @@ import { DeployComponent } from './deploy/deploy.component';
     MatToolbarModule,
     MatButtonModule,
     MatDialogModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
     FormsModule,
     MatFormFieldModule,
     MatInputModule,

@@ -1,0 +1,48 @@
+<div class="detail-box">
+  <div class="d-flex justify-content-center"><h1>Delivery Details</h1></div>
+  <br />
+  <div class="d-flex justify-content-between">
+    <div class="align-items-end">
+      <b>Truck Plate No:</b> {{ data.truck.plateno }}
+    </div>
+    <div>
+      <button class="all btn"  (click)="openEditDeployedDialog()">EDIT</button>
+    </div>
+  </div>
+
+  <br />
+  <div class="details">
+    <div class="d-flex justify-content-between">
+      <div>
+        <h2>Sender Details</h2>
+        <p>NAME/cOMPANY: {{ data.sfullname }}</p>
+        <p>Address: {{ data.saddress }}</p>
+        <p>Contact No.: {{ data.scontactno }}</p>
+
+        <h2>Receiver Details</h2>
+        <p>NAME/cOMPANY: {{ data.rfullname }}</p>
+        <p>Address: {{ data.raddress }}</p>
+        <p>Contact No.: {{ data.rcontactno }}</p>
+      </div>
+      <div>
+        <h2>Other Details</h2>
+        <p>Container van No.: {{ data.containervanno }}</p>
+        <p>Driver: {{ data.driver }}</p>
+        <p>helper: {{ data.helper1 }}</p>
+        <p>Extra helper: {{ data.helper2 }}</p>
+        <p>Extra helper: {{ data.helper3 }}</p>
+        <p>Extra helper: {{ data.helper4 }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-end">
+    <button
+      class="all btn"
+      mat-dialog-close=""
+     
+    >
+      CLOSE
+    </button>
+  </div>
+</div>
