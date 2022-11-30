@@ -7,6 +7,9 @@ import {
   Title,
 } from 'chart.js';
 import Chart from 'chart.js/auto';
+import { initializeApp } from 'firebase/app';
+import { child, getDatabase, onValue, ref } from 'firebase/database';
+import { environment } from 'src/environments/environment';
 import * as utils from './utils';
 Chart.register(LineController, LineElement, PointElement, LinearScale, Title);
 @Component({
@@ -15,7 +18,14 @@ Chart.register(LineController, LineElement, PointElement, LinearScale, Title);
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  constructor() {}
+  truckCount: number = 0;
+  staffCount: number = 0;
+  driverCount: number = 0;
+  helperCount: number = 0;
+
+  constructor() {
+    this.countByPosition();
+  }
 
   ngOnInit(): void {
     const ctx = 'myChart';
@@ -105,6 +115,41 @@ export class DashboardComponent implements OnInit {
           },
         },
       },
+    });
+  }
+
+  countByPosition() {
+    const app = initializeApp(environment.firebaseConfig);
+    const db = getDatabase();
+
+    onValue(ref(db, 'users/'), (snapData) => {
+      this.driverCount = 0;
+      this.helperCount = 0;
+      this.staffCount = 0;
+      this.truckCount = 0;
+      //console.log(Object.keys(snapData.val()).length) // 👈
+      snapData.forEach((child) => {
+        const data = child.val();
+        switch (data.position) {
+          case 'driver':
+            this.driverCount++;
+            break;
+          case 'helper':
+            this.helperCount++;
+            break;
+          case 'staff':
+            this.staffCount++;
+            break;
+          case 'truck':
+            this.truckCount++;
+            break;
+        }
+      });
+    });
+
+    onValue(ref(db, 'trucks/'), (snapData) => {
+      this.truckCount = 0;
+      this.truckCount = Object.keys(snapData.val()).length;
     });
   }
 }
