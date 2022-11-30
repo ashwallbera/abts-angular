@@ -35,6 +35,7 @@
           <mat-form-field appearance="outline">
             <mat-label>FULL NAME</mat-label>
             <input
+              [readonly]="true"
               [(ngModel)]="data.sfullname"
               formControlName="sfullname"
               matInput
@@ -43,7 +44,9 @@
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>CONTACT NO.</mat-label>
-            <input [(ngModel)]="data.scontactno"
+            <input
+              [readonly]="true"
+              [(ngModel)]="data.scontactno"
               formControlName="scontactno"
               matInput
               placeholder="ENTER CONTACT NO."
@@ -52,7 +55,9 @@
           <br />
           <mat-form-field class="full-width" appearance="outline">
             <mat-label>ADDRESS</mat-label>
-            <input [(ngModel)]="data.saddress"
+            <input
+              [readonly]="true"
+              [(ngModel)]="data.saddress"
               formControlName="saddress"
               matInput
               placeholder="ENTER ADDRESS"
@@ -64,7 +69,9 @@
           <br />
           <mat-form-field appearance="outline">
             <mat-label>FULL NAME</mat-label>
-            <input [(ngModel)]="data.rfullname"
+            <input
+              [readonly]="true"
+              [(ngModel)]="data.rfullname"
               formControlName="rfullname"
               matInput
               placeholder="ENTER FULL NAME"
@@ -72,7 +79,9 @@
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>CONTACT NO.</mat-label>
-            <input [(ngModel)]="data.rcontactno"
+            <input
+              [readonly]="true"
+              [(ngModel)]="data.rcontactno"
               formControlName="rcontactno"
               matInput
               placeholder="ENTER CONTACT NO."
@@ -81,7 +90,9 @@
           <br />
           <mat-form-field class="full-width" appearance="outline">
             <mat-label>ADDRESS</mat-label>
-            <input [(ngModel)]="data.raddress"
+            <input
+              [readonly]="true"
+              [(ngModel)]="data.raddress"
               formControlName="raddress"
               matInput
               placeholder="ENTER ADDRESS"
@@ -93,11 +104,17 @@
           <br />
           <mat-form-field appearance="outline">
             <mat-label>DRIVER</mat-label>
-            <input [(ngModel)]="data.driver" formControlName="driver" matInput placeholder="DRIVER" />
+            <input
+              [(ngModel)]="data.driver"
+              formControlName="driver"
+              matInput
+              placeholder="DRIVER"
+            />
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>CONTAINER VAN NO.</mat-label>
-            <input [(ngModel)]="data.containervanno"
+            <input
+              [(ngModel)]="data.containervanno"
               formControlName="containervanno"
               matInput
               placeholder="CONTAINER VAN NO."
@@ -105,12 +122,18 @@
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>HELPER</mat-label>
-            <input [(ngModel)]="data.helper1" formControlName="helper1" matInput placeholder="HELPER" />
+            <input
+              [(ngModel)]="data.helper1"
+              formControlName="helper1"
+              matInput
+              placeholder="HELPER"
+            />
           </mat-form-field>
           <br />
           <mat-form-field appearance="outline">
             <mat-label>EXTRA HELPER</mat-label>
-            <input [(ngModel)]="data.helper2"
+            <input
+              [(ngModel)]="data.helper2"
               formControlName="helper2"
               matInput
               placeholder="EXTRA HELPER"
@@ -118,7 +141,8 @@
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>EXTRA HELPER</mat-label>
-            <input [(ngModel)]="data.helper3"
+            <input
+              [(ngModel)]="data.helper3"
               formControlName="helper3"
               matInput
               placeholder="EXTRA HELPER"
@@ -126,7 +150,8 @@
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>EXTRA HELPER</mat-label>
-            <input [(ngModel)]="data.helper4"
+            <input
+              [(ngModel)]="data.helper4"
               formControlName="helper4"
               matInput
               placeholder="EXTRA HELPER"

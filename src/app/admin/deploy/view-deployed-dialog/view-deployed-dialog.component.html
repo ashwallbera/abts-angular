@@ -6,25 +6,25 @@
       <b>Truck Plate No:</b> {{ data.truck.plateno }}
     </div>
     <div>
-      <button class="all btn"  (click)="openEditDeployedDialog()">EDIT</button>
+      <button class="all btn" (click)="openEditDeployedDialog()">EDIT</button>
     </div>
   </div>
 
   <br />
   <div class="details">
-    <div class="d-flex justify-content-between">
-      <div>
+    <div class="d-flex justify-content-between ">
+      <div class ="padding-box" style="border-right:2px solid #0019ED;width: 180px;">
         <h2>Sender Details</h2>
         <p>NAME/cOMPANY: {{ data.sfullname }}</p>
         <p>Address: {{ data.saddress }}</p>
         <p>Contact No.: {{ data.scontactno }}</p>
-
+        <div style="border-bottom:2px solid #0019ED;"></div>
         <h2>Receiver Details</h2>
         <p>NAME/cOMPANY: {{ data.rfullname }}</p>
         <p>Address: {{ data.raddress }}</p>
         <p>Contact No.: {{ data.rcontactno }}</p>
       </div>
-      <div>
+      <div class="padding-box">
         <h2>Other Details</h2>
         <p>Container van No.: {{ data.containervanno }}</p>
         <p>Driver: {{ data.driver }}</p>
@@ -32,17 +32,17 @@
         <p>Extra helper: {{ data.helper2 }}</p>
         <p>Extra helper: {{ data.helper3 }}</p>
         <p>Extra helper: {{ data.helper4 }}</p>
+        <h2>Status</h2>
+        <button (click)="openViewStatusDialog()" class="all btn full-width">{{data.status}}</button>
+        <br>
+        <br>
+        <button  (click)="openUpdateStatusDialog()" class="update-status btn full-width">Update Status</button>
+
       </div>
     </div>
   </div>
 
   <div class="d-flex justify-content-end">
-    <button
-      class="all btn"
-      mat-dialog-close=""
-     
-    >
-      CLOSE
-    </button>
+    <button  class="all btn" mat-dialog-close="">CLOSE</button>
   </div>
 </div>

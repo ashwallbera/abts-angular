@@ -15,5 +15,6 @@ export interface DeployModel{
     helper3: string;
     helper4: string;
     status: string;
+    datecreated: string;
     truck:TruckModel;
 }

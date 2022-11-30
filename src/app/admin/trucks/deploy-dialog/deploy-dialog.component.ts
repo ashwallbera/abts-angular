@@ -44,7 +44,8 @@ export class DeployDialogComponent implements OnInit {
     const key = push(ref(db, 'deployed/')).key;
     deployModel.id = key+"";
     deployModel.truck = this.data;
-    deployModel.status = ""
+    deployModel.status = "";
+    deployModel.datecreated = new Date().toLocaleDateString();
     set(ref(db, 'deployed/' + key), deployModel);
   
     this.setAvailability(); // to set truck unavailable for deployment

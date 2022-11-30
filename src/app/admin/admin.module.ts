@@ -33,6 +33,8 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { DeployComponent } from './deploy/deploy.component';
 import { ViewDeployedDialogComponent } from './deploy/view-deployed-dialog/view-deployed-dialog.component';
 import { EditDeployedDialogComponent } from './deploy/edit-deployed-dialog/edit-deployed-dialog.component';
+import { ViewStatusDialogComponent } from './deploy/edit-deployed-dialog/view-status-dialog/view-status-dialog.component';
+import { UpdateStatusDialogComponent } from './deploy/edit-deployed-dialog/update-status-dialog/update-status-dialog.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { EditDeployedDialogComponent } from './deploy/edit-deployed-dialog/edit-
     DeployDialogComponent,
     DeployComponent,
     ViewDeployedDialogComponent,
-    EditDeployedDialogComponent
+    EditDeployedDialogComponent,
+    ViewStatusDialogComponent,
+    UpdateStatusDialogComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,12 @@
+<div class="d-flex justify-content-center">
+  <mat-form-field appearance="outline">
+    <mat-label>UPDATE STATUS</mat-label>
+    <mat-select [(ngModel)]="selectedValue" placeholder="UPDATE STATUS">
+      <mat-option [value]="selectedValue">
+        {{ selectedValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<button class="update-status btn full-width" mat-dialog-close="">Update Status</button>
