@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { EmployeeModel } from 'src/app/model/employee_model';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog/delete-dialog.component';
@@ -7,14 +7,18 @@ import { AddDialogComponent } from '../add-dialog/add-dialog.component';
 import { getDatabase, onValue, push, ref, set } from 'firebase/database';
 import { initializeApp } from 'firebase/app';
 import { environment } from 'src/environments/environment';
+import { FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.scss'],
 })
 export class EmployeeComponent implements OnInit {
+  @Input() public fromUser: string | undefined;
   userList: EmployeeModel[] = [];
   userListTemp: EmployeeModel[] = [];
+  search =  new FormControl('',Validators.nullValidator)
+  searchValue = "";
   constructor(public dialog: MatDialog) {
     // this.userList.push(
     //   {
@@ -107,5 +111,18 @@ export class EmployeeComponent implements OnInit {
     const db = getDatabase(app);
 
     set(ref(db, 'users/' + employeeModel.uid + '/'), null);
+  }
+  onChange(){
+    console.log(this.searchValue);
+    if( this.searchValue != ""){
+      var filtered = this.userListTemp.filter( (e) => {
+        return e.email ==this.searchValue;
+      });
+      this.userList = filtered;
+      console.log(this.searchValue);
+    }
+    else{
+      this.userList = this.userListTemp;
+    }
   }
 }

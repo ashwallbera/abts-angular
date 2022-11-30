@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { EmployeeReadComponent } from './employee-read/employee-read.component';
 import { MainComponent } from './main/main.component';
 import { StatusComponent } from './status/status.component';
-import { TrucksComponent } from './trucks/trucks.component';
+import { TrucksComponent } from './trucks-read/trucks-read.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
       {
         path:"trucks",
         component:TrucksComponent
+      },
+      {
+        path:"employee",
+        component:EmployeeReadComponent
       },
       {
         path:"status",

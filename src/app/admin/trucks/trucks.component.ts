@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 //import { TrucksModel } from 'src/app/model/trucks_model';
 import { MatDialog } from '@angular/material/dialog';
 import { initializeApp } from 'firebase/app';
@@ -17,7 +17,7 @@ import { EditTruckDialogComponent } from './edit-truck-dialog/edit-truck-dialog.
   styleUrls: ['./trucks.component.scss']
 })
 export class TrucksComponent implements OnInit {
-
+  @Input() fromStaff: string | undefined;
   truckList: TruckModel[] = [];
   truckTemp: TruckModel[] = []
   constructor(public dialog: MatDialog) {

@@ -1,10 +1,30 @@
 <!--STAFF TABLE-->
+<!-- <div *ngIf="fromUser">{{fromUser}}</div> -->
 <div class="search row">
-  <p class="search col">Search</p>
-  <input class="inp search col" type="text" />
-  <button class="staff_btn btn col active" (click)="filterByPosition('staff')">Staff</button>
-  <button class="driver_btn btn col" (click)="filterByPosition('driver')">Driver</button>
-  <button class="helper_btn btn col" (click)="filterByPosition('helper')">Helper</button>
+  <!-- <p class="search col">Search</p> -->
+  <!-- <input class="inp search col" type="text" /> -->
+  <mat-form-field appearance="outline" class="search col">
+    <mat-label>SEARCH</mat-label>
+    <input
+      (keydown)="onChange()"
+      matInput
+      placeholder="SEARCH"
+      [formControl]="search"
+      [(ngModel)]="searchValue"
+      (ngModelChange)="onChange()"
+    />
+    <mat-icon  matSuffix>search</mat-icon>
+    <mat-hint>Search employee email</mat-hint>
+  </mat-form-field>
+  <button class="staff_btn btn col active" (click)="filterByPosition('staff')">
+    Staff
+  </button>
+  <button class="driver_btn btn col" (click)="filterByPosition('driver')">
+    Driver
+  </button>
+  <button class="helper_btn btn col" (click)="filterByPosition('helper')">
+    Helper
+  </button>
   <button class="all_btn btn col" (click)="filterByPosition('all')">All</button>
   <button (click)="openAddDialog()" class="add_btn btn col">Add</button>
 </div>
@@ -17,16 +37,16 @@
         <th scope="col">Email</th>
         <th scope="col">Position</th>
         <th scope="col">Contact No.</th>
-        <th class="ac" scope="col">Action</th>
+        <th class="ac" scope="col" *ngIf="!fromUser">Action</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let d of userList">
-        <td data-label="Staff">{{ d.fname }} {{d.lname}}</td>
+        <td data-label="Staff">{{ d.fname }} {{ d.lname }}</td>
         <td data-label="Email">{{ d.email }}</td>
         <td data-label="Position">{{ d.position }}</td>
         <td data-label="Contact Number">{{ d.contactno }}</td>
-        <td data-label="Action">
+        <td data-label="Action" *ngIf="!fromUser">
           <button (click)="openEditDialog(d)" class="edit_btn col">
             <mat-icon>edit</mat-icon>
           </button>

@@ -1,9 +1,9 @@
 <div class="search row">
  
-    <button (click)="openAddDialog()" class="add_btn btn">ADD NEW</button>
-    <button class="available btn" (click)="filterByPosition(true)">AVAILABLE</button>
+    <button *ngIf="!fromStaff" (click)="openAddDialog()" class="add_btn btn">ADD NEW</button>
+    <!-- <button class="available btn" (click)="filterByPosition(true)">AVAILABLE</button>
     <button class="available btn" (click)="filterByPosition(false)">NOT AVAILABLE</button>
-    <button class="all btn" (click)="filterByPosition('all')">ALL</button>
+    <button class="all btn" (click)="filterByPosition('all')">ALL</button> -->
 </div>
 
 <div class="table_size">
@@ -12,16 +12,16 @@
           <tr>
             <th scope="col">Truck Plate No.</th>
             <th scope="col">Truck Type</th>
-            <th scope="col">Status</th>
-            <th class="ac" scope="col">Action</th>
+            <th scope="col">Year model</th>
+            <th class="ac" scope="col" *ngIf="!fromStaff" >Action </th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let truck of truckList">
             <td data-label="Staff">{{truck.plateno}}</td>
             <td data-label="Contact Number">{{truck.type}}</td>
-            <td data-label="Status">{{truck.isAvailable ? 'AVAILABLE' : 'NOT AVAILABLE'}}</td>
-            <td data-label="Action">
+            <td data-label="Status">{{truck.yearmodel}}</td>
+            <td data-label="Action" *ngIf="!fromStaff">
                 <button (click)="openDeployDialog(truck)" class="deploy_btn col">Deploy</button> 
                 <button class="edit_btn col" (click)="openEditDialog(truck)"><mat-icon>edit</mat-icon></button>
                 <button class="del_btn col" (click)="openDeleteDialog(truck)"><mat-icon>delete_outline</mat-icon></button>
