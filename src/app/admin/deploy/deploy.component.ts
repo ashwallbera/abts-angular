@@ -13,6 +13,7 @@ import { ViewDeployedDialogComponent } from './view-deployed-dialog/view-deploye
   styleUrls: ['./deploy.component.scss'],
 })
 export class DeployComponent implements OnInit {
+  hideProgressbar = false;
   deployedList: DeployModel[] = [];
   constructor(public dialog: MatDialog) {
     // this.truckList.push({
@@ -51,6 +52,7 @@ export class DeployComponent implements OnInit {
     const db = getDatabase();
     const starCountRef = ref(db, 'deployed/');
     onValue(starCountRef, (snapshot) => {
+      this.hideProgressbar = true;
       this.deployedList.splice(0, this.deployedList.length);
       const data = snapshot.val();
       snapshot.forEach((child) => {

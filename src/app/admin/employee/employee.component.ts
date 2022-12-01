@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { EmployeeModel } from 'src/app/model/employee_model';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog/delete-dialog.component';
@@ -14,11 +14,12 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./employee.component.scss'],
 })
 export class EmployeeComponent implements OnInit {
+  hideProgressbar = false;
   @Input() public fromUser: string | undefined;
   userList: EmployeeModel[] = [];
   userListTemp: EmployeeModel[] = [];
-  search =  new FormControl('',Validators.nullValidator)
-  searchValue = "";
+  search = new FormControl('', Validators.nullValidator);
+  searchValue = '';
   constructor(public dialog: MatDialog) {
     // this.userList.push(
     //   {
@@ -92,10 +93,12 @@ export class EmployeeComponent implements OnInit {
   }
 
   readEmployee() {
+
     const app = initializeApp(environment.firebaseConfig);
     const db = getDatabase();
     const starCountRef = ref(db, 'users/');
     onValue(starCountRef, (snapshot) => {
+      this.hideProgressbar = true;
       this.userList.splice(0, this.userList.length);
       const data = snapshot.val();
       snapshot.forEach((child) => {
@@ -112,16 +115,15 @@ export class EmployeeComponent implements OnInit {
 
     set(ref(db, 'users/' + employeeModel.uid + '/'), null);
   }
-  onChange(){
+  onChange() {
     console.log(this.searchValue);
-    if( this.searchValue != ""){
-      var filtered = this.userListTemp.filter( (e) => {
-        return e.email ==this.searchValue;
+    if (this.searchValue != '') {
+      var filtered = this.userListTemp.filter((e) => {
+        return e.email == this.searchValue;
       });
       this.userList = filtered;
       console.log(this.searchValue);
-    }
-    else{
+    } else {
       this.userList = this.userListTemp;
     }
   }

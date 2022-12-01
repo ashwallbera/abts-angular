@@ -17,6 +17,7 @@ import { EditTruckDialogComponent } from './edit-truck-dialog/edit-truck-dialog.
   styleUrls: ['./trucks.component.scss']
 })
 export class TrucksComponent implements OnInit {
+  hideProgressbar = false;
   @Input() fromStaff: string | undefined;
   truckList: TruckModel[] = [];
   truckTemp: TruckModel[] = []
@@ -80,6 +81,7 @@ export class TrucksComponent implements OnInit {
     const db = getDatabase();
     const starCountRef = ref(db, 'trucks/');
     onValue(starCountRef, (snapshot) => {
+      this.hideProgressbar = true;
       this.truckList.splice(0, this.truckList.length);
       const data = snapshot.val();
       snapshot.forEach((child) => {

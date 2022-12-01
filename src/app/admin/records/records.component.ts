@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./records.component.scss']
 })
 export class RecordsComponent implements OnInit {
-
+  hideProgressbar = false;
   constructor() { }
 
   ngOnInit(): void {

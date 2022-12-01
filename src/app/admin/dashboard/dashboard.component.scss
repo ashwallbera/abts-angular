@@ -47,7 +47,7 @@ hr{
     margin-left: 300px;
 }
 
-.card_chart, #myChart{
+.card_chart{
     width: 841px;
     height: 420px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
@@ -55,8 +55,14 @@ hr{
 
 }
 
+.card_chart1{
+    width: 841px;
+    height: 420px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
+    position: absolute;
+    margin-top: 450px;
 
-.three{
-    margin: 0%;
-    margin-top: 3%;
 }
+
+
+

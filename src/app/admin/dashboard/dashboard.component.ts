@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {
   LineController,
   LineElement,
@@ -17,7 +17,7 @@ Chart.register(LineController, LineElement, PointElement, LinearScale, Title);
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, AfterViewInit {
   truckCount: number = 0;
   staffCount: number = 0;
   driverCount: number = 0;
@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
     this.countByPosition();
   }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     const ctx = 'myChart';
     const myChart = new Chart(ctx, {
       type: 'line',
@@ -117,6 +117,8 @@ export class DashboardComponent implements OnInit {
       },
     });
   }
+
+  ngOnInit(): void {}
 
   countByPosition() {
     const app = initializeApp(environment.firebaseConfig);

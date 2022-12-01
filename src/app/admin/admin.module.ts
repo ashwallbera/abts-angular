@@ -35,6 +35,7 @@ import { ViewDeployedDialogComponent } from './deploy/view-deployed-dialog/view-
 import { EditDeployedDialogComponent } from './deploy/edit-deployed-dialog/edit-deployed-dialog.component';
 import { ViewStatusDialogComponent } from './deploy/edit-deployed-dialog/view-status-dialog/view-status-dialog.component';
 import { UpdateStatusDialogComponent } from './deploy/edit-deployed-dialog/update-status-dialog/update-status-dialog.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { UpdateStatusDialogComponent } from './deploy/edit-deployed-dialog/updat
     MatInputModule,
     MatSelectModule,
     MatOptionModule,
-    MatTabsModule
+    MatTabsModule,
+    MatProgressBarModule
   ],
   exports: [EmployeeComponent,TrucksComponent,DashboardComponent,RecordsComponent]
 })
