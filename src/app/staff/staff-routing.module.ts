@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DeployComponent } from '../admin/deploy/deploy.component';
+import { RecordsComponent } from '../admin/records/records.component';
+import { DashboardReadComponent } from './dashboard-staff/dashboard.component';
 import { EmployeeReadComponent } from './employee-read/employee-read.component';
 import { MainComponent } from './main/main.component';
 import { StatusComponent } from './status/status.component';
@@ -13,7 +15,7 @@ const routes: Routes = [
     children: [
       {
         path:"dashboard",
-        component:DashboardComponent
+        component:DashboardReadComponent
       },
       {
         path:"trucks",
@@ -24,9 +26,13 @@ const routes: Routes = [
         component:EmployeeReadComponent
       },
       {
-        path:"status",
-        component:StatusComponent
-      }
+        path:"deployed",
+        component:DeployComponent
+      },
+      {
+        path:"records",
+        component:RecordsComponent
+      },
     ]
   }
 ];

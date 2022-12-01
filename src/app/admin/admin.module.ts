@@ -75,6 +75,6 @@ import { UpdateStatusDialogComponent } from './deploy/edit-deployed-dialog/updat
     MatOptionModule,
     MatTabsModule
   ],
-  exports: [EmployeeComponent,TrucksComponent]
+  exports: [EmployeeComponent,TrucksComponent,DashboardComponent,RecordsComponent]
 })
 export class AdminModule { }
