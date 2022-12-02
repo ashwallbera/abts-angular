@@ -2,7 +2,7 @@ import { Component, OnInit,Input } from '@angular/core';
 //import { TrucksModel } from 'src/app/model/trucks_model';
 import { MatDialog } from '@angular/material/dialog';
 import { initializeApp } from 'firebase/app';
-import { getDatabase, onValue, ref } from 'firebase/database';
+import { getDatabase, onValue, ref, set } from 'firebase/database';
 import { EmployeeModel } from 'src/app/model/employee_model';
 import { TruckModel } from 'src/app/model/truck_model';
 import { environment } from 'src/environments/environment';
@@ -70,10 +70,10 @@ export class TrucksComponent implements OnInit {
   }
 
   deleteTruck(truckModel: TruckModel) {
-    // const app = initializeApp(environment.firebaseConfig);
-    // const db = getDatabase(app);
+    const app = initializeApp(environment.firebaseConfig);
+    const db = getDatabase(app);
 
-    // set(ref(db, 'users/' + employeeModel.uid + '/'), null);
+    set(ref(db, 'trucks/' + truckModel.id + '/'), null);
   }
 
   readTruck(){
