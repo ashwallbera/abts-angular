@@ -11,9 +11,13 @@ import { StaffModule } from './staff/staff.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { LandingpageModule } from './landingpage/landingpage.module';
+import { MessageDialogComponent } from './message-dialog/message-dialog.component';
+import { DriverComponent } from './driver/driver.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
-  declarations: [AppComponent, RouterManagerComponent],
+  declarations: [AppComponent, RouterManagerComponent, MessageDialogComponent, DriverComponent, LogoutComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -24,7 +28,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     StaffModule,
     MatFormFieldModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    LandingpageModule
   ],
   providers: [],
   bootstrap: [AppComponent],

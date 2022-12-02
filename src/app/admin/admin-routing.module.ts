@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LogoutComponent } from '../logout/logout.component';
 import { RouterManagerComponent } from '../router-manager/router-manager.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DeployComponent } from './deploy/deploy.component';
@@ -37,6 +38,10 @@ const routes: Routes = [
       {
         path: 'records',
         component: RecordsComponent,
+      },
+      {
+        path: 'logout',
+        component: LogoutComponent,
       },
     ],
   },

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { EmployeeModel } from '../model/employee_model';
 
 @Component({
   selector: 'app-router-manager',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RouterManagerComponent implements OnInit {
 
-  constructor() { }
+  constructor(public router: Router) {
+    this.checkIsLoggedin();
+   }
 
   ngOnInit(): void {
+  }
+
+  checkIsLoggedin(){
+    var user: EmployeeModel = JSON.parse(JSON.stringify(localStorage.getItem('abtsaccount')));
+    console.log(user);
+    if(user != null){
+
+    }else{
+      this.router.navigate(['login']);
+    }
   }
 
 }

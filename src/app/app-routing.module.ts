@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DriverComponent } from './driver/driver.component';
 import { RouterManagerComponent } from './router-manager/router-manager.component';
 
 const routes: Routes = [
@@ -9,12 +10,17 @@ const routes: Routes = [
 
   },
   {
+    path:'driver',
+    component: DriverComponent
+
+  },
+  {
     path: 'admin',
     loadChildren: () =>
       import('./admin/admin-routing.module').then((m) => m.AdminRoutingModule),
   },
   {
-    path:'landingpage',
+    path:'login',
     loadChildren: () => 
     import('./landingpage/landingpage-routing.module').then((m) => m.LandingpageRoutingModule),
   },

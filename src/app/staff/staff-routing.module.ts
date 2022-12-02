@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DeployComponent } from '../admin/deploy/deploy.component';
 import { RecordsComponent } from '../admin/records/records.component';
+import { LogoutComponent } from '../logout/logout.component';
 import { DashboardReadComponent } from './dashboard-staff/dashboard.component';
 import { EmployeeReadComponent } from './employee-read/employee-read.component';
 import { MainComponent } from './main/main.component';
@@ -32,6 +33,10 @@ const routes: Routes = [
       {
         path:"records",
         component:RecordsComponent
+      },
+      {
+        path:"logout",
+        component:LogoutComponent
       },
     ]
   }
