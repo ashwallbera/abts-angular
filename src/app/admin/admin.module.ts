@@ -36,6 +36,7 @@ import { EditDeployedDialogComponent } from './deploy/edit-deployed-dialog/edit-
 import { ViewStatusDialogComponent } from './deploy/edit-deployed-dialog/view-status-dialog/view-status-dialog.component';
 import { UpdateStatusDialogComponent } from './deploy/edit-deployed-dialog/update-status-dialog/update-status-dialog.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { ViewDeliveryedComponent } from './records/view-deliveryed/view-deliveryed.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     ViewDeployedDialogComponent,
     EditDeployedDialogComponent,
     ViewStatusDialogComponent,
-    UpdateStatusDialogComponent
+    UpdateStatusDialogComponent,
+    ViewDeliveryedComponent
   ],
   imports: [
     CommonModule,

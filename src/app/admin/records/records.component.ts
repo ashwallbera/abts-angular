@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { initializeApp } from 'firebase/app';
 import { getDatabase, onValue, ref } from 'firebase/database';
 import { DeployModel } from 'src/app/model/deployed_model';
 import { environment } from 'src/environments/environment';
+import { ViewDeliveryedComponent } from './view-deliveryed/view-deliveryed.component';
 
 @Component({
   selector: 'app-records',
@@ -12,7 +14,7 @@ import { environment } from 'src/environments/environment';
 export class RecordsComponent implements OnInit {
   hideProgressbar = false;
   reportsList: DeployModel[] = [];
-  constructor() { 
+  constructor(public dialog: MatDialog) { 
     this.readReports();
   }
 
@@ -53,5 +55,9 @@ export class RecordsComponent implements OnInit {
     return deployedModel.status[deployedModel.status.length - 1].date;
   }
 
-
+  openViewDeployedDialog(DeployModel: DeployModel){
+    this.dialog.open(ViewDeliveryedComponent,{
+      data:DeployModel
+    })
+  }
 }
