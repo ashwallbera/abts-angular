@@ -12,6 +12,7 @@ export class RouterManagerComponent implements OnInit {
 
   constructor(public router: Router) {
     this.checkIsLoggedin();
+    console.log("manager");
    }
 
   ngOnInit(): void {

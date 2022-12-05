@@ -10,4 +10,5 @@ export interface EmployeeModel{
     birthdate: string;
     address: string;
     password: string;
+    // assignTruckId: string;
 }

@@ -1,6 +1,11 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { initializeApp } from 'firebase/app';
+import { getDatabase, ref, update } from 'firebase/database';
 import { DeployModel } from 'src/app/model/deployed_model';
+import { StatusModel } from 'src/app/model/status_model';
+import { environment } from 'src/environments/environment';
+import { DatePipe } from '@angular/common'
 
 @Component({
   selector: 'app-update-status-dialog',
@@ -8,12 +13,127 @@ import { DeployModel } from 'src/app/model/deployed_model';
   styleUrls: ['./update-status-dialog.component.scss']
 })
 export class UpdateStatusDialogComponent implements OnInit {
-  selectedValue: string;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DeployModel) { 
-    this.selectedValue = data.status;
+  selectedValue: StatusModel | undefined;
+  // Predefine statuses according to the requirements
+  statusRead: StatusModel[] = [{
+    id:'',
+    date:'',
+    time: '',
+    type: 'Delivered',
+    description:'the cargo was delivered successfully'
+  },
+  {
+    id:'',
+    date:'',
+    time: '',
+    type: 'Truck Returned',
+    description:'truck succesfully returned'
+  },
+  {
+    id:'',
+    date:'',
+    time: '',
+    type: 'Return to garage',
+    description:'truck is about to return to garage'
+  },
+  {
+    id:'',
+    date:'',
+    time: '',
+    type: 'Cargoes Unloaded',
+    description:'cargoes  succuesfully unloaded'
+  },
+  {
+    id:'',
+    date:'',
+    time: '',
+    type: 'Unloading Cargoes',
+    description:'carrier is about to unload the cargo from the truck'
+  },
+  {
+    id:'',
+    date:'',
+    time: '',
+    type: 'arrived at destination',
+    description:'truck has arrived at  destination: '
+  },
+  {
+    id:'',
+    date:'',
+    time: '',
+    type: 'the cargo was delivered successfully',
+    description:''
+  },
+  {
+    id:'',
+    date:'',
+    time: '',
+    type: 'Out for delivery',
+    description:'Truck is about to deliver the Cargo.'
+  },
+  {
+    id:'',
+    date:'',
+    time: '',
+    type: 'Failed Attempt',
+    description:'Truck attempted to deliver but failed, and usually leavs a notice and try to deliver again.'
+  },
+  {
+    id:'',
+    date:'',
+    time: '',
+    type: 'Out for delivery',
+    description:'Truck is about to deliver the Cargo.'
+  },
+  {
+    id:'',
+    date:'',
+    time: '',
+    type: 'In Transit',
+    description:'Truck assigned and about picked up the cargo from the pier and about to retun to garage to get some extra helper.'
+  },
+
+  {
+    id:'',
+    date:'',
+    time: '',
+    type: 'Info Received',
+    description:'Carrier has received request from the shipper and is about to pick up the cargo'
+  },
+
+
+];
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DeployModel,public datepipe: DatePipe) {
+   
+
   }
 
   ngOnInit(): void {
+  }
+
+  updateStatus(){
+    const app = initializeApp(environment.firebaseConfig);
+    const db = getDatabase(app);
+    var date = new Date();
+    if(this.selectedValue?.type == "Delivered"){
+      this.data.truck.isAvailable = true;
+      update(ref(db, 'trucks/' + this.data.truck.id + '/'), this.data.truck);
+      console.log("delivered");
+      this.data.isDelivered = true;
+      update(ref(db, 'deployed/' + this.data.id + '/'), this.data);
+
+    }else{
+      this.data.status.push({
+        id:'',
+        date:''+this.datepipe.transform(date, 'fullDate'),
+        time: ''+this.datepipe.transform(date, 'shortTime'),
+        type: ''+this.selectedValue!.type,
+        description:''+this.selectedValue!.description
+      })
+      console.log(this.data.status)
+      update(ref(db, 'deployed/' + this.data.id + '/'), this.data);
+    }
+     
   }
 
 }

@@ -15,6 +15,7 @@ import { LandingpageModule } from './landingpage/landingpage.module';
 import { MessageDialogComponent } from './message-dialog/message-dialog.component';
 import { DriverComponent } from './driver/driver.component';
 import { LogoutComponent } from './logout/logout.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent, RouterManagerComponent, MessageDialogComponent, DriverComponent, LogoutComponent],
@@ -31,7 +32,7 @@ import { LogoutComponent } from './logout/logout.component';
     MatDialogModule,
     LandingpageModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent],
   entryComponents:[]
 })

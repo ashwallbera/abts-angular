@@ -1,12 +1,12 @@
 <div class="d-flex justify-content-center">
   <mat-form-field appearance="outline">
     <mat-label>UPDATE STATUS</mat-label>
-    <mat-select [(ngModel)]="selectedValue" placeholder="UPDATE STATUS">
-      <mat-option [value]="selectedValue">
-        {{ selectedValue }}
+    <mat-select  [(ngModel)]="selectedValue" placeholder="UPDATE STATUS">
+      <mat-option  *ngFor="let status of statusRead" [value]="status" >
+        {{ status.type }}
       </mat-option>
     </mat-select>
   </mat-form-field>
 </div>
 
-<button class="update-status btn full-width" mat-dialog-close="">Update Status</button>
+<button class="update-status btn full-width" mat-dialog-close="" (click)="updateStatus()">Update Status</button>

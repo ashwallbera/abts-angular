@@ -1,3 +1,4 @@
+import { StatusModel } from "./status_model";
 import { TruckModel } from "./truck_model";
 
 export interface DeployModel{
@@ -14,7 +15,9 @@ export interface DeployModel{
     helper2: string;
     helper3: string;
     helper4: string;
-    status: string;
+    isDelivered: boolean;
+    status: StatusModel[];
+    currentStatus: string;
     datecreated: string;
     truck:TruckModel;
 }

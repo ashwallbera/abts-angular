@@ -56,17 +56,20 @@ export class DeployComponent implements OnInit {
       this.deployedList.splice(0, this.deployedList.length);
       const data = snapshot.val();
       snapshot.forEach((child) => {
-        this.deployedList.push(child.val());
+        if (child.val().isDelivered == false) {
+          var deployed = child.val();
+          deployed.status.reverse();
+          this.deployedList.push(deployed);
+        }
       });
 
       console.log(snapshot.val());
     });
   }
 
-  openViewDeployedDialog(deployModel: DeployModel){
-    this.dialog.open(ViewDeployedDialogComponent,{
-      data:deployModel
+  openViewDeployedDialog(deployModel: DeployModel) {
+    this.dialog.open(ViewDeployedDialogComponent, {
+      data: deployModel,
     });
   }
-
 }

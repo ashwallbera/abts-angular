@@ -12,7 +12,9 @@ import { ViewStatusDialogComponent } from '../edit-deployed-dialog/view-status-d
 })
 export class ViewDeployedDialogComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DeployModel,public dialog: MatDialog) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DeployModel,public dialog: MatDialog) {
+   
+   }
 
   ngOnInit(): void {
   }
