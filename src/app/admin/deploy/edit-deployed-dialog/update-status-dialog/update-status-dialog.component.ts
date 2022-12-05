@@ -118,7 +118,7 @@ export class UpdateStatusDialogComponent implements OnInit {
     if(this.selectedValue?.type == "Delivered"){
       this.data.status.push({
         id:'',
-        date:''+this.datepipe.transform(date, 'fullDate'),
+        date:''+this.datepipe.transform(date, 'longDate'),
         time: ''+this.datepipe.transform(date, 'shortTime'),
         type: ''+this.selectedValue!.type,
         description:''+this.selectedValue!.description
@@ -132,7 +132,7 @@ export class UpdateStatusDialogComponent implements OnInit {
     }else{
       this.data.status.push({
         id:'',
-        date:''+this.datepipe.transform(date, 'fullDate'),
+        date:''+this.datepipe.transform(date, 'longDate'),
         time: ''+this.datepipe.transform(date, 'shortTime'),
         type: ''+this.selectedValue!.type,
         description:''+this.selectedValue!.description
