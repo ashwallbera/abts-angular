@@ -27,7 +27,7 @@ export class ViewDeployedDialogComponent implements OnInit {
 
   openViewStatusDialog(){
     this.dialog.open(ViewStatusDialogComponent,{
-      data:this.data
+      data:this.data,
     })
   }
 

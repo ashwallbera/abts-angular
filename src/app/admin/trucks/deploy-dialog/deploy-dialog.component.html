@@ -63,10 +63,20 @@
         </mat-tab>
         <!-- other details -->
         <mat-tab label="Other Details">
-          <mat-form-field appearance="outline">
+          <!-- <mat-form-field appearance="outline">
             <mat-label>DRIVER</mat-label>
             <input formControlName="driver" matInput placeholder="DRIVER" />
+          </mat-form-field> -->
+          <mat-form-field appearance="outline">
+            <mat-label>SELECT DRIVERS</mat-label>
+            <mat-select [(ngModel)]="selectedDriver" formControlName="driver" required>
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let driver of driverList" [value]="driver">
+                {{driver.fname}}  {{driver.lname}}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
+
           <mat-form-field appearance="outline">
             <mat-label>CONTAINER VAN NO.</mat-label>
             <input formControlName="containervanno" matInput placeholder="CONTAINER VAN NO." />

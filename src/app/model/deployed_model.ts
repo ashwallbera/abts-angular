@@ -1,3 +1,4 @@
+import { EmployeeModel } from "./employee_model";
 import { StatusModel } from "./status_model";
 import { TruckModel } from "./truck_model";
 
@@ -20,4 +21,5 @@ export interface DeployModel{
     currentStatus: string;
     datecreated: string;
     truck:TruckModel;
+    employeeModel: EmployeeModel;
 }

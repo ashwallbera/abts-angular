@@ -116,6 +116,13 @@ export class UpdateStatusDialogComponent implements OnInit {
     const db = getDatabase(app);
     var date = new Date();
     if(this.selectedValue?.type == "Delivered"){
+      this.data.status.push({
+        id:'',
+        date:''+this.datepipe.transform(date, 'fullDate'),
+        time: ''+this.datepipe.transform(date, 'shortTime'),
+        type: ''+this.selectedValue!.type,
+        description:''+this.selectedValue!.description
+      })
       this.data.truck.isAvailable = true;
       update(ref(db, 'trucks/' + this.data.truck.id + '/'), this.data.truck);
       console.log("delivered");

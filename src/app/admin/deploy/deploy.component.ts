@@ -58,7 +58,6 @@ export class DeployComponent implements OnInit {
       snapshot.forEach((child) => {
         if (child.val().isDelivered == false) {
           var deployed = child.val();
-          deployed.status.reverse();
           this.deployedList.push(deployed);
         }
       });
