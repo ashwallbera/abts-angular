@@ -24,7 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
-import { MatOptionModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { AddDialogComponent } from './add-dialog/add-dialog.component';
 import { AddTruckDialogComponent } from './trucks/add-truck-dialog/add-truck-dialog.component';
 import { EditTruckDialogComponent } from './trucks/edit-truck-dialog/edit-truck-dialog.component';
@@ -37,6 +37,8 @@ import { ViewStatusDialogComponent } from './deploy/edit-deployed-dialog/view-st
 import { UpdateStatusDialogComponent } from './deploy/edit-deployed-dialog/update-status-dialog/update-status-dialog.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { ViewDeliveryedComponent } from './records/view-deliveryed/view-deliveryed.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
 
 @NgModule({
   declarations: [
@@ -77,7 +79,11 @@ import { ViewDeliveryedComponent } from './records/view-deliveryed/view-delivery
     MatSelectModule,
     MatOptionModule,
     MatTabsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatMomentDateModule
+    
   ],
   exports: [EmployeeComponent,TrucksComponent,DashboardComponent,RecordsComponent]
 })
