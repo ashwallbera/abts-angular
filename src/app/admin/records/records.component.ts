@@ -73,13 +73,10 @@ export class RecordsComponent implements OnInit {
     var dates = this.getDatesInRange(sdate, edate);
 
     var generatedReport: DeployModel[] = [];
-    dates.forEach((date) => {
-
-      console.log(this.getSpicificReport(date.toLocaleDateString()));
-      if(this.getSpicificReport(date.toLocaleDateString()) != null){
-        generatedReport.push(this.getSpicificReport(date.toLocaleDateString()));
+    this.reportsTemp.forEach((deployed) => {
+      if (this.getSpicificReport(dates, deployed) != null) {
+        generatedReport.push(this.getSpicificReport(dates, deployed));
       }
-     
     });
     console.log(generatedReport);
     this.reportsList = generatedReport;
@@ -98,30 +95,17 @@ export class RecordsComponent implements OnInit {
     return dates;
   }
 
-  getSpicificReport(date: string) : DeployModel{
-    // this.reportsTemp.forEach((report) => {
-    //   if (report.datecreated == date) {
-    //     console.log(report.datecreated == date);
-    //     console.log(date);
-    //     return report;
-    //   }
-    //   return '';
-    //   // var filtered = this.reportsTemp.filter(function (e) {
-    //   //   return e.datecreated == date.toLocaleDateString().toString();
-    //   // });
-    // });
-
-    for(var i = 0 ; i < this.reportsTemp.length ; i++){
-      if (this.reportsTemp[i].datecreated == date) {
-            console.log(this.reportsTemp[i].datecreated == date);
-            console.log(date);
-            return this.reportsTemp[i];
-          }
+  getSpicificReport(date: Date[], deployed: DeployModel): DeployModel {
+    for (var i = 0; i < date.length; i++) {
+      if (date[i].toLocaleDateString() == deployed.datecreated) {
+        console.log(date[i].toLocaleDateString() == deployed.datecreated);
+        console.log(date);
+        return deployed;
+      }
     }
-    return null as any; 
+    return null as any;
   }
-  clearReport(){
+  clearReport() {
     this.reportsList = this.reportsTemp;
   }
-
 }
