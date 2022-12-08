@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DeployModel } from 'src/app/model/deployed_model';
@@ -10,10 +11,15 @@ import { DeployModel } from 'src/app/model/deployed_model';
 })
 export class ViewStatusDialogComponent implements OnInit {
   currentStatus = 'Delivered';
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DeployModel) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DeployModel, public datepipe: DatePipe) {
     //this.currentStatus = data.status[data.status.length-1]
 
   }
 
   ngOnInit(): void {}
+
+  formatDate(date: string): string{
+    var d = new Date(date);
+    return ""+this.datepipe.transform(d,'mediumDate');
+  }
 }

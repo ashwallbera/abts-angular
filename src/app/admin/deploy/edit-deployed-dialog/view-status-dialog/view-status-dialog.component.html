@@ -1,4 +1,4 @@
-
+<!-- 
     <div class="task-b-title">Track Status</div><br>
     <div class="task-box">
         <div class="task-b-container">
@@ -16,4 +16,39 @@
             </ul>
         </div>
     </div><br>
+ -->
 
+<div class="task-b-title">Track Status</div>
+<br />
+<div class="task-box">
+  <div class="task-b-container">
+    <ul class="task-b" *ngFor="let status of data.status">
+      <!-- <div class="task-timestamp">3rd May 2020 <br> 7:00 PM</div>
+             <li class="task-b-status" ng-repeat="itembx">
+                 <div class="task-status-title-dlvrd">Delivered</div>
+                 <div class="task-status-info">The Cargo was delivered successfully.</div>
+             </li> -->
+
+      <!-- <div class="task-timestamp">
+        {{ formatDate(status.date) }} <br />
+        {{ status.time }}
+      </div>
+      <li class="task-b-status" ng-repeat="itembx">
+        <div class="task-status-title">{{ status.type }}</div>
+        <div class="task-status-info">{{ status.description }}</div>
+      </li> -->
+
+      <div class="task-timestamp">
+        {{ formatDate(status.date)}} <br />
+        {{status.time}}
+      </div>
+      <li class="task-b-status" ng-repeat="itembx">
+        <!-- <div class="task-timestamp">3rd May 2020 <br> 7:00 PM</div> -->
+        <div class="task-status-title">{{status.type}}</div>
+        <div class="task-status-info">
+          {{status.description}}
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

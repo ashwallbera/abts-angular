@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); 
 @import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 
-
 .task-b-title {
     margin-top: 50px;
     font-family: 'Poppins',sans-serif;
@@ -19,7 +18,7 @@
       overflow-x: hidden;
       width: 100%;
       max-width: 1050px;
-      max-height: 750px;
+      max-height: 410px;
       height: 100%;
       position: relative;
       border-radius: 12px;
@@ -40,7 +39,7 @@
 .task-b-status {
     list-style: none;
     margin: auto;
-    margin-left: 150px;
+    margin-left: 140px;
     height: 100%;
     border-left: 1px dashed rgb(255, 255, 255);
     padding: 0 0 40px 20px;
@@ -54,6 +53,7 @@
   
 // point-icons
 .task-b-status::before {
+    // text-align: left;
     position: absolute;
     left: -18px;
     top: -5px;
@@ -74,13 +74,14 @@
 }
     
 .task-timestamp {
-    text-align: right;
+    text-align: left;
+
     color:#ffffff;
     font-weight: bold;
     position: relative;
     width: 100%;
     font-size: 15px;
-    margin-left: -875px;
+    // margin-left: -875px;
     cursor: pointer;
 }
 
@@ -121,11 +122,6 @@
         overflow: hidden !important;
         max-height: 1100px !important;
     }
-
-    .task-timestamp {
-        margin-left: -895px;
-        cursor: pointer;
-    }
 }
 
 
@@ -141,10 +137,10 @@
         text-align: left;
     }
       
-    .task-timestamp {
-        text-align: left;
-        margin-left: 15px;
-    }
+    // .task-timestamp {
+    //     text-align: left;
+    //     margin-left: 15px;
+    // }
 
     .task-status-title, .task-status-title-dlvrd {
         margin-top: 10px;
@@ -156,7 +152,12 @@
 @media (max-width: 460px) {
 
     .task-timestamp {
-        font-size: 73% !important;}
+        font-size: 80% !important;}
+
+    .task-b-status {
+        margin-left: 120px;
+
+    }
 
     .task-status-title, .task-status-title-dlvrd, 
     .task-status-info {
