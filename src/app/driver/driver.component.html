@@ -6,34 +6,35 @@
   <section class="driver-info-body">
     <div class="driver-info-container">
       <div class="driver-info-content">
-      <form action="#" class="driver-info-form">
+      <div class="driver-info-form">
         <img src="assets/delivery-icon.png" alt="" class="driver-info-icon">
         <div class="driver-info-topic">Delivery Details</div>
-        <div class="driver-info-date">As of November 20, 2022</div>
-        <div class="driver-info-time">8:00 AM</div>
+        <div class="driver-info-date">As of {{deployed?.datecreated}}</div>
+        <div class="driver-info-time">{{getLastStatus(deployed!.status).time}}</div>
         <hr><br>
         <div class="row driver-info-main">
             <table class="driver-info-table">
                 <tr>
                   <th>TRUCK PLATE #: </th>
-                  <td>SADAASDDW</td>
+                  <td>{{deployed?.truck?.plateno}}</td>
                 </tr>
 
                 <tr>
                     <th>CONTAINER VAN #: </th>
-                    <td>SADAASDDW</td>
+                    <td>{{deployed?.containervanno}}</td>
                 </tr>
 
                 <tr>
                     <th>CONSIGNEE: </th>
-                    <td>SADAASDDW</td>
+                    <td>{{deployed?.sfullname}}</td>
                 </tr>
 
                 <tr>
                     <th>DRIVER'S NAME: </th>
-                    <td>SADAASDasdDW</td>
+                    <td>{{deployed?.driver?.fname}} {{deployed?.driver?.lname}}</td>
                 </tr>
 
+                <!-- FIX HELPER OBJECT IN DEPLOYING TRUCKS -->
                 <tr>
                     <th>HELPER: </th>
                     <td>SADAASDDW</td>
@@ -69,63 +70,20 @@
                 <div class="driver-info-title">Track Status</div><br>
                 <div class="box">
                     <div class="b-container">
-                      <ul class="b">
-                        <li class="b-status" ng-repeat="itembx">
+                      <ul class="b" *ngFor="let status of deployed?.status">
+                        <!-- <li class="b-status" ng-repeat="itembx" *ngIf="isDelivered(deployed?.status)">
                           <div class="timestamp">3rd May 2020 <br> 7:00 PM</div>
                           <div class="status-title-dlvrd">Delivered</div>
+                        </li> -->
+
+                        <li class="b-status" ng-repeat="itembx" >
+                          <div class="timestamp">{{formatDate(status?.date)}} <br> {{status?.time}}</div>
+                          <div class="status-title">{{status?.type}}</div>
                         </li>
 
-                        <li class="b-status" ng-repeat="itembx">
-                          <div class="timestamp">19th May 2020 <br> 3:00PM</div>
-                          <div class="status-title">Truck returned</div>
-                        </li>
-
-                        <li class="b-status" ng-repeat="itembx">
-                            <div class="timestamp">3rd May 2020 <br> 7:00 PM</div>
-                          <div class="status-title">Return to Garage</div>
-                        </li>
-                        
-                        <li class="b-status" ng-repeat="itembx">
-                            <div class="timestamp">3rd May 2020 <br> 7:00 PM</div>
-                            <div class="status-title">Cargos Unloaded</div>
-                        </li>
-
-                        <li class="b-status" ng-repeat="itembx">
-                            <div class="timestamp">3rd May 2020 <br> 7:00 PM</div>
-                            <div class="status-title">Unloading Cargos</div>
-                        </li>
-
-                        <li class="b-status" ng-repeat="itembx">
-                            <div class="timestamp">3rd May 2020 <br> 7:00 PM</div>
-                            <div class="status-title">Arrived at Destination</div>
-                        </li>
-
-                        <li class="b-status" ng-repeat="itembx">
-                            <div class="timestamp">3rd May 2020 <br> 7:00 PM</div>
-                            <div class="status-title">Out For Delivery</div>
-                        </li>
-
-                        <li class="b-status" ng-repeat="itembx">
-                            <div class="timestamp">3rd May 2020 <br> 7:00 PM</div>
-                            <div class="status-title">Failed Attempt</div>
-                        </li>
-
-                        <li class="b-status" ng-repeat="itembx">
-                            <div class="timestamp">3rd May 2020 <br> 7:00 PM</div>
-                            <div class="status-title">Out For Delivery</div>
-                        </li>
-
-                        <li class="b-status" ng-repeat="itembx">
-                            <div class="timestamp">3rd May 2020 <br> 7:00 PM</div>
-                            <div class="status-title">In Transit</div>
-                        </li>
-
-                        <li class="b-status" ng-repeat="itembx">
-                            <div class="timestamp">3rd May 2020 <br> 7:00 PM</div>
-                            <div class="status-title">Info Received</div>
-                        </li>
+                    
                       </ul>
-                      <button class="update-btn">Update Status</button><br>
+                      <button class="update-btn" (click)="updateDriverUpdateStatus()">Update Status</button><br>
                     </div>
                   </div><br>
                   <div class="proof-area">
@@ -140,7 +98,7 @@
                 </div>
           </div><br>
           <button class="logout-btn">Logout</button>
-        </form>
+        </div>
     </div>
   </div>
 </section>

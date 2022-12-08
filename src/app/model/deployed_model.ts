@@ -10,7 +10,7 @@ export interface DeployModel{
     rfullname: string;
     rcontactno: string;
     raddress: string;
-    driver: string;
+    driver: EmployeeModel;
     containervanno: string;
     helper1: string;
     helper2: string;

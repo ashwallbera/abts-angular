@@ -65,7 +65,13 @@ export class DeployDialogComponent implements OnInit {
     deployModel.isDelivered = false;
     deployModel.currentStatus = status[0].type;
     deployModel.datecreated = new Date().toLocaleDateString();
+
+    //ASSIGN DRIVER OBJECT IN FIREBASE
     deployModel.employeeModel = this.selectedDriver;
+
+    //Assign truck id from driver info (user)
+    this.assignDriver(this.selectedDriver, deployModel.id);
+
     set(ref(db, 'deployed/' + key), deployModel);
     console.log(deployModel);
 
@@ -101,5 +107,12 @@ export class DeployDialogComponent implements OnInit {
     const app = initializeApp(environment.firebaseConfig);
     const db = getDatabase(app);
     update(ref(db, 'users/' + this.data.id + '/'), this.data);
+  }
+
+  assignDriver(driver: EmployeeModel, assignDeployedId: string){
+    driver.assignDeployedId = assignDeployedId;
+    const app = initializeApp(environment.firebaseConfig);
+    const db = getDatabase(app);
+    update(ref(db, 'users/' + driver.uid+ '/'), driver);
   }
 }

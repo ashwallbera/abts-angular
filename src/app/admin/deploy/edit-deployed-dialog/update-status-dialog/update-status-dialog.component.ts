@@ -123,11 +123,21 @@ export class UpdateStatusDialogComponent implements OnInit {
         type: ''+this.selectedValue!.type,
         description:''+this.selectedValue!.description
       })
+
+      //set truck availability
       this.data.truck.isAvailable = true;
       update(ref(db, 'trucks/' + this.data.truck.id + '/'), this.data.truck);
       console.log("delivered");
+
+      //set deployed delivered
       this.data.isDelivered = true;
       update(ref(db, 'deployed/' + this.data.id + '/'), this.data);
+
+      //removed assign truck from driver
+      this.data.driver.assignDeployedId = "none";
+      update(ref(db, 'users/' + this.data.driver.uid + '/'), this.data.driver);
+
+      //remove assign truck from helpers and set availability to true(available)
 
     }else{
       this.data.status.push({

@@ -16,9 +16,13 @@ import { MessageDialogComponent } from './message-dialog/message-dialog.componen
 import { DriverComponent } from './driver/driver.component';
 import { LogoutComponent } from './logout/logout.component';
 import { DatePipe } from '@angular/common';
+import { DriverUpdateStatusComponent } from './driver/driver-update-status/driver-update-status.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, RouterManagerComponent, MessageDialogComponent, DriverComponent, LogoutComponent],
+  declarations: [AppComponent, RouterManagerComponent, MessageDialogComponent, DriverComponent, LogoutComponent, DriverUpdateStatusComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,7 +34,11 @@ import { DatePipe } from '@angular/common';
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
-    LandingpageModule
+    LandingpageModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatOptionModule,
+    FormsModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],
