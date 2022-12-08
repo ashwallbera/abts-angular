@@ -22,4 +22,6 @@ export class ViewStatusDialogComponent implements OnInit {
     var d = new Date(date);
     return ""+this.datepipe.transform(d,'mediumDate');
   }
+
+ 
 }
