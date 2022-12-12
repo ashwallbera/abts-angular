@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { initializeApp } from 'firebase/app';
-import { getDatabase, onValue, ref } from 'firebase/database';
+import { child, get, getDatabase, onValue, ref } from 'firebase/database';
 import { DeployModel } from 'src/app/model/deployed_model';
+import { EmployeeModel } from 'src/app/model/employee_model';
 import { TruckModel } from 'src/app/model/truck_model';
 import { environment } from 'src/environments/environment';
 import { ViewDeployedDialogComponent } from './view-deployed-dialog/view-deployed-dialog.component';
@@ -15,6 +16,7 @@ import { ViewDeployedDialogComponent } from './view-deployed-dialog/view-deploye
 export class DeployComponent implements OnInit {
   hideProgressbar = false;
   deployedList: DeployModel[] = [];
+  userList: EmployeeModel[] = [];
   constructor(public dialog: MatDialog) {
     // this.truckList.push({
     //   containervanno: '2',
@@ -43,6 +45,7 @@ export class DeployComponent implements OnInit {
     // });
 
     this.readDeployed();
+    this.getUserList();
   }
 
   ngOnInit(): void {}
@@ -68,7 +71,28 @@ export class DeployComponent implements OnInit {
 
   openViewDeployedDialog(deployModel: DeployModel) {
     this.dialog.open(ViewDeployedDialogComponent, {
-      data: deployModel,
+      data: {
+        deployed: deployModel,
+        users: this.userList
+      }
+      ,
     });
+  }
+
+  getUserList() {
+    const app = initializeApp(environment.firebaseConfig);
+    const db = getDatabase();
+    const driverRef = ref(db);
+    get(child(driverRef, `users/`))
+      .then((snapshot) => {
+        this.userList.splice(0, this.userList.length - 1);
+        console.log(snapshot.val());
+        snapshot.forEach((child) => {
+          this.userList.push(child.val());
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 }

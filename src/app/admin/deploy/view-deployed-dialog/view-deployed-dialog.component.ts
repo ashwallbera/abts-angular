@@ -12,8 +12,9 @@ import { ViewStatusDialogComponent } from '../edit-deployed-dialog/view-status-d
 })
 export class ViewDeployedDialogComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DeployModel,public dialog: MatDialog) {
-   
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,public dialog: MatDialog) {
+
+    console.log(data);
    }
 
   ngOnInit(): void {
@@ -27,13 +28,13 @@ export class ViewDeployedDialogComponent implements OnInit {
 
   openViewStatusDialog(){
     this.dialog.open(ViewStatusDialogComponent,{
-      data:this.data,
+      data:this.data.deployed,
     })
   }
 
   openUpdateStatusDialog(){
     this.dialog.open(UpdateStatusDialogComponent,{
-      data:this.data
+      data:this.data.deployed
     })
   }
 }

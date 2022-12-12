@@ -3,7 +3,7 @@
   <br />
   <div class="d-flex justify-content-between">
     <div class="align-items-end">
-      <b>Truck Plate No:</b> {{ data.truck.plateno }}
+      <b>Truck Plate No:</b> {{ data.deployed.truck.plateno }}
     </div>
     <div>
       <button class="all btn" (click)="openEditDeployedDialog()">EDIT</button>
@@ -15,25 +15,25 @@
     <div class="d-flex justify-content-between ">
       <div class ="padding-box" style="border-right:2px solid #0019ED;width: 180px;">
         <h2>Sender Details</h2>
-        <p>NAME/cOMPANY: {{ data.sfullname }}</p>
-        <p>Address: {{ data.saddress }}</p>
-        <p>Contact No.: {{ data.scontactno }}</p>
+        <p>NAME/cOMPANY: {{ data.deployed.sfullname }}</p>
+        <p>Address: {{ data.deployed.saddress }}</p>
+        <p>Contact No.: {{ data.deployed.scontactno }}</p>
         <div style="border-bottom:2px solid #0019ED;"></div>
         <h2>Receiver Details</h2>
-        <p>NAME/cOMPANY: {{ data.rfullname }}</p>
-        <p>Address: {{ data.raddress }}</p>
-        <p>Contact No.: {{ data.rcontactno }}</p>
+        <p>NAME/cOMPANY: {{ data.deployed.rfullname }}</p>
+        <p>Address: {{ data.deployed.raddress }}</p>
+        <p>Contact No.: {{ data.deployed.rcontactno }}</p>
       </div>
       <div class="padding-box">
         <h2>Other Details</h2>
-        <p>Container van No.: {{ data.containervanno }}</p>
-        <p>Driver: {{ data.driver.fname }} {{ data.driver.lname }}</p>
-        <p>helper: {{ data.helper1.fname }}  {{ data.helper1.lname }}</p>
-        <p>Extra helper: {{ data.helper2.fname }}  {{ data.helper2.lname }}</p>
-        <p>Extra helper: {{ data.helper3.fname }}  {{ data.helper3.lname }}</p>
-        <p>Extra helper: {{ data.helper4.fname }}  {{ data.helper4.lname }}</p>
+        <p>Container van No.: {{ data.deployed.containervanno }}</p>
+        <p>Driver: {{ data.deployed.driver.fname }} {{ data.deployed.driver.lname }}</p>
+        <p>helper: {{ data.deployed.helper1.fname }}  {{ data.deployed.helper1.lname }}</p>
+        <p>Extra helper: {{ data.deployed.helper2.fname }}  {{ data.deployed.helper2.lname }}</p>
+        <p>Extra helper: {{ data.deployed.helper3.fname }}  {{ data.deployed.helper3.lname }}</p>
+        <p>Extra helper: {{ data.deployed.helper4.fname }}  {{ data.deployed.helper4.lname }}</p>
         <h2>Status</h2>
-        <button (click)="openViewStatusDialog()" class="all btn full-width">{{data.currentStatus}}</button>
+        <button (click)="openViewStatusDialog()" class="all btn full-width">{{data.deployed.currentStatus}}</button>
         <br>
         <br>
         <button  (click)="openUpdateStatusDialog()" class="update-status btn full-width">Update Status</button>

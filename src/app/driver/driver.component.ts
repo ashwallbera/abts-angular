@@ -26,12 +26,12 @@ export class DriverComponent implements OnInit {
       contactno: '4',
       email: 'driver',
       position: 'driver',
-      role: '',
       address: '6',
       assignDeployedId: '-NJ3fuBSIuHxefNjJtYV',
       birthdate: '5',
       password: 'driver123',
-      isAvailable:false
+      isAvailable:false,
+      cpassword:""
     };
     this.getAssignDeployed();
    

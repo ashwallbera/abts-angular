@@ -5,11 +5,11 @@ export interface EmployeeModel{
     contactno: string;
     email: string;
     position: string;
-    role: string;
     // age: string;
     birthdate: string;
     address: string;
     password: string;
+    cpassword: string;
     assignDeployedId: string;
     isAvailable: boolean;
 }

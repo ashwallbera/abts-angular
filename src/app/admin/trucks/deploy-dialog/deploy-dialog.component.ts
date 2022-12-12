@@ -62,6 +62,11 @@ export class DeployDialogComponent implements OnInit {
   ngOnInit(): void {}
 
   deploy(deployModel: DeployModel) {
+    deployModel.driver.isAvailable = false;
+    deployModel.helper1.isAvailable = false;
+    deployModel.helper2.isAvailable = false;
+    deployModel.helper3.isAvailable = false;
+    deployModel.helper4.isAvailable = false;
     console.log(deployModel);
     const app = initializeApp(environment.firebaseConfig);
     const db = getDatabase(app);
@@ -98,6 +103,7 @@ export class DeployDialogComponent implements OnInit {
     this.setAvailability(); // to set truck unavailable for deployment
 
     //set employee to unavailable
+  
     this.setEmployeeAvailability(deployModel.driver);
     this.setEmployeeAvailability(deployModel.helper1);
     this.setEmployeeAvailability(deployModel.helper2);

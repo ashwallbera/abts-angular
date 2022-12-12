@@ -11,16 +11,18 @@
       <!-- Display truck details from trucks component -->
       <td style="width: 100%">
         <div class="d-flex justify-content-around td-height">
-          <div><b>Truck type:</b> {{ data.truck.type }}</div>
-          <div><b>Max load capacity:</b> {{ data.truck.capacity }}</div>
+          <div><b>Truck type:</b> {{ data.deployed.truck.type }}</div>
+          <div>
+            <b>Max load capacity:</b> {{ data.deployed.truck.capacity }}
+          </div>
         </div>
         <div class="d-flex justify-content-around td-height">
-          <div><b>Plate number:</b> {{ data.truck.plateno }}</div>
-          <div><b>Engine number:</b> {{ data.truck.engineno }}</div>
+          <div><b>Plate number:</b> {{ data.deployed.truck.plateno }}</div>
+          <div><b>Engine number:</b> {{ data.deployed.truck.engineno }}</div>
         </div>
         <div class="d-flex justify-content-around td-height">
-          <div><b>Chassis Number: </b> {{ data.truck.chassis }}</div>
-          <div><b>Year model:</b> {{ data.truck.yearmodel }}</div>
+          <div><b>Chassis Number: </b> {{ data.deployed.truck.chassis }}</div>
+          <div><b>Year model:</b> {{ data.deployed.truck.yearmodel }}</div>
         </div>
       </td>
     </tr>
@@ -36,7 +38,7 @@
             <mat-label>FULL NAME</mat-label>
             <input
               [readonly]="true"
-              [(ngModel)]="data.sfullname"
+              [(ngModel)]="data.deployed.sfullname"
               formControlName="sfullname"
               matInput
               placeholder="ENTER FULL NAME"
@@ -46,7 +48,7 @@
             <mat-label>CONTACT NO.</mat-label>
             <input
               [readonly]="true"
-              [(ngModel)]="data.scontactno"
+              [(ngModel)]="data.deployed.scontactno"
               formControlName="scontactno"
               matInput
               placeholder="ENTER CONTACT NO."
@@ -57,7 +59,7 @@
             <mat-label>ADDRESS</mat-label>
             <input
               [readonly]="true"
-              [(ngModel)]="data.saddress"
+              [(ngModel)]="data.deployed.saddress"
               formControlName="saddress"
               matInput
               placeholder="ENTER ADDRESS"
@@ -71,7 +73,7 @@
             <mat-label>FULL NAME</mat-label>
             <input
               [readonly]="true"
-              [(ngModel)]="data.rfullname"
+              [(ngModel)]="data.deployed.rfullname"
               formControlName="rfullname"
               matInput
               placeholder="ENTER FULL NAME"
@@ -81,7 +83,7 @@
             <mat-label>CONTACT NO.</mat-label>
             <input
               [readonly]="true"
-              [(ngModel)]="data.rcontactno"
+              [(ngModel)]="data.deployed.rcontactno"
               formControlName="rcontactno"
               matInput
               placeholder="ENTER CONTACT NO."
@@ -92,7 +94,7 @@
             <mat-label>ADDRESS</mat-label>
             <input
               [readonly]="true"
-              [(ngModel)]="data.raddress"
+              [(ngModel)]="data.deployed.raddress"
               formControlName="raddress"
               matInput
               placeholder="ENTER ADDRESS"
@@ -102,7 +104,7 @@
         <!-- other details -->
         <mat-tab label="Other Details">
           <br />
-          <mat-form-field appearance="outline">
+          <!-- <mat-form-field appearance="outline">
             <mat-label>DRIVER</mat-label>
             <input
               [(ngModel)]="data.driver"
@@ -110,11 +112,28 @@
               matInput
               placeholder="DRIVER"
             />
+          </mat-form-field> -->
+
+          <mat-form-field appearance="outline">
+            <mat-label>SELECT DRIVERS</mat-label>
+            <mat-select
+              [(ngModel)]="selectedDriver"
+              formControlName="driver"
+              required
+            >
+              <mat-option>--</mat-option>
+              <mat-option
+                *ngFor="let driver of driverList"
+                [value]="driver"
+              >
+                {{ driver.fname }} {{ driver.lname }}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>CONTAINER VAN NO.</mat-label>
             <input
-              [(ngModel)]="data.containervanno"
+              [(ngModel)]="data.deployed.containervanno"
               formControlName="containervanno"
               matInput
               placeholder="CONTAINER VAN NO."
@@ -122,40 +141,94 @@
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>HELPER</mat-label>
-            <input
-              [(ngModel)]="data.helper1"
+            <mat-select
+              [(ngModel)]="selectedHelper1"
+              (selectionChange)="onChange(selectedHelper1)"
               formControlName="helper1"
-              matInput
-              placeholder="HELPER"
-            />
+              required
+            >
+              <!-- <mat-option>--</mat-option> -->
+
+              <mat-option [value]="helper" *ngFor="let helper of helperList">
+                {{ helper.fname }}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
           <br />
+          <!-- <mat-form-field appearance="outline">
+            <mat-label>EXTRA HELPER</mat-label>
+            <input formControlName="helper2" matInput placeholder="EXTRA HELPER" [(ngModel)]="selectedHelper2.fname"/>
+          </mat-form-field> -->
           <mat-form-field appearance="outline">
             <mat-label>EXTRA HELPER</mat-label>
-            <input
-              [(ngModel)]="data.helper2"
+            <mat-select
+              [(ngModel)]="selectedHelper2"
+              (selectionChange)="onChange(selectedHelper2)"
               formControlName="helper2"
-              matInput
-              placeholder="EXTRA HELPER"
-            />
+              required
+            >
+              <mat-option>--</mat-option>
+              <ng-container *ngFor="let helper of helperList">
+                <mat-option [value]="helper">
+                  {{ helper.fname }} {{ helper.lname }}
+                </mat-option>
+              </ng-container>
+            </mat-select>
           </mat-form-field>
-          <mat-form-field appearance="outline">
+          <!-- <mat-form-field appearance="outline">
             <mat-label>EXTRA HELPER</mat-label>
             <input
-              [(ngModel)]="data.helper3"
               formControlName="helper3"
               matInput
               placeholder="EXTRA HELPER"
             />
+          </mat-form-field> -->
+
+          <mat-form-field appearance="outline">
+            <mat-label>EXTRA HELPER</mat-label>
+            <mat-select
+              [(ngModel)]="selectedHelper3"
+              (selectionChange)="onChange(selectedHelper3)"
+              formControlName="helper3"
+              required
+            >
+              <mat-option>--</mat-option>
+              <ng-container *ngFor="let helper of helperList">
+                <mat-option
+                  [value]="helper"
+                  *ngIf="
+                    helper != selectedHelper1 &&
+                    helper != selectedHelper4 &&
+                    helper != selectedHelper2
+                  "
+                >
+                  {{ helper.fname }} {{ helper.lname }}
+                </mat-option>
+              </ng-container>
+            </mat-select>
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>EXTRA HELPER</mat-label>
-            <input
-              [(ngModel)]="data.helper4"
+            <mat-select
+              [(ngModel)]="selectedHelper4"
+              (selectionChange)="onChange(selectedHelper4)"
               formControlName="helper4"
-              matInput
-              placeholder="EXTRA HELPER"
-            />
+              required
+            >
+              <mat-option>--</mat-option>
+              <ng-container *ngFor="let helper of helperList">
+                <mat-option
+                  [value]="helper"
+                  *ngIf="
+                    helper != selectedHelper1 &&
+                    helper != selectedHelper2 &&
+                    helper != selectedHelper3
+                  "
+                >
+                  {{ helper.fname }} {{ helper.lname }}
+                </mat-option>
+              </ng-container>
+            </mat-select>
           </mat-form-field>
         </mat-tab>
       </mat-tab-group>
