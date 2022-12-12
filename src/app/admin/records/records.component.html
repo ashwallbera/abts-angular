@@ -55,7 +55,7 @@
     <tbody>
       <tr *ngFor="let report of reportsList">
         <!-- <td data-label="No.">1</td> -->
-        <td data-label="Date">{{ getStatus(report) }}</td>
+        <td data-label="Date">{{ report.datecreated }}</td>
         <td data-label="Sender">{{ report.sfullname }}</td>
         <td data-label="Recipient">{{ report.rfullname }}</td>
         <td data-label="Destination">{{ report.raddress }}</td>
