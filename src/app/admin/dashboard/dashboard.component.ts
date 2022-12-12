@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {
   LineController,
@@ -9,6 +10,7 @@ import {
 import Chart from 'chart.js/auto';
 import { initializeApp } from 'firebase/app';
 import { child, getDatabase, onValue, ref } from 'firebase/database';
+import { ChartModel } from 'src/app/model/chart_model';
 import { environment } from 'src/environments/environment';
 import * as utils from './utils';
 Chart.register(LineController, LineElement, PointElement, LinearScale, Title);
@@ -23,99 +25,167 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   driverCount: number = 0;
   helperCount: number = 0;
 
-  constructor() {
+  chartData: any;
+  constructor(public datepipe: DatePipe) {
     this.countByPosition();
+    this.chartData = {
+      name:'chart1',
+      data1: [],
+      data2:[],
+      dates:[]
+    }
+    // console.log(this.chartData)
+    
+
+    var dates = this.getDatesInRange(new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),new Date(Date.now()));
+    console.log(dates);
+    
+    dates.forEach((date) =>{
+      this.countEveryDate(date);
+      this.chartData.dates.push(datepipe.transform(date,"mediumDate"));
+    })
+
+
+  }
+  getDatesInRange(startDate:Date, endDate:Date) {
+    const date = new Date(startDate.getTime());
+  
+    const dates = [];
+  
+    while (date <= endDate) {
+      dates.push(new Date(date));
+      date.setDate(date.getDate() + 1)
+    }
+  
+    return dates;
+  }
+
+  // count every day successfull and failed delivery
+  countEveryDate(date: Date) {
+    var countSuccess = 0;
+    var countFailed = 0;
+    const app = initializeApp(environment.firebaseConfig)
+    const db = getDatabase();
+    onValue(ref(db, 'deployed/'), (snapshot) => {
+      countSuccess = 0;
+        countFailed = 0;
+        var d : any;
+        snapshot.forEach((child) => {
+          const deployed = child.val();
+          d = deployed;
+          if (
+            deployed.isDelivered &&
+            this.datepipe.transform(date, 'MM/d/yyyy') == deployed.datecreated
+          ) {
+            countSuccess++;
+          }
+          if (
+            deployed.isDelivered &&
+            this.datepipe.transform(date, 'MM/d/yyyy') == deployed.datecreated
+          ) {
+            countFailed+= 5;
+          }
+        });
+        console.log(this.datepipe.transform(date, 'MM/d/yyyy') +" == "+d.datecreated );
+        this.chartData.data1.push(countSuccess);
+        this.chartData.data2.push(countFailed);
+        console.log(countSuccess);
+        console.log(countFailed);
+        countSuccess = 0;
+        countFailed = 0;
+    });
+
   }
 
   ngAfterViewInit(): void {
-    const ctx = 'myChart';
-    const myChart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [
-          {
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: utils.transparentize(utils.CHART_COLORS.red, 0.5),
-            borderColor: utils.CHART_COLORS.red,
-            borderWidth: 1,
-          },
-          {
-            label: '# of Votes',
-            data: [1, 19, 19, 5, 2, 19],
-            backgroundColor: utils.transparentize(utils.CHART_COLORS.red, 0.5),
-            borderColor: utils.CHART_COLORS.blue,
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: {
-        animations: {
-          tension: {
-            duration: 1000,
-            easing: 'linear',
-            from: 1,
-            to: 0,
-            loop: true,
-          },
-        },
-        scales: {
-          y: {
-            // defining min and max so hiding the dataset does not change scale range
-            min: 0,
-          },
-        },
-      },
-    });
+    // const ctx = 'myChart';
+    // const myChart = new Chart(ctx, {
+    //   type: 'line',
+    //   data: {
+    //     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    //     datasets: [
+    //       {
+    //         label: '# of Votes',
+    //         data: [12, 19, 3, 5, 2, 3],
+    //         backgroundColor: utils.transparentize(utils.CHART_COLORS.red, 0.5),
+    //         borderColor: utils.CHART_COLORS.red,
+    //         borderWidth: 1,
+    //       },
+    //       {
+    //         label: '# of Votes',
+    //         data: [1, 19, 19, 5, 2, 19],
+    //         backgroundColor: utils.transparentize(utils.CHART_COLORS.red, 0.5),
+    //         borderColor: utils.CHART_COLORS.blue,
+    //         borderWidth: 1,
+    //       },
+    //     ],
+    //   },
+    //   options: {
+    //     animations: {
+    //       tension: {
+    //         duration: 1000,
+    //         easing: 'linear',
+    //         from: 1,
+    //         to: 0,
+    //         loop: true,
+    //       },
+    //     },
+    //     scales: {
+    //       y: {
+    //         // defining min and max so hiding the dataset does not change scale range
+    //         min: 0,
+    //       },
+    //     },
+    //   },
+    // });
 
-    const ctx1 = 'myChart1';
-    const myChart1 = new Chart(ctx1, {
-      type: 'line',
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [
-          {
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)',
-            ],
-            borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)',
-            ],
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: {
-        animations: {
-          tension: {
-            duration: 1000,
-            easing: 'linear',
-            from: 1,
-            to: 0,
-            loop: true,
-          },
-        },
-        scales: {
-          y: {
-            // defining min and max so hiding the dataset does not change scale range
-            min: 0,
-          },
-        },
-      },
-    });
+    // const ctx1 = 'myChart1';
+    // const myChart1 = new Chart(ctx1, {
+    //   type: 'line',
+    //   data: {
+    //     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    //     datasets: [
+    //       {
+    //         label: 'Summary over the last 7 days',
+    //         data: [12, 19, 3, 5, 2, 3],
+    //         backgroundColor: [
+    //           'rgba(255, 99, 132, 0.2)',
+    //           'rgba(54, 162, 235, 0.2)',
+    //           'rgba(255, 206, 86, 0.2)',
+    //           'rgba(75, 192, 192, 0.2)',
+    //           'rgba(153, 102, 255, 0.2)',
+    //           'rgba(255, 159, 64, 0.2)',
+    //         ],
+    //         borderColor: [
+    //           'rgba(255, 99, 132, 1)',
+    //           'rgba(54, 162, 235, 1)',
+    //           'rgba(255, 206, 86, 1)',
+    //           'rgba(75, 192, 192, 1)',
+    //           'rgba(153, 102, 255, 1)',
+    //           'rgba(255, 159, 64, 1)',
+    //         ],
+    //         borderWidth: 1,
+    //       },
+    //     ],
+    //   },
+    //   options: {
+    //     animations: {
+    //       tension: {
+    //         duration: 1000,
+    //         easing: 'linear',
+    //         from: 1,
+    //         to: 0,
+    //         loop: true,
+    //       },
+    //     },
+    //     scales: {
+    //       y: {
+    //         // defining min and max so hiding the dataset does not change scale range
+    //         min: 0,
+    //       },
+    //     },
+    //   },
+    // });
   }
 
   ngOnInit(): void {}

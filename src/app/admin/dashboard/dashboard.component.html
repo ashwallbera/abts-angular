@@ -209,19 +209,26 @@
   </div>
 </div> -->
 
-<div style="margin: 50px;">
+<div style="margin: 50px">
   <div class="card_chart">
     <div class="card_content">
       <div class="card_child">
-        <canvas id="myChart"></canvas>
+        <app-weekly-chart
+          [data]="chartData"
+          *ngIf="
+            chartData &&
+            chartData.data1.length != 0 &&
+            chartData.data2.length != 0
+          "
+        ></app-weekly-chart>
       </div>
     </div>
   </div>
-  
+
   <div class="card_chart1">
     <div class="card_content">
       <div class="card_child">
-        <canvas id="myChart1"></canvas>
+        <!-- <app-weekly-chart [data]="chartData" *ngIf="chartData"></app-weekly-chart> -->
       </div>
     </div>
   </div>

@@ -39,6 +39,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { ViewDeliveryedComponent } from './records/view-deliveryed/view-deliveryed.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
+import { WeeklyChartComponent } from './dashboard/weekly-chart/weekly-chart.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
     EditDeployedDialogComponent,
     ViewStatusDialogComponent,
     UpdateStatusDialogComponent,
-    ViewDeliveryedComponent
+    ViewDeliveryedComponent,
+    WeeklyChartComponent
   ],
   imports: [
     CommonModule,
