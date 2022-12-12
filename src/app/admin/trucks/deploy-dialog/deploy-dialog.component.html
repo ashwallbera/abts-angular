@@ -27,38 +27,62 @@
   </table>
 
   <div class="details">
-    <form #deployForm [formGroup]="deployFormGroup" > 
+    <form #deployForm [formGroup]="deployFormGroup">
       <mat-tab-group>
         <!-- SENDER -->
         <mat-tab label="Sender Details">
           <mat-form-field appearance="outline">
             <mat-label>FULL NAME</mat-label>
-            <input formControlName="sfullname" matInput placeholder="ENTER FULL NAME" />
+            <input
+              formControlName="sfullname"
+              matInput
+              placeholder="ENTER FULL NAME"
+            />
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>CONTACT NO.</mat-label>
-            <input formControlName="scontactno" matInput placeholder="ENTER CONTACT NO." />
+            <input
+              formControlName="scontactno"
+              matInput
+              placeholder="ENTER CONTACT NO."
+            />
           </mat-form-field>
           <br />
           <mat-form-field class="full-width" appearance="outline">
             <mat-label>ADDRESS</mat-label>
-            <input formControlName="saddress" matInput placeholder="ENTER ADDRESS" />
+            <input
+              formControlName="saddress"
+              matInput
+              placeholder="ENTER ADDRESS"
+            />
           </mat-form-field>
         </mat-tab>
         <!-- RECIPIENT -->
         <mat-tab label="Recipient Details">
           <mat-form-field appearance="outline">
             <mat-label>FULL NAME</mat-label>
-            <input formControlName="rfullname" matInput placeholder="ENTER FULL NAME" />
+            <input
+              formControlName="rfullname"
+              matInput
+              placeholder="ENTER FULL NAME"
+            />
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>CONTACT NO.</mat-label>
-            <input formControlName="rcontactno" matInput placeholder="ENTER CONTACT NO." />
+            <input
+              formControlName="rcontactno"
+              matInput
+              placeholder="ENTER CONTACT NO."
+            />
           </mat-form-field>
           <br />
           <mat-form-field class="full-width" appearance="outline">
             <mat-label>ADDRESS</mat-label>
-            <input formControlName="raddress" matInput placeholder="ENTER ADDRESS" />
+            <input
+              formControlName="raddress"
+              matInput
+              placeholder="ENTER ADDRESS"
+            />
           </mat-form-field>
         </mat-tab>
         <!-- other details -->
@@ -69,34 +93,139 @@
           </mat-form-field> -->
           <mat-form-field appearance="outline">
             <mat-label>SELECT DRIVERS</mat-label>
-            <mat-select [(ngModel)]="selectedDriver" formControlName="driver" required>
+            <mat-select
+              [(ngModel)]="selectedDriver"
+              formControlName="driver"
+              required
+            >
               <mat-option>--</mat-option>
               <mat-option *ngFor="let driver of driverList" [value]="driver">
-                {{driver.fname}}  {{driver.lname}}
+                {{ driver.fname }} {{ driver.lname }}
               </mat-option>
             </mat-select>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
             <mat-label>CONTAINER VAN NO.</mat-label>
-            <input formControlName="containervanno" matInput placeholder="CONTAINER VAN NO." />
+            <input
+              formControlName="containervanno"
+              matInput
+              placeholder="CONTAINER VAN NO."
+            />
           </mat-form-field>
-          <mat-form-field appearance="outline">
+          <!-- <mat-form-field appearance="outline">
             <mat-label>HELPER</mat-label>
             <input formControlName="helper1" matInput placeholder="HELPER" />
-          </mat-form-field>
-          <br />
+          </mat-form-field> -->
+
           <mat-form-field appearance="outline">
+            <mat-label>HELPER</mat-label>
+            <mat-select
+              [(ngModel)]="selectedHelper1"
+              (selectionChange)="onChange(selectedHelper1)"
+              formControlName="helper1"
+              required
+            >
+              <mat-option>--</mat-option>
+              <ng-container *ngFor="let helper of helperList">
+                <mat-option
+                  [value]="helper"
+                  *ngIf="
+                    helper != selectedHelper2 &&
+                    helper != selectedHelper4 &&
+                    helper != selectedHelper3 
+                  "
+                >
+                  {{ helper.fname }} {{ helper.lname }}
+                </mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+
+          <br />
+          <!-- <mat-form-field appearance="outline">
             <mat-label>EXTRA HELPER</mat-label>
             <input formControlName="helper2" matInput placeholder="EXTRA HELPER" />
-          </mat-form-field>
+          </mat-form-field> -->
           <mat-form-field appearance="outline">
             <mat-label>EXTRA HELPER</mat-label>
-            <input formControlName="helper3" matInput placeholder="EXTRA HELPER" />
+            <mat-select
+              [(ngModel)]="selectedHelper2"
+              (selectionChange)="onChange(selectedHelper2)"
+              formControlName="helper2"
+              required
+            >
+              <mat-option>--</mat-option>
+              <ng-container *ngFor="let helper of helperList">
+                <mat-option
+                  [value]="helper"
+                  *ngIf="
+                    helper != selectedHelper1 &&
+                    helper != selectedHelper4 &&
+                    helper != selectedHelper3 
+                  "
+                >
+                  {{ helper.fname }} {{ helper.lname }}
+                </mat-option>
+              </ng-container>
+            </mat-select>
           </mat-form-field>
+
+          <!-- <mat-form-field appearance="outline">
+            <mat-label>EXTRA HELPER</mat-label>
+            <input
+              formControlName="helper3"
+              matInput
+              placeholder="EXTRA HELPER"
+            />
+          </mat-form-field> -->
+
           <mat-form-field appearance="outline">
             <mat-label>EXTRA HELPER</mat-label>
-            <input formControlName="helper4" matInput placeholder="EXTRA HELPER" />
+            <mat-select
+              [(ngModel)]="selectedHelper3"
+              (selectionChange)="onChange(selectedHelper3)"
+              formControlName="helper3"
+              required
+            >
+              <mat-option>--</mat-option>
+              <ng-container *ngFor="let helper of helperList">
+                <mat-option
+                  [value]="helper"
+                  *ngIf="
+                    helper != selectedHelper1 &&
+                    helper != selectedHelper4 &&
+                    helper != selectedHelper2
+                  "
+                >
+                  {{ helper.fname }} {{ helper.lname }}
+                </mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>EXTRA HELPER</mat-label>
+            <mat-select
+              [(ngModel)]="selectedHelper4"
+              (selectionChange)="onChange(selectedHelper4)"
+              formControlName="helper4"
+              required
+            >
+              <mat-option>--</mat-option>
+              <ng-container *ngFor="let helper of helperList">
+                <mat-option
+                  [value]="helper"
+                  *ngIf="
+                    helper != selectedHelper1 &&
+                    helper != selectedHelper2 &&
+                    helper != selectedHelper3 
+                  "
+                >
+                  {{ helper.fname }} {{ helper.lname }}
+                </mat-option>
+              </ng-container>
+            </mat-select>
           </mat-form-field>
         </mat-tab>
       </mat-tab-group>
@@ -107,5 +236,12 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="center">
-  <button mat-button matDialogClose [disabled]="!deployFormGroup.valid" (click)="deploy(deployFormGroup.value)">DEPLOY</button>
+  <button
+    mat-button
+    matDialogClose
+    [disabled]="!deployFormGroup.valid"
+    (click)="deploy(deployFormGroup.value)"
+  >
+    DEPLOY
+  </button>
 </mat-dialog-actions>

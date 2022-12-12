@@ -2,7 +2,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
-<div class="component-container">
+<div class="component-container" *ngIf="!deployed?.isDelivered">
   <section class="driver-info-body">
     <div class="driver-info-container">
       <div class="driver-info-content">
@@ -104,3 +104,12 @@
 </section>
 
 </div>
+
+
+<!-- <div class="h-100 d-flex align-items-center justify-content-center" style="text-align: center;">
+
+  TRUCK NOT ASSIGN YET
+</div> -->
+<app-driver-not-assigned *ngIf="deployed?.isDelivered">
+
+</app-driver-not-assigned>

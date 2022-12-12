@@ -3,7 +3,16 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { initializeApp } from 'firebase/app';
-import { child, get, getDatabase, push, ref, refFromURL, set, update } from 'firebase/database';
+import {
+  child,
+  get,
+  getDatabase,
+  push,
+  ref,
+  refFromURL,
+  set,
+  update,
+} from 'firebase/database';
 import { DeployModel } from 'src/app/model/deployed_model';
 import { EmployeeModel } from 'src/app/model/employee_model';
 import { StatusModel } from 'src/app/model/status_model';
@@ -16,10 +25,19 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./deploy-dialog.component.scss'],
 })
 export class DeployDialogComponent implements OnInit {
-  driverList: EmployeeModel [] = [];
+  driverList: EmployeeModel[] = [];
+  helperList: EmployeeModel[] = [];
   deployFormGroup: FormGroup;
   selectedDriver: any;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: TruckModel, public datepipe: DatePipe) {
+  selectedHelper1: any;
+  selectedHelper2: any;
+  selectedHelper3: any;
+  selectedHelper4: any;
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: TruckModel,
+    public datepipe: DatePipe
+  ) {
     this.deployFormGroup = new FormGroup({
       sfullname: new FormControl('', Validators.required),
       scontactno: new FormControl('', Validators.required),
@@ -38,6 +56,7 @@ export class DeployDialogComponent implements OnInit {
     });
 
     this.getDriver();
+    this.getHelper();
   }
 
   ngOnInit(): void {}
@@ -56,10 +75,11 @@ export class DeployDialogComponent implements OnInit {
 
     status.push({
       id: '',
-      date:''+this.datepipe.transform(date, 'fullDate'),
-      time: ''+this.datepipe.transform(date, 'shortTime'),
+      date: '' + this.datepipe.transform(date, 'fullDate'),
+      time: '' + this.datepipe.transform(date, 'shortTime'),
       type: 'Info Received',
-      description:'Carrier has received request from the shipper and is about to pick up the cargo'
+      description:
+        'Carrier has received request from the shipper and is about to pick up the cargo',
     });
     deployModel.status = status;
     deployModel.isDelivered = false;
@@ -77,6 +97,15 @@ export class DeployDialogComponent implements OnInit {
 
     this.setAvailability(); // to set truck unavailable for deployment
 
+    //set employee to unavailable
+    this.setEmployeeAvailability(deployModel.driver);
+    this.setEmployeeAvailability(deployModel.helper1);
+    this.setEmployeeAvailability(deployModel.helper2);
+    this.setEmployeeAvailability(deployModel.helper3);
+    this.setEmployeeAvailability(deployModel.helper4);
+
+    console.log('DEPLOYING');
+    console.log(deployModel.driver);
   }
 
   setAvailability() {
@@ -86,33 +115,64 @@ export class DeployDialogComponent implements OnInit {
     update(ref(db, 'trucks/' + this.data.id + '/'), this.data);
   }
 
-  getDriver(){
+  getDriver() {
     const app = initializeApp(environment.firebaseConfig);
     const db = getDatabase();
-    const driverRef = ref(db)
-    get(child(driverRef, `users/`)).then((snapshot) => {
-      this.driverList.splice(0,this.driverList.length-1)
-      console.log(snapshot.val())
-      snapshot.forEach((child)=>{
-        if(child.val().position == "driver"){
-          this.driverList.push(child.val())
-        }
+    const driverRef = ref(db);
+    get(child(driverRef, `users/`))
+      .then((snapshot) => {
+        this.driverList.splice(0, this.driverList.length - 1);
+        console.log(snapshot.val());
+        snapshot.forEach((child) => {
+          if (child.val().position == 'driver' && child.val().isAvailable) {
+            this.driverList.push(child.val());
+          }
+        });
       })
-    }).catch((error) => {
-      console.error(error);
-    });
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
-  setDriver(deployModel: DeployModel){
+  setEmployeeAvailability(employeeModel: EmployeeModel) {
     const app = initializeApp(environment.firebaseConfig);
     const db = getDatabase(app);
-    update(ref(db, 'users/' + this.data.id + '/'), this.data);
+    employeeModel.isAvailable = false;
+    update(ref(db, 'users/' + employeeModel.uid + '/'), employeeModel);
   }
 
-  assignDriver(driver: EmployeeModel, assignDeployedId: string){
+  assignDriver(driver: EmployeeModel, assignDeployedId: string) {
     driver.assignDeployedId = assignDeployedId;
     const app = initializeApp(environment.firebaseConfig);
     const db = getDatabase(app);
-    update(ref(db, 'users/' + driver.uid+ '/'), driver);
+    update(ref(db, 'users/' + driver.uid + '/'), driver);
+  }
+
+  getHelper() {
+    const app = initializeApp(environment.firebaseConfig);
+    const db = getDatabase();
+    const driverRef = ref(db);
+    get(child(driverRef, `users/`))
+      .then((snapshot) => {
+        this.helperList.splice(0, this.helperList.length - 1);
+        console.log(snapshot.val());
+        snapshot.forEach((child) => {
+          if (
+            child.val().position + ''.toLocaleLowerCase() == 'helper' &&
+            child.val().isAvailable
+          ) {
+            this.helperList.push(child.val());
+          }
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+  onChange(selectedHelper: EmployeeModel) {
+    console.log(selectedHelper);
+    // this method will remove the current selected helper
+    // this.helperList.splice(this.helperList.indexOf(selectedHelper),1);
   }
 }

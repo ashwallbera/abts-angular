@@ -12,10 +12,10 @@ export interface DeployModel{
     raddress: string;
     driver: EmployeeModel;
     containervanno: string;
-    helper1: string;
-    helper2: string;
-    helper3: string;
-    helper4: string;
+    helper1: EmployeeModel;
+    helper2: EmployeeModel;
+    helper3: EmployeeModel;
+    helper4: EmployeeModel;
     isDelivered: boolean;
     status: StatusModel[];
     currentStatus: string;

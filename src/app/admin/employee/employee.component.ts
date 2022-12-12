@@ -102,7 +102,9 @@ export class EmployeeComponent implements OnInit {
       this.userList.splice(0, this.userList.length);
       const data = snapshot.val();
       snapshot.forEach((child) => {
-        this.userList.push(child.val());
+        if(child.val().isAvailable){
+          this.userList.push(child.val());
+        }
       });
       this.userListTemp = this.userList;
       console.log(data);

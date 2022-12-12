@@ -35,7 +35,8 @@ export class AddDialogComponent implements OnInit {
 
   addEmployee(emplyeeModel: EmployeeModel){
     console.log(emplyeeModel);
-    emplyeeModel.age = '25';
+    //emplyeeModel.age = '25';
+    emplyeeModel.isAvailable = true;
     const app = initializeApp(environment.firebaseConfig);
     const db = getDatabase(app);
     const key = push(ref(db, 'users/')).key;

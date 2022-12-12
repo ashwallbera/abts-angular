@@ -20,9 +20,10 @@ import { DriverUpdateStatusComponent } from './driver/driver-update-status/drive
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
+import { DriverNotAssignedComponent } from './driver-not-assigned/driver-not-assigned.component';
 
 @NgModule({
-  declarations: [AppComponent, RouterManagerComponent, MessageDialogComponent, DriverComponent, LogoutComponent, DriverUpdateStatusComponent],
+  declarations: [AppComponent, RouterManagerComponent, MessageDialogComponent, DriverComponent, LogoutComponent, DriverUpdateStatusComponent, DriverNotAssignedComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

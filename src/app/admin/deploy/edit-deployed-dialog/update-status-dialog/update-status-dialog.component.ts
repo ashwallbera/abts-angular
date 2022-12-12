@@ -134,8 +134,23 @@ export class UpdateStatusDialogComponent implements OnInit {
       update(ref(db, 'deployed/' + this.data.id + '/'), this.data);
 
       //removed assign truck from driver
-      this.data.driver.assignDeployedId = "none";
+      //this.data.driver.assignDeployedId = "none";
       update(ref(db, 'users/' + this.data.driver.uid + '/'), this.data.driver);
+    
+      //set Employee Available
+      this.data.driver.isAvailable = true;
+      this.data.helper1.isAvailable = true;
+      this.data.helper2.isAvailable = true;
+      this.data.helper3.isAvailable = true;
+      this.data.helper4.isAvailable = true;
+      
+      update(ref(db, 'users/' + this.data.driver.uid + '/'), this.data.driver);
+      update(ref(db, 'users/' + this.data.helper1.uid + '/'), this.data.helper1);
+      update(ref(db, 'users/' + this.data.helper2.uid + '/'), this.data.helper2);
+      update(ref(db, 'users/' + this.data.helper3.uid + '/'), this.data.helper3);
+      update(ref(db, 'users/' + this.data.helper4.uid + '/'), this.data.helper4);
+
+
 
       //remove assign truck from helpers and set availability to true(available)
 

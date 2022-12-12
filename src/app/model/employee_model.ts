@@ -6,9 +6,10 @@ export interface EmployeeModel{
     email: string;
     position: string;
     role: string;
-    age: string;
+    // age: string;
     birthdate: string;
     address: string;
     password: string;
     assignDeployedId: string;
+    isAvailable: boolean;
 }

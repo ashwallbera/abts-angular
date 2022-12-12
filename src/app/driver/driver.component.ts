@@ -28,15 +28,19 @@ export class DriverComponent implements OnInit {
       position: 'driver',
       role: '',
       address: '6',
-      age: '25',
-      assignDeployedId: '-NImwU1ZRZe-GnJB_1jd',
+      assignDeployedId: '-NJ3fuBSIuHxefNjJtYV',
       birthdate: '5',
       password: 'driver123',
+      isAvailable:false
     };
     this.getAssignDeployed();
+   
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void 
+  {
+    
+  }
 
   getAssignDeployed() {
     const app = initializeApp(environment.firebaseConfig);
@@ -46,8 +50,13 @@ export class DriverComponent implements OnInit {
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
       console.log(data);
+      if(!data.isDelivered){
+        
+      }
       this.deployed = data;
+    
     });
+
   }
 
   getLastStatus(status: StatusModel[] | undefined) : StatusModel{
