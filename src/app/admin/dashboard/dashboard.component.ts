@@ -25,76 +25,157 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   driverCount: number = 0;
   helperCount: number = 0;
 
+  monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+
   chartData: any;
+  chartMonthData: any;
   constructor(public datepipe: DatePipe) {
     this.countByPosition();
     this.chartData = {
-      name:'chart1',
+      name: 'chart1',
       data1: [],
-      data2:[],
-      dates:[]
-    }
+      data2: [],
+      dates: [],
+    };
+    this.chartMonthData = {
+      name: 'chartMonth',
+      data1: [],
+      data2: [],
+      dates: [],
+    };
+
     // console.log(this.chartData)
-    
 
-    var dates = this.getDatesInRange(new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),new Date(Date.now()));
-    console.log(dates);
-    
-    dates.forEach((date) =>{
+    var dates = this.getDatesInRange(
+      new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+      new Date(Date.now())
+    );
+
+    var months = this.getMonthRanges(
+      new Date(Date.now() - 150 * 24 * 60 * 60 * 1000),
+      new Date(Date.now()));
+
+    dates.forEach((date) => {
       this.countEveryDate(date);
-      this.chartData.dates.push(datepipe.transform(date,"mediumDate"));
-    })
+      this.chartData.dates.push(datepipe.transform(date, 'mediumDate'));
+    });
 
-
+    months.forEach((month)=>{
+      this.countEveryMonth(month)
+    });
   }
-  getDatesInRange(startDate:Date, endDate:Date) {
+  getDatesInRange(startDate: Date, endDate: Date) {
     const date = new Date(startDate.getTime());
-  
+
     const dates = [];
-  
+
     while (date <= endDate) {
       dates.push(new Date(date));
-      date.setDate(date.getDate() + 1)
+      date.setDate(date.getDate() + 1);
     }
-  
+
     return dates;
   }
 
+  getMonthRanges(startDate: Date, endDate: Date) {
+    const date = new Date(startDate.getTime());
+
+    const dates = [];
+    
+    while (date <= endDate) {
+      //var m = this.monthNames[new Date(date).getMonth()];
+      var m = date.getMonth();
+      if (dates.indexOf(m) == -1) {
+        dates.push(m);
+        this.chartMonthData.dates.push(this.monthNames[new Date(date).getMonth()])
+      }
+
+      date.setDate(date.getDate() + 1);
+    }
+
+    return dates;
+  }
+
+  //count every month successfull delivery
+  countEveryMonth(m: number){
+    var countSuccess = 0;
+    var countFailed = 0;
+    const app = initializeApp(environment.firebaseConfig);
+    const db = getDatabase();
+    onValue(ref(db, 'deployed/'), (snapshot) => {
+      countSuccess = 0;
+      countFailed = 0;
+      var d: any;
+      snapshot.forEach((child) => {
+        const deployed = child.val();
+        d = deployed;
+        if (
+          deployed.isDelivered &&
+          m == new Date(deployed.datecreated).getMonth()
+        ) {
+          countSuccess++;
+        }
+      });
+      console.log(
+        m + ' == ' + d.datecreated
+      );
+      this.chartMonthData.data1.push(countSuccess);
+      this.chartMonthData.data2.push(countFailed);
+      console.log(countSuccess);
+      console.log(countFailed);
+      countSuccess = 0;
+      countFailed = 0;
+    });
+  }
   // count every day successfull and failed delivery
   countEveryDate(date: Date) {
     var countSuccess = 0;
     var countFailed = 0;
-    const app = initializeApp(environment.firebaseConfig)
+    const app = initializeApp(environment.firebaseConfig);
     const db = getDatabase();
     onValue(ref(db, 'deployed/'), (snapshot) => {
       countSuccess = 0;
-        countFailed = 0;
-        var d : any;
-        snapshot.forEach((child) => {
-          const deployed = child.val();
-          d = deployed;
-          if (
-            deployed.isDelivered &&
-            this.datepipe.transform(date, 'MM/d/yyyy') == deployed.datecreated
-          ) {
-            countSuccess++;
-          }
-          if (
-            deployed.isDelivered &&
-            this.datepipe.transform(date, 'MM/d/yyyy') == deployed.datecreated
-          ) {
-            countFailed+= 5;
-          }
-        });
-        console.log(this.datepipe.transform(date, 'MM/d/yyyy') +" == "+d.datecreated );
-        this.chartData.data1.push(countSuccess);
-        this.chartData.data2.push(countFailed);
-        console.log(countSuccess);
-        console.log(countFailed);
-        countSuccess = 0;
-        countFailed = 0;
+      countFailed = 0;
+      var d: any;
+      snapshot.forEach((child) => {
+        const deployed = child.val();
+        d = deployed;
+        if (
+          deployed.isDelivered &&
+          this.datepipe.transform(date, 'MM/d/yyyy') == deployed.datecreated
+        ) {
+          countSuccess++;
+        }
+        if (
+          deployed.isDelivered &&
+          this.datepipe.transform(date, 'MM/d/yyyy') == deployed.datecreated
+        ) {
+          countFailed += 5;
+        }
+      });
+      console.log(
+        this.datepipe.transform(date, 'MM/d/yyyy') + ' == ' + d.datecreated
+      );
+      this.chartData.data1.push(countSuccess);
+      this.chartData.data2.push(countFailed);
+      console.log(countSuccess);
+      console.log(countFailed);
+      countSuccess = 0;
+      countFailed = 0;
     });
-
   }
 
   ngAfterViewInit(): void {
@@ -138,7 +219,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     //     },
     //   },
     // });
-
     // const ctx1 = 'myChart1';
     // const myChart1 = new Chart(ctx1, {
     //   type: 'line',
