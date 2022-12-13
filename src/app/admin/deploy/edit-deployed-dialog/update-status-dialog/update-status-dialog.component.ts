@@ -115,6 +115,7 @@ export class UpdateStatusDialogComponent implements OnInit {
     const db = getDatabase(app);
     var date = new Date();
     if(this.selectedValue?.type == "Delivered"){
+      this.data.currentStatus = this.selectedValue!.type;
       this.data.status.push({
         id:'',
         date:''+this.datepipe.transform(date, 'longDate'),
@@ -154,6 +155,7 @@ export class UpdateStatusDialogComponent implements OnInit {
       //remove assign truck from helpers and set availability to true(available)
 
     }else{
+      this.data.currentStatus = this.selectedValue!.type;
       this.data.status.push({
         id:'',
         date:''+this.datepipe.transform(date, 'longDate'),
