@@ -103,9 +103,8 @@ export class UpdateStatusDialogComponent implements OnInit {
 
 
 ];
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DeployModel,public datepipe: DatePipe) {
-   
-
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,public datepipe: DatePipe) {
+    console.log(data)
   }
 
   ngOnInit(): void {

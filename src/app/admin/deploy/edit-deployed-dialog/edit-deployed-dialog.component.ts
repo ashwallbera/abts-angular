@@ -80,7 +80,7 @@ export class EditDeployedDialogComponent implements OnInit {
     //var post: DeployModel = deployModel;
     // post.truck = this.data.truck;
     //this.data.isAvailable = false;
-    update(ref(db, 'deployed/' + this.data.id + '/'), this.data);
+    update(ref(db, 'deployed/' + this.data.deployed.id + '/'), this.data.deployed);
   }
 
   getHelper() {
