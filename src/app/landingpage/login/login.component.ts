@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
               console.log(child.val());
               verified = true;
               user = child.val();
+              localStorage.setItem("abtsaccount",JSON.stringify(user))
               return;
             }
           } else {

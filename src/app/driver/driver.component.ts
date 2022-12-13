@@ -19,28 +19,11 @@ export class DriverComponent implements OnInit {
   driver: EmployeeModel;
   public deployed?: DeployModel;
   constructor(public datepipe: DatePipe, public dialog: MatDialog) {
-    this.driver = {
-      uid: '-NHzsyCII1sJmNHOl4gU',
-      fname: '1',
-      lname: '2',
-      contactno: '4',
-      email: 'driver',
-      position: 'driver',
-      address: '6',
-      assignDeployedId: '-NJ3fuBSIuHxefNjJtYV',
-      birthdate: '5',
-      password: 'driver123',
-      isAvailable:false,
-      cpassword:""
-    };
+    this.driver = JSON.parse('' + localStorage.getItem('abtsaccount'));
     this.getAssignDeployed();
-   
   }
 
-  ngOnInit(): void 
-  {
-    
-  }
+  ngOnInit(): void {}
 
   getAssignDeployed() {
     const app = initializeApp(environment.firebaseConfig);
@@ -50,29 +33,23 @@ export class DriverComponent implements OnInit {
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
       console.log(data);
-      if(!data.isDelivered){
-        
+      if (!data.isDelivered) {
       }
       this.deployed = data;
-    
     });
-
   }
 
-  getLastStatus(status: StatusModel[] | undefined) : StatusModel{
-    return status![status!.length-1];
+  getLastStatus(status: StatusModel[] | undefined): StatusModel {
+    return status![status!.length - 1];
   }
-  formatDate(date: string | undefined): string{
+  formatDate(date: string | undefined): string {
     var d = new Date(date!);
-    return ""+this.datepipe.transform(d,'mediumDate');
+    return '' + this.datepipe.transform(d, 'mediumDate');
   }
 
-  updateDriverUpdateStatus(){
-    this.dialog.open(DriverUpdateStatusComponent,{
-      data:this.deployed
-    })
+  updateDriverUpdateStatus() {
+    this.dialog.open(DriverUpdateStatusComponent, {
+      data: this.deployed,
+    });
   }
-  
 }
-
-

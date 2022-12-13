@@ -98,7 +98,7 @@ export class RecordsComponent implements OnInit {
   getSpicificReport(date: Date[], deployed: DeployModel): DeployModel {
     for (var i = 0; i < date.length; i++) {
       if (date[i].toLocaleDateString() == deployed.datecreated) {
-        console.log(date[i].toLocaleDateString() == deployed.datecreated);
+        console.log(date[i].toLocaleDateString() +" == "+ deployed.datecreated);
         console.log(date);
         return deployed;
       }

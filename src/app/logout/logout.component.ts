@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class LogoutComponent implements OnInit {
 
   constructor(public router: Router) { 
+    localStorage.removeItem('abtsaccount');
     router.navigate(['']);
   }
 
