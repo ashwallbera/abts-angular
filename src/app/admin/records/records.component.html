@@ -1,31 +1,31 @@
 <div class="datepicker">
   <mat-form-field appearance="outline">
     <mat-label>START DATE</mat-label>
-    <input [formControl]="startDate" matInput [matDatepicker]="picker1">
+    <input [formControl]="startDate" matInput [matDatepicker]="picker1" />
     <mat-hint>MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
     <mat-datepicker #picker1></mat-datepicker>
   </mat-form-field>
-  
+
   <mat-form-field appearance="outline">
     <mat-label>END DATE</mat-label>
-    <input [formControl]="endDate" matInput [matDatepicker]="picker2">
+    <input [formControl]="endDate" matInput [matDatepicker]="picker2" />
     <mat-hint>MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
     <mat-datepicker #picker2></mat-datepicker>
   </mat-form-field>
 
-  
+  <br />
+  <br />
 
-  <br>
-  <br>
-
-  <button class="add_btn btn" (click)="generateReport()">Generate Report</button>
-  <button class="add_btn btn" style="margin-left: 5px" (click)="clearReport()">Clear</button>
+  <button class="add_btn btn" (click)="generateReport()">
+    Generate Report
+  </button>
+  <button class="add_btn btn" style="margin-left: 5px" (click)="clearReport()">
+    Clear
+  </button>
 </div>
-<br>
-
-
+<br />
 
 <!-- 
 <div class="gene row">
@@ -64,6 +64,9 @@
           <button class="edit_btn col" (click)="openViewDeployedDialog(report)">
             <mat-icon>remove_red_eye</mat-icon>
           </button>
+          <button class="edit_btn col" (click)="printPage(report)">
+            <mat-icon>save_alt</mat-icon>
+          </button>
         </td>
       </tr>
 
@@ -101,7 +104,7 @@
     </tbody>
   </table>
 </div>
-
+<!-- 
 <div class="close">
   <button class="btn cls_btn">Close</button>
-</div>
+</div> -->

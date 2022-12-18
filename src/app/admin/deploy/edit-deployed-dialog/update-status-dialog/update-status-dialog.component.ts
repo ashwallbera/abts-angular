@@ -152,8 +152,7 @@ export class UpdateStatusDialogComponent implements OnInit {
 
 
 
-      //remove assign truck from helpers and set availability to true(available)
-
+    
     }else{
       this.data.currentStatus = this.selectedValue!.type;
       this.data.status.push({

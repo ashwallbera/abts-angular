@@ -40,7 +40,7 @@ import { ViewDeliveryedComponent } from './records/view-deliveryed/view-delivery
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { WeeklyChartComponent } from './dashboard/weekly-chart/weekly-chart.component';
-
+import { NgxPrintModule } from 'ngx-print';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -63,7 +63,8 @@ import { WeeklyChartComponent } from './dashboard/weekly-chart/weekly-chart.comp
     ViewStatusDialogComponent,
     UpdateStatusDialogComponent,
     ViewDeliveryedComponent,
-    WeeklyChartComponent
+    WeeklyChartComponent,
+
   ],
   imports: [
     CommonModule,
@@ -84,7 +85,8 @@ import { WeeklyChartComponent } from './dashboard/weekly-chart/weekly-chart.comp
     MatProgressBarModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    NgxPrintModule
     
   ],
   exports: [EmployeeComponent,TrucksComponent,DashboardComponent,RecordsComponent]
