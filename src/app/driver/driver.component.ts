@@ -16,14 +16,21 @@ import { DriverUpdateStatusComponent } from './driver-update-status/driver-updat
   encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class DriverComponent implements OnInit {
+  fileToUpload: File | null = null;
   driver: EmployeeModel;
   public deployed?: DeployModel;
   constructor(public datepipe: DatePipe, public dialog: MatDialog) {
     this.driver = JSON.parse('' + localStorage.getItem('abtsaccount'));
     this.getAssignDeployed();
+    console.log(this.driver);
   }
 
   ngOnInit(): void {}
+
+  fileChange(files: any) {
+    this.fileToUpload = files.item(0);
+    console.log(files);
+}
 
   getAssignDeployed() {
     const app = initializeApp(environment.firebaseConfig);
@@ -35,7 +42,15 @@ export class DriverComponent implements OnInit {
       console.log(data);
       if (!data.isDelivered) {
       }
-      this.deployed = data;
+      this.deployed = data; 
+    });
+
+    const starCountRef2= ref(db, 'users/' + this.driver.uid);
+    onValue(starCountRef2, (snapshot) => {
+      const data = snapshot.val();
+      console.log(data);
+      this.driver.assignDeployedId = data.assignDeployedId; 
+      localStorage.setItem("abtsaccount",JSON.stringify(this.driver));
     });
   }
 
@@ -51,5 +66,9 @@ export class DriverComponent implements OnInit {
     this.dialog.open(DriverUpdateStatusComponent, {
       data: this.deployed,
     });
+  }
+
+  filedialog(e: any){
+    e.click();
   }
 }

@@ -1,115 +1,154 @@
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+  rel="stylesheet"
+/>
 
 <div class="component-container" *ngIf="!deployed?.isDelivered">
   <section class="driver-info-body">
     <div class="driver-info-container">
       <div class="driver-info-content">
-      <div class="driver-info-form">
-        <img src="assets/delivery-icon.png" alt="" class="driver-info-icon">
-        <div class="driver-info-topic">Delivery Details</div>
-        <div class="driver-info-date">As of {{deployed?.datecreated}}</div>
-        <div class="driver-info-time">{{getLastStatus(deployed!.status).time}}</div>
-        <hr><br>
-        <div class="row driver-info-main">
+        <div class="driver-info-form">
+          <img src="assets/delivery-icon.png" alt="" class="driver-info-icon" />
+          <div class="driver-info-topic">Delivery Details</div>
+          <div class="driver-info-date">As of {{ deployed?.datecreated }}</div>
+          <div class="driver-info-time">
+            {{ getLastStatus(deployed!.status).time }}
+          </div>
+          <hr />
+          <br />
+          <div class="row driver-info-main">
             <table class="driver-info-table">
-                <tr>
-                  <th>TRUCK PLATE #: </th>
-                  <td>{{deployed?.truck?.plateno}}</td>
-                </tr>
+              <tr>
+                <th>TRUCK PLATE #:</th>
+                <td>{{ deployed?.truck?.plateno }}</td>
+              </tr>
 
-                <tr>
-                    <th>CONTAINER VAN #: </th>
-                    <td>{{deployed?.containervanno}}</td>
-                </tr>
+              <tr>
+                <th>CONTAINER VAN #:</th>
+                <td>{{ deployed?.containervanno }}</td>
+              </tr>
 
-                <tr>
-                    <th>CONSIGNEE: </th>
-                    <td>{{deployed?.sfullname}}</td>
-                </tr>
+              <tr>
+                <th>CONSIGNEE:</th>
+                <td>{{ deployed?.sfullname }}</td>
+              </tr>
 
-                <tr>
-                    <th>DRIVER'S NAME: </th>
-                    <td>{{deployed?.driver?.fname}} {{deployed?.driver?.lname}}</td>
-                </tr>
+              <tr>
+                <th>DRIVER'S NAME:</th>
+                <td>
+                  {{ deployed?.driver?.fname }} {{ deployed?.driver?.lname }}
+                </td>
+              </tr>
 
-                <!-- FIX HELPER OBJECT IN DEPLOYING TRUCKS -->
-                <tr>
-                    <th>HELPER: </th>
-                    <td>SADAASDDW</td>
-                </tr>
+              <!-- FIX HELPER OBJECT IN DEPLOYING TRUCKS -->
+              <tr>
+                <th>HELPER:</th>
+                <td>
+                  {{ deployed?.helper1?.fname }} {{ deployed?.helper1?.lname }}
+                </td>
+              </tr>
 
-                <tr>
-                    <th>ROUTE: </th>
-                    <td>SADAASDDW</td>
-                </tr>
+              <tr>
+                <th>ROUTE:</th>
+                <td>{{ deployed?.raddress }}</td>
+              </tr>
 
-                <tr>
-                    <th>TIME OF DEPARTURE: </th>
-                    <td>SADAASDDW</td>
-                </tr>
+              <!-- <tr>
+                <th>TIME OF DEPARTURE:</th>
+                <td>{{ deployed }}</td>
+              </tr> -->
 
-                <tr>
-                    <th>CARGO TYPE: </th>
-                    <td>SADAASDDW</td>
-                </tr>
-                
-                <tr>
-                    <th>EXTRA HELPER: </th>
-                    <td>SADAASDDW</td>
-                </tr>
+              <tr>
+                <!-- <th>CARGO TYPE:</th>
+                <td>{{deployed?.}}</td> -->
+              </tr>
+
+              <tr *ngIf="deployed?.helper2">
+                <th>EXTRA HELPER:</th>
+                <td>{{ deployed?.helper2?.fname }} {{ deployed?.helper2?.lname }}</td>
+              </tr>
+              <tr *ngIf="deployed?.helper2">
+                <th>EXTRA HELPER:</th>
+                <td>{{ deployed?.helper3?.fname }} {{ deployed?.helper3?.lname }}</td>
+              </tr>
+              <tr *ngIf="deployed?.helper2">
+                <th>EXTRA HELPER:</th>
+                <td>{{ deployed?.helper4?.fname }} {{ deployed?.helper4?.lname }}</td>
+              </tr>
             </table>
-            <br>
-            <button class="upload-btn">Upload Photo</button>
-            <br>
-            <hr>
-        </div>
+            <br />
+            <!-- <button class="upload-btn">Upload Photo</button> -->
+            <input accept="image/png" type="file" style="display: none" #file (change)="fileChange($event)" />
+            <button  type="button" class="upload-btn" (click)="filedialog(file)">Upload Photo</button>
+            <br />
+            <hr />
+          </div>
           <div class="row driver-info-status">
             <div class="col-below-status">
-                <div class="driver-info-title">Track Status</div><br>
-                <div class="box">
-                    <div class="b-container">
-                      <ul class="b" *ngFor="let status of deployed?.status">
-                        <!-- <li class="b-status" ng-repeat="itembx" *ngIf="isDelivered(deployed?.status)">
+              <div class="driver-info-title">Track Status</div>
+              <br />
+              <div class="box">
+                <div class="b-container">
+                  <ul class="b" *ngFor="let status of deployed?.status">
+                    <!-- <li class="b-status" ng-repeat="itembx" *ngIf="isDelivered(deployed?.status)">
                           <div class="timestamp">3rd May 2020 <br> 7:00 PM</div>
                           <div class="status-title-dlvrd">Delivered</div>
                         </li> -->
 
-                        <li class="b-status" ng-repeat="itembx" >
-                          <div class="timestamp">{{formatDate(status?.date)}} <br> {{status?.time}}</div>
-                          <div class="status-title">{{status?.type}}</div>
-                        </li>
-
-                    
-                      </ul>
-                      <button class="update-btn" (click)="updateDriverUpdateStatus()">Update Status</button><br>
-                    </div>
-                  </div><br>
-                  <div class="proof-area">
-                    <div class="proof-title">Proof of Delivery</div><br>
-                    <div class="gallery">
-                      <img class="gallery-proof" src="assets/deliveryproof/imgproof-1.jpg">
-                      <img class="gallery-proof" src="assets/deliveryproof/imgproof-2.jfif">
-                      <img class="gallery-proof" src="assets/deliveryproof/imgproof-3.jfif">
-                      <img class="gallery-proof" src="assets/deliveryproof/imgproof-4.jpg">
-                    </div>
-                  </div>
+                    <li class="b-status" ng-repeat="itembx">
+                      <div class="timestamp">
+                        {{ formatDate(status?.date) }} <br />
+                        {{ status?.time }}
+                      </div>
+                      <div class="status-title">{{ status?.type }}</div>
+                    </li>
+                  </ul>
+                  <button
+                    class="update-btn"
+                    (click)="updateDriverUpdateStatus()"
+                  >
+                    Update Status</button
+                  ><br />
                 </div>
-          </div><br>
+              </div>
+              <br />
+              <div class="proof-area">
+                <div class="proof-title">Proof of Delivery</div>
+                <br />
+                <div class="gallery">
+                  <img
+                    class="gallery-proof"
+                    src="assets/deliveryproof/imgproof-1.jpg"
+                  />
+                  <img
+                    class="gallery-proof"
+                    src="assets/deliveryproof/imgproof-2.jfif"
+                  />
+                  <img
+                    class="gallery-proof"
+                    src="assets/deliveryproof/imgproof-3.jfif"
+                  />
+                  <img
+                    class="gallery-proof"
+                    src="assets/deliveryproof/imgproof-4.jpg"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <br />
           <button class="logout-btn">Logout</button>
         </div>
+      </div>
     </div>
-  </div>
-</section>
-
+  </section>
 </div>
-
 
 <!-- <div class="h-100 d-flex align-items-center justify-content-center" style="text-align: center;">
 
   TRUCK NOT ASSIGN YET
 </div> -->
 <app-driver-not-assigned *ngIf="deployed?.isDelivered">
-
 </app-driver-not-assigned>
