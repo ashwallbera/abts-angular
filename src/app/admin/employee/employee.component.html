@@ -26,7 +26,7 @@
     Helper
   </button>
   <button class="all_btn btn col" (click)="filterByPosition('all')">All</button>
-  <button (click)="openAddDialog()" class="add_btn btn col">Add</button>
+  <button *ngIf="!fromUser"(click)="openAddDialog()" class="add_btn btn col">Add</button>
 </div>
 
 <div class="table_size">
