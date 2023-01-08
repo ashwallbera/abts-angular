@@ -32,7 +32,7 @@
 
               <tr>
                 <th>CONSIGNEE:</th>
-                <td>{{ deployed?.sfullname }}</td>
+                <td>{{ deployed?.rfullname }}</td>
               </tr>
 
               <tr>
@@ -67,21 +67,41 @@
 
               <tr *ngIf="deployed?.helper2">
                 <th>EXTRA HELPER:</th>
-                <td>{{ deployed?.helper2?.fname }} {{ deployed?.helper2?.lname }}</td>
+                <td>
+                  {{ deployed?.helper2?.fname }} {{ deployed?.helper2?.lname }}
+                </td>
               </tr>
               <tr *ngIf="deployed?.helper2">
                 <th>EXTRA HELPER:</th>
-                <td>{{ deployed?.helper3?.fname }} {{ deployed?.helper3?.lname }}</td>
+                <td>
+                  {{ deployed?.helper3?.fname }} {{ deployed?.helper3?.lname }}
+                </td>
               </tr>
               <tr *ngIf="deployed?.helper2">
                 <th>EXTRA HELPER:</th>
-                <td>{{ deployed?.helper4?.fname }} {{ deployed?.helper4?.lname }}</td>
+                <td>
+                  {{ deployed?.helper4?.fname }} {{ deployed?.helper4?.lname }}
+                </td>
               </tr>
             </table>
             <br />
             <!-- <button class="upload-btn">Upload Photo</button> -->
-            <input accept="image/png" type="file" style="display: none" #file (change)="fileChange($event)" />
-            <button  type="button" class="upload-btn" (click)="filedialog(file)">Upload Photo</button>
+
+            <div style="text-align: center;" *ngIf="fileToUpload">{{ fileToUpload?.name }}asd</div>
+
+            <input
+              accept="image/png"
+              type="file"
+              style="display: none"
+              #file
+              (change)="fileChange($event)"
+            />
+            <button type="button" class="upload-btn" (click)="filedialog(file)">
+              <div *ngIf="!fileToUpload">Upload Photo</div>
+              <div *ngIf="fileToUpload">Change Photo</div>
+             
+            </button>
+            <button *ngIf="fileToUpload" type="button" class="upload-btn" (click)="upload()">Upload</button>
             <br />
             <hr />
           </div>
@@ -114,15 +134,15 @@
                 </div>
               </div>
               <br />
-              <div class="proof-area">
+              <div class="proof-area" *ngIf="deployed?.delproofurl">
                 <div class="proof-title">Proof of Delivery</div>
                 <br />
-                <div class="gallery">
+                <div class="gallery" >
                   <img
                     class="gallery-proof"
-                    src="assets/deliveryproof/imgproof-1.jpg"
+                    [src]=" this.deployed.delproofurl"
                   />
-                  <img
+                  <!-- <img
                     class="gallery-proof"
                     src="assets/deliveryproof/imgproof-2.jfif"
                   />
@@ -133,13 +153,13 @@
                   <img
                     class="gallery-proof"
                     src="assets/deliveryproof/imgproof-4.jpg"
-                  />
+                  /> -->
                 </div>
               </div>
             </div>
           </div>
           <br />
-          <button class="logout-btn">Logout</button>
+          <button class="logout-btn" (click)="logout()">Logout</button>
         </div>
       </div>
     </div>

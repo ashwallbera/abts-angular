@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DriverComponent } from './driver/driver.component';
+import { LogoutComponent } from './logout/logout.component';
 import { RouterManagerComponent } from './router-manager/router-manager.component';
 
 const routes: Routes = [
@@ -28,7 +29,11 @@ const routes: Routes = [
     path:'staff',
     loadChildren: () => 
     import('./staff/staff-routing.module').then((m) => m.StaffRoutingModule),
-  }
+  },
+  {
+    path: 'logout',
+    component: LogoutComponent,
+  },
 ];
 
 @NgModule({

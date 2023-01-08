@@ -123,11 +123,11 @@ export class RecordsComponent implements OnInit {
     doc.text(`Truck Plate No: `+report.truck.plateno, doc.internal.pageSize.getWidth() / 2, 25, { align: 'center'} );
     doc.setFontSize(12);
     
-    doc.text(`Sender: `+report.saddress, 20, 40, { align: 'left'} );
+    doc.text(`Sender: `+report.sfullname, 20, 40, { align: 'left'} );
     doc.text(`Contact No: `+report.scontactno, 20, 45, { align: 'left'} );
     doc.text(`Address: `+report.saddress, 20, 50, { align: 'left'} );
     
-    doc.text(`Recipient: `+report.raddress, 20, 60, { align: 'left'} );
+    doc.text(`Recipient: `+report.rfullname, 20, 60, { align: 'left'} );
     doc.text(`Contact No: `+report.rcontactno, 20, 65, { align: 'left'} );
     doc.text(`Address: `+report.raddress, 20, 70, { align: 'left'} );
     

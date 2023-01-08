@@ -7,9 +7,8 @@
 <!-- <button printSectionId="print-section" ngxPrint>print</button> 
 <div id="print-section">SAMPLE</div> -->
 
-
 <section class="task-info-body">
-  <div  class="task-info-container">
+  <div class="task-info-container">
     <div class="task-info-content">
       <form action="#" class="task-info-form">
         <img
@@ -39,22 +38,30 @@
 
               <tr class="task-info-subinfo">
                 <th class="task-info-th">Assigned Helper:</th>
-                <td class="task-info-td">{{ data.helper1.fname }} {{ data.helper1.lname }}</td>
+                <td class="task-info-td">
+                  {{ data.helper1.fname }} {{ data.helper1.lname }}
+                </td>
               </tr>
 
               <tr class="task-info-subinfo">
                 <th class="task-info-th">Extra Helper:</th>
-                <td class="task-info-td">{{ data.helper2.fname }} {{ data.helper2.lname }}</td>
+                <td class="task-info-td">
+                  {{ data.helper2.fname }} {{ data.helper2.lname }}
+                </td>
               </tr>
 
               <tr class="task-info-subinfo">
                 <th class="task-info-th">Extra Helper:</th>
-                <td class="task-info-td">{{ data.helper3.fname }} {{ data.helper3.lname }}</td>
+                <td class="task-info-td">
+                  {{ data.helper3.fname }} {{ data.helper3.lname }}
+                </td>
               </tr>
 
               <tr class="task-info-subinfo">
                 <th class="task-info-th">Extra Helper:</th>
-                <td class="task-info-td">{{ data.helper4.fname }} {{ data.helper4.lname }}</td>
+                <td class="task-info-td">
+                  {{ data.helper4.fname }} {{ data.helper4.lname }}
+                </td>
               </tr>
             </table>
           </div>
@@ -125,11 +132,14 @@
             <div class="task-proof-area">
               <div class="task-proof-title">Proof of Delivery</div>
               <br />
-              <div class="task-gallery">
+              <p class="image">
                 <img
-                  class="task-gallery-proof"
-                  src="assets/deliveryproof/imgproof-1.jpg"
+                  style="justify-content: center; align-items: center"
+                  [src]="data.delproofurl"
                 />
+              </p>
+              <!-- <div class="task-gallery">
+               
                 <img
                   class="task-gallery-proof"
                   src="assets/deliveryproof/imgproof-2.jfif"
@@ -142,7 +152,7 @@
                   class="task-gallery-proof"
                   src="assets/deliveryproof/imgproof-4.jpg"
                 />
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -152,7 +162,3 @@
     </div>
   </div>
 </section>
-
-
-
-

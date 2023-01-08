@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); 
 @import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+.image{
+  display: flex;
+  justify-content: center
 
+
+}
   .task-info-body {
     margin: 0;
     padding: 0;
@@ -118,7 +123,7 @@
       font-weight: 600;
       text-align: center;
       list-style: none;
-      display: block;
+      // display: block;
   }
   .task-info-td {
       text-align: center;
@@ -293,6 +298,8 @@
       cursor: pointer;
     }
 
+
+
     /* PROOF OF DELIVERY - PHOTOS */
     .task-proof-area {
       margin: 0;
@@ -308,7 +315,7 @@
       background: rgb(255, 255, 255);
       margin: 0 20px;
       box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
-      display: block;
+      // display: block;
       padding: 15px 45px 45px 45px;
       margin-left: auto;
       margin-right: auto;
@@ -362,7 +369,7 @@
       
     .task-info-back-btn {
       font-family: 'Poppins',sans-serif;
-        display: block;
+        // display: block;
         margin-left: auto;
         margin-right: auto;
     }

@@ -22,4 +22,5 @@ export interface DeployModel{
     datecreated: string;
     truck:TruckModel;
     employeeModel: EmployeeModel;
+    delproofurl: string;
 }
