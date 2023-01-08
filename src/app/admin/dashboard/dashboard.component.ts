@@ -66,15 +66,16 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     var months = this.getMonthRanges(
       new Date(Date.now() - 150 * 24 * 60 * 60 * 1000),
-      new Date(Date.now()));
+      new Date(Date.now())
+    );
 
     dates.forEach((date) => {
       this.countEveryDate(date);
       this.chartData.dates.push(datepipe.transform(date, 'mediumDate'));
     });
 
-    months.forEach((month)=>{
-      this.countEveryMonth(month)
+    months.forEach((month) => {
+      this.countEveryMonth(month);
     });
   }
   getDatesInRange(startDate: Date, endDate: Date) {
@@ -94,13 +95,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     const date = new Date(startDate.getTime());
 
     const dates = [];
-    
+
     while (date <= endDate) {
       //var m = this.monthNames[new Date(date).getMonth()];
       var m = date.getMonth();
       if (dates.indexOf(m) == -1) {
         dates.push(m);
-        this.chartMonthData.dates.push(this.monthNames[new Date(date).getMonth()])
+        this.chartMonthData.dates.push(
+          this.monthNames[new Date(date).getMonth()]
+        );
       }
 
       date.setDate(date.getDate() + 1);
@@ -110,7 +113,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   //count every month successfull delivery
-  countEveryMonth(m: number){
+  countEveryMonth(m: number) {
     var countSuccess = 0;
     var countFailed = 0;
     const app = initializeApp(environment.firebaseConfig);
@@ -129,9 +132,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           countSuccess++;
         }
       });
-      console.log(
-        m + ' == ' + d.datecreated
-      );
+      console.log( m + ' == ' + new Date(d.datecreated).getMonth());
       this.chartMonthData.data1.push(countSuccess);
       this.chartMonthData.data2.push(countFailed);
       console.log(countSuccess);
@@ -155,19 +156,19 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         d = deployed;
         if (
           deployed.isDelivered &&
-          this.datepipe.transform(date, 'MM/d/yyyy') == deployed.datecreated
+          this.datepipe.transform(date, 'M/d/yyyy') == deployed.datecreated
         ) {
           countSuccess++;
         }
         if (
           deployed.isDelivered &&
-          this.datepipe.transform(date, 'MM/d/yyyy') == deployed.datecreated
+          this.datepipe.transform(date, 'M/d/yyyy') == deployed.datecreated
         ) {
           countFailed += 5;
         }
       });
       console.log(
-        this.datepipe.transform(date, 'MM/d/yyyy') + ' == ' + d.datecreated
+        this.datepipe.transform(date, 'M/d/yyyy') + ' == ' + d.datecreated
       );
       this.chartData.data1.push(countSuccess);
       this.chartData.data2.push(countFailed);
