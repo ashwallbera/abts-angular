@@ -17,6 +17,14 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "moment",
+              "html2canvas",
+              "core-js",
+              "raf",
+              "rgbcolor",
+              "dompurify"
+           ],
             "outputPath": "dist/abts-angular",
             "index": "src/index.html",
             "main": "src/main.ts",
