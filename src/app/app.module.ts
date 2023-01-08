@@ -21,6 +21,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { DriverNotAssignedComponent } from './driver-not-assigned/driver-not-assigned.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [AppComponent, RouterManagerComponent, MessageDialogComponent, DriverComponent, LogoutComponent, DriverUpdateStatusComponent, DriverNotAssignedComponent],
@@ -39,7 +40,8 @@ import { DriverNotAssignedComponent } from './driver-not-assigned/driver-not-ass
     MatFormFieldModule,
     MatSelectModule,
     MatOptionModule,
-    FormsModule
+    FormsModule,
+    MatProgressBarModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

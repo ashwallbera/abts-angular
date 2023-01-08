@@ -87,7 +87,9 @@
             <br />
             <!-- <button class="upload-btn">Upload Photo</button> -->
 
-            <div style="text-align: center;" *ngIf="fileToUpload">{{ fileToUpload?.name }}asd</div>
+            <div style="text-align: center;" *ngIf="fileToUpload">{{ fileToUpload?.name }}</div>
+            <div style="text-align: center;" *ngIf="fileToUpload" >{{progressCount}}%</div>
+          
 
             <input
               accept="image/png"

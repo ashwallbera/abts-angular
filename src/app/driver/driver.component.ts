@@ -19,6 +19,7 @@ import * as storage from 'firebase/storage';
 export class DriverComponent implements OnInit {
   fileToUpload: File | null | any;
   driver: EmployeeModel;
+  progressCount: any = 0;
   public deployed?: DeployModel | any;
   constructor(
     public datepipe: DatePipe,
@@ -109,11 +110,16 @@ export class DriverComponent implements OnInit {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log('Upload is ' + progress + '% done');
+
+          this.progressCount = progress
+          console.log('Upload is ' + this.progressCount + '% done');
           switch (snapshot.state) {
             case 'paused':
               console.log('Upload is paused');
+             
               break;
             case 'running':
+            
               console.log('Upload is running');
               break;
           }
