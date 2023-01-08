@@ -82,9 +82,9 @@ export class DeployDialogComponent implements OnInit {
       id: '',
       date: '' + this.datepipe.transform(date, 'fullDate'),
       time: '' + this.datepipe.transform(date, 'shortTime'),
-      type: 'Info Received',
+      type: 'Document Received',
       description:
-        'Carrier has received request from the shipper and is about to pick up the cargo',
+        'Staff has received the request documents from the shipper and assigned a truck to pick up the cargo.',
     });
     deployModel.status = status;
     deployModel.isDelivered = false;

@@ -139,11 +139,17 @@
               <div class="proof-area" *ngIf="deployed?.delproofurl">
                 <div class="proof-title">Proof of Delivery</div>
                 <br />
-                <div class="gallery" >
+                <p class="image">
                   <img
+                    style="justify-content: center; align-items: center;width: 300px;"
+                    [src]="this.deployed.delproofurl"
+                  />
+                </p>
+                <div class="gallery" >
+                  <!-- <img
                     class="gallery-proof"
                     [src]=" this.deployed.delproofurl"
-                  />
+                  /> -->
                   <!-- <img
                     class="gallery-proof"
                     src="assets/deliveryproof/imgproof-2.jfif"

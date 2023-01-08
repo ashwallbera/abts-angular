@@ -16,94 +16,226 @@ export class DriverUpdateStatusComponent implements OnInit {
   selectedValue: StatusModel | undefined;
   // Predefine statuses according to the requirements
   statusRead: StatusModel[] = [
+    // {
+    //   id: '',
+    //   date: '',
+    //   time: '',
+    //   type: 'Delivered',
+    //   description: 'the cargo was delivered successfully',
+    // },
+    // {
+    //   id: '',
+    //   date: '',
+    //   time: '',
+    //   type: 'Delivered but lacking',
+    //   description:
+    //     'The cargo was delivered but some items are lacking/incomplete.',
+    // },
+    // {
+    //   id: '',
+    //   date: '',
+    //   time: '',
+    //   type: 'In Transit',
+    //   description:
+    //     'Cargo picked up and about to return to garage to get some extra helper.',
+    // },
+
+    // {
+    //   id: '',
+    //   date: '',
+    //   time: '',
+    //   type: 'Document Received',
+    //   description:
+    //     'Staff has received the request documents from the shipper and assigned a truck to pick up the cargo.',
+    // },
+
+    // //Single Drop Off
+    // {
+    //   id: '',
+    //   date: '',
+    //   time: '',
+    //   type: '',
+    //   description: '',
+    // },
+    // //Multiple Drop off
+    // {
+    //   id: '',
+    //   date: '',
+    //   time: '',
+    //   type: '',
+    //   description: '',
+    // },
+
     {
       id: '',
       date: '',
       time: '',
-      type: 'Delivered',
-      description: 'the cargo was delivered successfully',
-    },
-    {
-      id: '',
-      date: '',
-      time: '',
-      type: 'Truck Returned',
-      description: 'truck succesfully returned',
-    },
-    {
-      id: '',
-      date: '',
-      time: '',
-      type: 'Return to garage',
-      description: 'truck is about to return to garage',
-    },
-    {
-      id: '',
-      date: '',
-      time: '',
-      type: 'Cargoes Unloaded',
-      description: 'cargoes  succuesfully unloaded',
-    },
-    {
-      id: '',
-      date: '',
-      time: '',
-      type: 'Unloading Cargoes',
-      description: 'carrier is about to unload the cargo from the truck',
-    },
-    {
-      id: '',
-      date: '',
-      time: '',
-      type: 'arrived at destination',
-      description: 'truck has arrived at  destination: ',
-    },
-    {
-      id: '',
-      date: '',
-      time: '',
-      type: 'the cargo was delivered successfully',
-      description: '',
-    },
-    {
-      id: '',
-      date: '',
-      time: '',
-      type: 'Out for delivery',
-      description: 'Truck is about to deliver the Cargo.',
-    },
-    {
-      id: '',
-      date: '',
-      time: '',
-      type: 'Failed Attempt',
-      description:
-        'Truck attempted to deliver but failed, and usually leavs a notice and try to deliver again.',
-    },
-    {
-      id: '',
-      date: '',
-      time: '',
-      type: 'Out for delivery',
-      description: 'Truck is about to deliver the Cargo.',
+      type: 'Document Received',
+      description: 'Staff has received the request documents from the shipper and assigned a truck to pick up the cargo.',
     },
     {
       id: '',
       date: '',
       time: '',
       type: 'In Transit',
-      description:
-        'Truck assigned and about picked up the cargo from the pier and about to retun to garage to get some extra helper.',
+      description: 'Cargo picked up and about to return to garage to get some extra helper.',
     },
-
+    // Single drop off
     {
       id: '',
       date: '',
       time: '',
-      type: 'Info Received',
-      description:
-        'Carrier has received request from the shipper and is about to pick up the cargo',
+      type: 'Out For Delivery',
+      description: 'Truck is about to deliver the cargo.',
     },
+    // Multiple
+    {
+      id: '',
+      date: '',
+      time: '',
+      type: '1st Drop-Off Out for delivery',
+      description: 'Truck is about to deliver the 1st Drop off.',
+    },
+    {
+      id: '',
+      date: '',
+      time: '',
+      type: '1st Drop-Off Delivered',
+      description: '1st drop off successfully delivered, 2nd drop off is about to deliver',
+    },
+    //
+    {
+      id: '',
+      date: '',
+      time: '',
+      type: '2nd Drop-Off Out for delivery',
+      description: 'Truck is about to deliver the 2nd Drop off.',
+    },
+    {
+      id: '',
+      date: '',
+      time: '',
+      type: '2nd Drop-Off Delivered',
+      description: '2nd drop off successfully delivered, 3rd drop off is about to deliver',
+    },
+    //
+    {
+      id: '',
+      date: '',
+      time: '',
+      type: '3rd Drop-Off Out for delivery',
+      description: 'Truck is about to deliver the 3rd Drop off.',
+    },
+    {
+      id: '',
+      date: '',
+      time: '',
+      type: '3rd Drop-Off Delivered',
+      description: '3rd drop off successfully delivered, 4th drop off is about to deliver',
+    },
+    //
+    {
+      id: '',
+      date: '',
+      time: '',
+      type: '4th Drop-Off Out for delivery',
+      description: 'Truck is about to deliver the 4th Drop off.',
+    },
+    {
+      id: '',
+      date: '',
+      time: '',
+      type: '4th Drop-Off Delivered',
+      description: '4th drop off successfully delivered, 5th drop off is about to deliver',
+    },
+    //
+    {
+      id: '',
+      date: '',
+      time: '',
+      type: '5th Drop-Off Out for delivery',
+      description: 'Truck is about to deliver the 4th Drop off.',
+    },
+    {
+      id: '',
+      date: '',
+      time: '',
+      type: '5th Drop-Off Delivered',
+      description: '5th drop off successfully delivered',
+    },
+    //
+    {
+      id: '',
+      date: '',
+      time: '',
+      type: 'Failed Attempt',
+      description: 'Truck attempted to deliver but failed, and usually leaves a notice and try to deliver again.',
+    },
+    {
+      id: '',
+      date: '',
+      time: '',
+      type: 'Arrived at Destination',
+      description: 'Truck has arrived at destination.',
+    },
+    {
+      id: '',
+      date: '',
+      time: '',
+      type: 'Unloading Cargoes',
+      description: 'Carrier is about to unload the cargo from the truck.',
+    },
+    {
+      id: '',
+      date: '',
+      time: '',
+      type: 'Cargoes Unloaded',
+      description: 'Cargo successfully unloaded.',
+    },
+    {
+      id: '',
+      date: '',
+      time: '',
+      type: 'Return to Garage',
+      description: 'Truck is about to return to garage.',
+    },
+    {
+      id: '',
+      date: '',
+      time: '',
+      type: 'Truck Returned',
+      description: 'Truck successfully returned.',
+    },
+    {
+      id: '',
+      date: '',
+      time: '',
+      type: 'Delivered',
+      description: 'The Cargo was delivered successuly',
+    },
+    {
+      id: '',
+      date: '',
+      time: '',
+      type: 'Delivered but lacking',
+      description: 'The cargo was delivered but some items are lacking/incomplete.',
+    },
+    // {
+    //   id: '',
+    //   date: '',
+    //   time: '',
+    //   type: '',
+    //   description: '',
+    // },
+
+    // //
+    // {
+    //   id: '',
+    //   date: '',
+    //   time: '',
+    //   type: '',
+    //   description: '',
+    // },
   ];
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: DeployModel,
@@ -118,7 +250,7 @@ export class DriverUpdateStatusComponent implements OnInit {
     const app = initializeApp(environment.firebaseConfig);
     const db = getDatabase(app);
     var date = new Date();
-    if(this.selectedValue?.type == "Delivered"){
+    if(this.selectedValue?.type == "Delivered" || this.selectedValue?.type.toLocaleLowerCase() == "Delivered but lacking".toLocaleLowerCase()){
       this.data.currentStatus = this.selectedValue!.type;
       this.data.status.push({
         id:'',

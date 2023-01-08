@@ -76,6 +76,7 @@ export class DeployComponent implements OnInit {
         users: this.userList
       }
       ,
+      // width:'1000px'
     });
   }
 
