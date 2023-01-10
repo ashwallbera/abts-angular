@@ -149,6 +149,6 @@ export class RecordsComponent implements OnInit {
     
 
 
-    doc.save('a4.pdf');
+    doc.save(report.datecreated);
   }
 }

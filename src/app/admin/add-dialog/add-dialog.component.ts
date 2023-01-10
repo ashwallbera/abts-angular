@@ -19,7 +19,7 @@ export class AddDialogComponent implements OnInit {
     this.formGroup = new FormGroup({
       fname: new FormControl('',Validators.required),
       lname: new FormControl('',Validators.required),
-      email: new FormControl('',Validators.required),
+      username: new FormControl('',Validators.required),
       contactno: new FormControl('',Validators.required),
       birthdate: new FormControl('',Validators.required),
       address: new FormControl('',Validators.required),

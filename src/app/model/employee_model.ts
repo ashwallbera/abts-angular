@@ -2,8 +2,8 @@ export interface EmployeeModel{
     uid: string;
     fname: string;
     lname: string;
-    contactno: string;
-    email: string;
+    contactno: number;
+    username: string;
     position: string;
     // age: string;
     birthdate: string;

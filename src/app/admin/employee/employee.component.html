@@ -14,8 +14,11 @@
       (ngModelChange)="onChange()"
     />
     <mat-icon  matSuffix>search</mat-icon>
-    <mat-hint>Search employee email</mat-hint>
+    <mat-hint>Search employee username</mat-hint>
   </mat-form-field>
+  <button class="admin_btn btn col" (click)="filterByPosition('admin')">
+    Admin
+  </button>
   <button class="staff_btn btn col active" (click)="filterByPosition('staff')">
     Staff
   </button>
@@ -35,8 +38,8 @@
   <table>
     <thead>
       <tr>
-        <th scope="col">Staff</th>
-        <th scope="col">Email</th>
+        <th scope="col">Name</th>
+        <th scope="col">Username</th>
         <th scope="col">Position</th>
         <th scope="col">Contact No.</th>
         <th class="ac" scope="col" *ngIf="!fromUser">Action</th>
@@ -45,7 +48,7 @@
     <tbody>
       <tr *ngFor="let d of userList">
         <td data-label="Staff">{{ d.fname }} {{ d.lname }}</td>
-        <td data-label="Email">{{ d.email }}</td>
+        <td data-label="Username">{{ d.username }}</td>
         <td data-label="Position">{{ d.position }}</td>
         <td data-label="Contact Number">{{ d.contactno }}</td>
         <td data-label="Action" *ngIf="!fromUser">

@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'abts-angular'`, () => {
+  it(`should have as title 'Allan Boy Trucking Services Incorporated'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('abts-angular');
+    expect(app.title).toEqual('Allan Boy Trucking Services Incorporated');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('abts-angular app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('Allan Boy Trucking Services Incorporated app is running!');
   });
 });

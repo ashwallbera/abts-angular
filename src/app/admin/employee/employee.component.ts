@@ -121,7 +121,7 @@ export class EmployeeComponent implements OnInit {
     console.log(this.searchValue);
     if (this.searchValue != '') {
       var filtered = this.userListTemp.filter((e) => {
-        return e.email == this.searchValue;
+        return e.username == this.searchValue;
       });
       this.userList = filtered;
       console.log(this.searchValue);

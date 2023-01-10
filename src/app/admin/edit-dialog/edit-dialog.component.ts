@@ -21,7 +21,7 @@ export class EditDialogComponent implements OnInit {
     this.formGroup = new FormGroup({
       fname: new FormControl(data.fname, Validators.required),
       lname: new FormControl(data.lname, Validators.required),
-      email: new FormControl(data.email, Validators.required),
+      username: new FormControl(data.username, Validators.required),
       contactno: new FormControl(data.contactno, Validators.required),
       birthdate: new FormControl(data.birthdate, Validators.required),
       address: new FormControl(data.address, Validators.required),

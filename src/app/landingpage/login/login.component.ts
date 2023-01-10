@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
         var hasAccount = false;
         var verified = false;
         snapshot.forEach((child) => {
-          if (child.val().email == loginForm.username) {
+          if (child.val().username == loginForm.username) {
             //USER EXIST
             hasAccount = true;
             if (
