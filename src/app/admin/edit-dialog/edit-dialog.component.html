@@ -4,11 +4,22 @@
   <form #employeeForm="ngForm" [formGroup]="formGroup">
     <mat-form-field appearance="outline">
       <mat-label>First name</mat-label>
-      <input type="text" ngModel pattern="[a-zA-Z ]*" formControlName="fname" matInput placeholder="First name" />
+      <input
+        pattern="[a-zA-Z ]*"
+        formControlName="fname"
+        matInput
+        placeholder="First name"
+      />
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Last name</mat-label>
-      <input type="text" ngModel pattern="[a-zA-Z ]*" formControlName="lname" matInput placeholder="Last name" />
+      <input
+        type="text"
+        pattern="[a-zA-Z ]*"
+        formControlName="lname"
+        matInput
+        placeholder="Last name"
+      />
     </mat-form-field>
 
     <br />
@@ -19,14 +30,26 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Contact no</mat-label>
-      <input type="text" onlyNumber ngModel pattern="[0-9]*" formControlName="contactno" matInput placeholder="Contact no" />
+      <input
+        type="text"
+        onlyNumber
+        pattern="[0-9]*"
+        formControlName="contactno"
+        matInput
+        placeholder="Contact no"
+      />
     </mat-form-field>
 
     <br />
 
     <mat-form-field appearance="outline">
       <mat-label>Birthdate</mat-label>
-      <input type="date" formControlName="birthdate" matInput placeholder="Birthdate" />
+      <input
+        type="date"
+        formControlName="birthdate"
+        matInput
+        placeholder="Birthdate"
+      />
     </mat-form-field>
 
     <br />
