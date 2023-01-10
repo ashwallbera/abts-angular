@@ -151,4 +151,11 @@ export class RecordsComponent implements OnInit {
 
     doc.save(report.datecreated);
   }
+
+  downloadAll(){
+    this.reportsList.forEach( (data)=>{
+      this.printPage(data);
+    })
+    
+  }
 }
