@@ -4,7 +4,7 @@
   <form #employeeForm="ngForm" [formGroup]="formGroup">
     <mat-form-field appearance="outline">
       <mat-label>First name</mat-label>
-      <input type="text" ngModel pattern="[a-zA-Z ]*" formControlName="fname" matInput placeholder="First name" />
+      <input type="text" appAlphabetOnly ngModel pattern="[a-zA-Z ]*" formControlName="fname" matInput placeholder="First name" />
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Last name</mat-label>
@@ -19,7 +19,7 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Contact no</mat-label>
-      <input type="text" onlyNumber ngModel pattern="[0-9]*" formControlName="contactno" matInput placeholder="Contact no" />
+      <input (keypress)="numberOnly($event)" type="tel" digitOnly ngModel pattern="[0-9]*" maxlength="11" formControlName="contactno" matInput placeholder="Contact no" />
     </mat-form-field>
 
     <br />

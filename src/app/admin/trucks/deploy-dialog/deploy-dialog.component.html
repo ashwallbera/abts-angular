@@ -37,7 +37,7 @@
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>CONTACT NO.</mat-label>
-            <input type="text" onlyNumber ngModel pattern="[0-9]*" formControlName="scontactno" matInput placeholder="ENTER CONTACT NO."/>
+            <input (keypress)="numberOnly($event)" type="text" onlyNumber ngModel pattern="[0-9]*" maxlength="11" formControlName="scontactno" matInput placeholder="ENTER CONTACT NO."/>
           </mat-form-field>
 
           <br />
@@ -56,7 +56,7 @@
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>CONTACT NO.</mat-label>
-            <input type="text" onlyNumber ngModel pattern="[0-9]*" formControlName="rcontactno" matInput placeholder="ENTER CONTACT NO."/>
+            <input (keypress)="numberOnly($event)" type="text" onlyNumber ngModel pattern="[0-9]*" maxlength="11" formControlName="rcontactno" matInput placeholder="ENTER CONTACT NO."/>
           </mat-form-field>
 
           <br/>

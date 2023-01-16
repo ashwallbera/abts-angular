@@ -30,7 +30,7 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Contact no</mat-label>
-      <input
+      <input (keypress)="numberOnly($event)"
         type="text"
         onlyNumber
         pattern="[0-9]*"

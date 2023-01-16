@@ -4,6 +4,7 @@ import { EmployeeModel } from 'src/app/model/employee_model';
 import { initializeApp } from 'firebase/app';
 import { push, ref, set, getDatabase } from 'firebase/database';
 import { environment } from 'src/environments/environment';
+import { Directive, HostListener, ElementRef } from '@angular/core';
 @Component({
   selector: 'app-add-dialog',
   templateUrl: './add-dialog.component.html',
@@ -15,6 +16,7 @@ export class AddDialogComponent implements OnInit {
   selectPosition = '';
   position: string[] = ['driver', 'helper', 'staff', 'admin'];
   formGroup: FormGroup;
+
   constructor() {
     this.formGroup = new FormGroup({
       fname: new FormControl('', Validators.required),
@@ -28,7 +30,26 @@ export class AddDialogComponent implements OnInit {
       position: new FormControl('', Validators.required),
     });
   }
+  name = 'Angular 14';
+  numberOnly(event: { which: any; keyCode: any; }): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
 
+  }
+  // AlphabetOnlyDirective: any 
+  //   key: number | undefined;
+  //   @HostListener('keydown', ['$event']) onKeydown(event: KeyboardEvent) {
+  //     this.key = event.keyCode;
+  //     console.log(this.key);
+  //     if ((this.key >= 15 && this.key <= 64) || (this.key >= 123) || (this.key >= 96 && this.key <= 105)) {
+  //       event.preventDefault();
+  //     }
+  //   }
+  
+  
   ngOnInit(): void {}
 
   addEmployee(emplyeeModel: EmployeeModel) {
