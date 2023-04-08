@@ -22,7 +22,7 @@
 <br />
 <div class="task-box">
   <div class="task-b-container">
-    <ul class="task-b" *ngFor="let status of data.status">
+    <ul class="task-b" *ngFor="let status of data.status; let i = index">
       <!-- <div class="task-timestamp">3rd May 2020 <br> 7:00 PM</div>
              <li class="task-b-status" ng-repeat="itembx">
                  <div class="task-status-title-dlvrd">Delivered</div>
@@ -44,7 +44,8 @@
       </div>
       <li class="task-b-status" ng-repeat="itembx">
         <!-- <div class="task-timestamp">3rd May 2020 <br> 7:00 PM</div> -->
-        <div class="task-status-title">{{status.type}}</div>
+        <div class="task-status-title" *ngIf="i == 0">{{status.type}} </div>
+        <div class="task-status-title" *ngIf="i != 0">{{status.type}} ({{computeDuration(i,i)}})</div>
         <div class="task-status-info">
           {{status.description}}
         </div>

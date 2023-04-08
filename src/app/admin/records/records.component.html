@@ -27,9 +27,6 @@
   <button class="add_btn btn" style="margin-left: 5px" (click)="downloadAll()">
     Download All
   </button>
-
-
-  
 </div>
 <br />
 
@@ -59,7 +56,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let report of reportsList">
+      <tr *ngFor="let report of dataObs$ | async">
         <!-- <td data-label="No.">1</td> -->
         <td data-label="Date">{{ report.datecreated }}</td>
         <td data-label="Sender">{{ report.sfullname }}</td>
@@ -109,6 +106,11 @@
       </tr> -->
     </tbody>
   </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    [pageSize]="5"
+  ></mat-paginator>
 </div>
 <!-- 
 <div class="close">

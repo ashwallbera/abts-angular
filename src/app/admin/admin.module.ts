@@ -42,6 +42,8 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { WeeklyChartComponent } from './dashboard/weekly-chart/weekly-chart.component';
 import { NgxPrintModule } from 'ngx-print';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -88,7 +90,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatNativeDateModule,
     MatMomentDateModule,
     NgxPrintModule,
-    MatRadioModule
+    MatRadioModule,
+    MatPaginatorModule
   ],
   exports: [EmployeeComponent,TrucksComponent,DashboardComponent,RecordsComponent]
 })

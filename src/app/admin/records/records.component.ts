@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ChangeDetectorRef,
+  ViewChild,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { initializeApp } from 'firebase/app';
@@ -7,6 +13,9 @@ import { DeployModel } from 'src/app/model/deployed_model';
 import { environment } from 'src/environments/environment';
 import { ViewDeliveryedComponent } from './view-deliveryed/view-deliveryed.component';
 import { jsPDF } from 'jspdf';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-records',
@@ -14,16 +23,24 @@ import { jsPDF } from 'jspdf';
   styleUrls: ['./records.component.scss'],
 })
 export class RecordsComponent implements OnInit {
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator | any;
+  dataSource: MatTableDataSource<any> | any;
+  dataObs$: Observable<any> | any;
   hideProgressbar = false;
   reportsList: DeployModel[] = [];
   reportsTemp: DeployModel[] = [];
   startDate = new FormControl('');
   endDate = new FormControl('');
-  constructor(public dialog: MatDialog) {
+  constructor(
+    public dialog: MatDialog,
+    private _changeDetectorRef: ChangeDetectorRef
+  ) {
     this.readReports();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.setPagination(this.reportsList);
+  }
 
   readReports() {
     const app = initializeApp(environment.firebaseConfig);
@@ -118,44 +135,89 @@ export class RecordsComponent implements OnInit {
     // });
 
     var doc = new jsPDF();
-    doc.text(`Delivery Details`, doc.internal.pageSize.getWidth() / 2, 20, { align: 'center'} );
-    doc.setFontSize(10);
-    doc.text(`Truck Plate No: `+report.truck.plateno, doc.internal.pageSize.getWidth() / 2, 25, { align: 'center'} );
-    doc.setFontSize(12);
-    
-    doc.text(`Sender: `+report.sfullname, 20, 40, { align: 'left'} );
-    doc.text(`Contact No: `+report.scontactno, 20, 45, { align: 'left'} );
-    doc.text(`Address: `+report.saddress, 20, 50, { align: 'left'} );
-    
-    doc.text(`Recipient: `+report.rfullname, 20, 60, { align: 'left'} );
-    doc.text(`Contact No: `+report.rcontactno, 20, 65, { align: 'left'} );
-    doc.text(`Address: `+report.raddress, 20, 70, { align: 'left'} );
-    
-    doc.text(`Driver: `+report.driver.fname+` `+report.driver.lname, 20, 80, { align: 'left'} );
-    doc.text(`Container Van No: `+report.containervanno, doc.internal.pageSize.getWidth()-20, 80, { align: 'right'} );
-
-    doc.text(`Helper: `+report.helper1.fname+ ` `+report.helper1.lname, 20, 85, { align: 'left'} );
-    doc.text(`Extra Helper: `+report.helper2.fname+ ` `+report.helper2.lname, 20, 90, { align: 'left'} );
-    doc.text(`Extra helper: `+report.helper3.fname+ ` `+report.helper3.lname, 20, 95, { align: 'left'} );
-    doc.text(`Extra helper: `+report.helper4.fname+ ` `+report.helper4.lname, 20, 100, { align: 'left'} );
-    
-    doc.text(`Status`, 20, 120, { align: 'left'} );
-  
-    var x = 0 ;
-    report.status.forEach( (status) =>{
-      doc.text(''+status.date+' '+status.time+' '+status.type,20,125+x,{ align: 'left'});
-      x+=5;
+    doc.text(`Delivery Details`, doc.internal.pageSize.getWidth() / 2, 20, {
+      align: 'center',
     });
-    
+    doc.setFontSize(10);
+    doc.text(
+      `Truck Plate No: ` + report.truck.plateno,
+      doc.internal.pageSize.getWidth() / 2,
+      25,
+      { align: 'center' }
+    );
+    doc.setFontSize(12);
 
+    doc.text(`Sender: ` + report.sfullname, 20, 40, { align: 'left' });
+    doc.text(`Contact No: ` + report.scontactno, 20, 45, { align: 'left' });
+    doc.text(`Address: ` + report.saddress, 20, 50, { align: 'left' });
+
+    doc.text(`Recipient: ` + report.rfullname, 20, 60, { align: 'left' });
+    doc.text(`Contact No: ` + report.rcontactno, 20, 65, { align: 'left' });
+    doc.text(`Address: ` + report.raddress, 20, 70, { align: 'left' });
+
+    doc.text(
+      `Driver: ` + report.driver.fname + ` ` + report.driver.lname,
+      20,
+      80,
+      { align: 'left' }
+    );
+    doc.text(
+      `Container Van No: ` + report.containervanno,
+      doc.internal.pageSize.getWidth() - 20,
+      80,
+      { align: 'right' }
+    );
+
+    doc.text(
+      `Helper: ` + report.helper1.fname + ` ` + report.helper1.lname,
+      20,
+      85,
+      { align: 'left' }
+    );
+    doc.text(
+      `Extra Helper: ` + report.helper2.fname + ` ` + report.helper2.lname,
+      20,
+      90,
+      { align: 'left' }
+    );
+    doc.text(
+      `Extra helper: ` + report.helper3.fname + ` ` + report.helper3.lname,
+      20,
+      95,
+      { align: 'left' }
+    );
+    doc.text(
+      `Extra helper: ` + report.helper4.fname + ` ` + report.helper4.lname,
+      20,
+      100,
+      { align: 'left' }
+    );
+
+    doc.text(`Status`, 20, 120, { align: 'left' });
+
+    var x = 0;
+    report.status.forEach((status) => {
+      doc.text(
+        '' + status.date + ' ' + status.time + ' ' + status.type,
+        20,
+        125 + x,
+        { align: 'left' }
+      );
+      x += 5;
+    });
 
     doc.save(report.datecreated);
   }
 
-  downloadAll(){
-    this.reportsList.forEach( (data)=>{
+  downloadAll() {
+    this.reportsList.forEach((data) => {
       this.printPage(data);
-    })
-    
+    });
+  }
+  setPagination(tableData: any) {
+    this.dataSource = new MatTableDataSource<any>(tableData);
+    this._changeDetectorRef.detectChanges();
+    this.dataSource.paginator = this.paginator;
+    this.dataObs$ = this.dataSource.connect();
   }
 }

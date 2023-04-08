@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input,ChangeDetectorRef,ViewChild } from '@angular/core';
 //import { TrucksModel } from 'src/app/model/trucks_model';
 import { MatDialog } from '@angular/material/dialog';
 import { initializeApp } from 'firebase/app';
@@ -11,17 +11,27 @@ import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 import { AddTruckDialogComponent } from './add-truck-dialog/add-truck-dialog.component';
 import { DeployDialogComponent } from './deploy-dialog/deploy-dialog.component';
 import { EditTruckDialogComponent } from './edit-truck-dialog/edit-truck-dialog.component';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { Observable } from 'rxjs';
+import { FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-trucks',
   templateUrl: './trucks.component.html',
   styleUrls: ['./trucks.component.scss']
 })
 export class TrucksComponent implements OnInit {
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator | any;
+  dataSource: MatTableDataSource<any> | any;
+  dataObs$: Observable<any> | any;
   hideProgressbar = false;
   @Input() fromStaff: string | undefined;
   truckList: TruckModel[] = [];
   truckTemp: TruckModel[] = []
-  constructor(public dialog: MatDialog) {
+
+  search = new FormControl('', Validators.nullValidator);
+  searchValue = '';
+  constructor(public dialog: MatDialog , private _changeDetectorRef: ChangeDetectorRef) {
     // this.truckList.push({
     //   id:"id",
     //   plateno:"plateno",
@@ -36,6 +46,21 @@ export class TrucksComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.setPagination(this.truckList)
+  }
+  onChange() {
+    console.log(this.searchValue);
+    if (this.searchValue != '') {
+      var filtered = this.truckTemp.filter((e) => {
+        return e.plateno == this.searchValue;
+      });
+      this.truckList = filtered;
+      this.setPagination(filtered)
+      console.log(this.searchValue);
+    } else {
+      this.truckList = this.truckTemp;
+      this.setPagination(this.truckList)
+    }
   }
 
   openAddDialog(){
@@ -105,6 +130,13 @@ export class TrucksComponent implements OnInit {
       this.truckList = filtered;
       console.log(this.truckList);
     }
+  }
+
+  setPagination(tableData: any) {
+    this.dataSource = new MatTableDataSource<any>(tableData);
+    this._changeDetectorRef.detectChanges();
+    this.dataSource.paginator = this.paginator;
+    this.dataObs$ = this.dataSource.connect();
   }
 
 }

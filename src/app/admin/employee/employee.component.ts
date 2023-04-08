@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input,ChangeDetectorRef,ViewChild } from '@angular/core';
 import { EmployeeModel } from 'src/app/model/employee_model';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog/delete-dialog.component';
@@ -8,19 +8,26 @@ import { getDatabase, onValue, push, ref, set } from 'firebase/database';
 import { initializeApp } from 'firebase/app';
 import { environment } from 'src/environments/environment';
 import { FormControl, Validators } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { Observable } from 'rxjs';
+
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.scss'],
 })
 export class EmployeeComponent implements OnInit {
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator | any;
+  dataSource: MatTableDataSource<any> | any;
+  dataObs$: Observable<any> | any;
   hideProgressbar = false;
   @Input() public fromUser: string | undefined;
   userList: EmployeeModel[] = [];
   userListTemp: EmployeeModel[] = [];
   search = new FormControl('', Validators.nullValidator);
   searchValue = '';
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog , private _changeDetectorRef: ChangeDetectorRef) {
     // this.userList.push(
     //   {
     //     uid: '',
@@ -56,7 +63,9 @@ export class EmployeeComponent implements OnInit {
     this.readEmployee();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.setPagination(this.userList)
+  }
 
   openDeleteDialog(employeeModel: EmployeeModel) {
     const ref = this.dialog.open(DeleteDialogComponent, {
@@ -124,9 +133,19 @@ export class EmployeeComponent implements OnInit {
         return e.username == this.searchValue;
       });
       this.userList = filtered;
+      this.setPagination(filtered)
       console.log(this.searchValue);
     } else {
       this.userList = this.userListTemp;
+      this.setPagination(this.userList)
+     
     }
+  }
+
+  setPagination(tableData: any) {
+    this.dataSource = new MatTableDataSource<any>(tableData);
+    this._changeDetectorRef.detectChanges();
+    this.dataSource.paginator = this.paginator;
+    this.dataObs$ = this.dataSource.connect();
   }
 }

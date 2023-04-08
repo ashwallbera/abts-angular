@@ -13,7 +13,7 @@
       [(ngModel)]="searchValue"
       (ngModelChange)="onChange()"
     />
-    <mat-icon  matSuffix>search</mat-icon>
+    <mat-icon matSuffix>search</mat-icon>
     <mat-hint>Search employee username</mat-hint>
   </mat-form-field>
   <button class="admin_btn btn col" (click)="filterByPosition('admin')">
@@ -29,11 +29,16 @@
     Helper
   </button>
   <button class="all_btn btn col" (click)="filterByPosition('all')">All</button>
-  <button *ngIf="!fromUser"(click)="openAddDialog()" class="add_btn btn col">Add</button>
+  <button *ngIf="!fromUser" (click)="openAddDialog()" class="add_btn btn col">
+    Add
+  </button>
 </div>
 
 <div class="table_size">
-  <mat-progress-bar mode="indeterminate" [hidden]="hideProgressbar"></mat-progress-bar>
+  <mat-progress-bar
+    mode="indeterminate"
+    [hidden]="hideProgressbar"
+  ></mat-progress-bar>
 
   <table>
     <thead>
@@ -46,7 +51,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let d of userList">
+      <tr *ngFor="let d of dataObs$ | async">
         <td data-label="Staff">{{ d.fname }} {{ d.lname }}</td>
         <td data-label="Username">{{ d.username }}</td>
         <td data-label="Position">{{ d.position }}</td>
@@ -70,97 +75,9 @@
           </tr> -->
     </tbody>
   </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    [pageSize]="5"
+  ></mat-paginator>
 </div>
-<!-- 
-<div class="close">
-  <button class="btn cls_btn">Close</button>
-</div> -->
-
-<!--HELPER TABLE-->
-<!-- 
-<div class="search row">
-    <p class="search col">Search</p>
-    <input class="inp search col" type="text">
-    <button class="staff_btn btn col">Staff</button>
-    <button class="helper_btn btn col active">Helper</button>
-    <button class="driver_btn btn col">Driver</button>
-    <button class="add_btn btn btn-primary col">Add</button>
-</div>
-
-<div class="table_size">
-    <table>
-        <thead>
-          <tr>
-            <th scope="col">Staff</th>
-            <th scope="col">Contact Number</th>
-            <th class="ac" scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td data-label="Staff">Tom Jerry</td>
-            <td data-label="Contact Number">0912345678</td>
-            <td data-label="Action">
-                <button class="edit_btn col"><mat-icon>edit</mat-icon></button>
-                <button class="del_btn col"><mat-icon>delete_outline</mat-icon></button>
-            </td>
-            
-          </tr>
-          <tr>
-            <td data-label="Staff">Jerry Tom</td>
-            <td data-label="Contact Number">0978945612</td>
-            <td data-label="Action"></td>
-          </tr>
-        </tbody>
-      </table>
-
-</div>
-
-<div class="close">
-    <button class="btn cls">Close</button>
-</div> -->
-
-<!--DRIVER TABLE-->
-<!-- 
-
-<div class="search row">
-    <p class="search col">Search</p>
-    <input class="inp search col" type="text">
-    <button class="staff_btn btn col">Staff</button>
-    <button class="helper_btn btn col">Helper</button>
-    <button class="driver_btn btn col active">Driver</button>
-    <button class="add_btn btn btn-primary col">Add</button>
-</div>
-<div class="table_size">
-    <table>
-        <thead>
-          <tr>
-            <th scope="col">Staff</th>
-            <th scope="col">Contact Number</th>
-            <th class="ac" scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td data-label="Staff">Tom Jerry</td>
-            <td data-label="Contact Number">0912345678</td>
-            <td data-label="Action">
-                <button class="edit_btn col"><mat-icon>edit</mat-icon></button>
-                <button class="del_btn col"><mat-icon>delete_outline</mat-icon></button>
-            </td>
-            
-          </tr>
-          <tr>
-            <td data-label="Staff">Jerry Tom</td>
-            <td data-label="Contact Number">0978945612</td>
-            <td data-label="Action"><button class="edit_btn col"><mat-icon>edit</mat-icon></button>
-                <button class="del_btn col"><mat-icon>delete_outline</mat-icon></button></td>
-          </tr>
-        </tbody>
-      </table>
-
-</div>
-
-<div class="close">
-    <button class="btn cls">Close</button>
-</div> -->
