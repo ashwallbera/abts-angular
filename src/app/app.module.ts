@@ -22,9 +22,12 @@ import { MatOptionModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { DriverNotAssignedComponent } from './driver-not-assigned/driver-not-assigned.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import {MatButtonModule} from '@angular/material/button';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, RouterManagerComponent, MessageDialogComponent, DriverComponent, LogoutComponent, DriverUpdateStatusComponent, DriverNotAssignedComponent],
+  declarations: [AppComponent, RouterManagerComponent, MessageDialogComponent, DriverComponent, LogoutComponent, DriverUpdateStatusComponent, DriverNotAssignedComponent, ResetPasswordComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -41,7 +44,9 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatSelectModule,
     MatOptionModule,
     FormsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatButtonModule,
+    ReactiveFormsModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

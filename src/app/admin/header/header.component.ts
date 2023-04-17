@@ -1,5 +1,7 @@
 import { Component, OnInit,EventEmitter,Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ResetPasswordComponent } from 'src/app/reset-password/reset-password.component';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   @Output() toggleSidebarForMe:EventEmitter<any> = new EventEmitter();
-  constructor(private router: Router) {
+  constructor(private router: Router, public dialog: MatDialog) {
 
    }
 
@@ -25,6 +27,10 @@ export class HeaderComponent implements OnInit {
   logout(){
     localStorage.clear();
     this.router.navigate([""]);
+  }
+
+  openDialog(){
+    this.dialog.open(ResetPasswordComponent)
   }
 
 }
