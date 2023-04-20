@@ -60,15 +60,18 @@ export class ResetPasswordComponent implements OnInit {
       this.confirmPasswordChange.reset();
       this.PasswordChange.reset();
 
-      localStorage.clear()
-      window.location.href = '';
+    
 
       const app = initializeApp(environment.firebaseConfig);
       const db = getDatabase();
-      update(ref(db, 'users/' + user.uid + '/'), user);
-      this.dialog.open(MessageDialogComponent,{
-        data:'PASSWORD HAS BEEN CHANGED'
+      update(ref(db, 'users/' + user.uid + '/'), user).then(()=>{
+        this.dialog.open(MessageDialogComponent,{
+          data:'PASSWORD HAS BEEN CHANGED'
+        });
+        localStorage.clear()
+      window.location.href = '';
       });
+
       
     }else{
       this.error=false

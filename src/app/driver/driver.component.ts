@@ -10,6 +10,7 @@ import { EmployeeModel } from '../model/employee_model';
 import { StatusModel } from '../model/status_model';
 import { DriverUpdateStatusComponent } from './driver-update-status/driver-update-status.component';
 import * as storage from 'firebase/storage';
+import { ResetPasswordComponent } from '../reset-password/reset-password.component';
 @Component({
   selector: 'app-driver',
   templateUrl: './driver.component.html',
@@ -145,5 +146,8 @@ export class DriverComponent implements OnInit {
     const db = getDatabase(app);
     this.deployed.delproofurl = delproofurl;
     update(ref(db, 'deployed/' + this.deployed?.id + '/'), this.deployed);
+  }
+  openDialog(){
+    this.dialog.open(ResetPasswordComponent)
   }
 }

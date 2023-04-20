@@ -98,6 +98,7 @@ export class RecordsComponent implements OnInit {
     });
     console.log(generatedReport);
     this.reportsList = generatedReport;
+    this.setPagination(this.reportsList)
   }
 
   getDatesInRange(startDate: Date, endDate: Date) {
@@ -127,6 +128,7 @@ export class RecordsComponent implements OnInit {
   }
   clearReport() {
     this.reportsList = this.reportsTemp;
+    this.setPagination(this.reportsList)
   }
 
   printPage(report: DeployModel) {
@@ -135,6 +137,10 @@ export class RecordsComponent implements OnInit {
     // });
 
     var doc = new jsPDF();
+    // doc.setFontSize(18);
+    // doc.text(`ALLAN BOY TRUCKING SERVICES INC.`, doc.internal.pageSize.getWidth() / 2, 20, {
+    //   align: 'center',
+    // });
     doc.text(`Delivery Details`, doc.internal.pageSize.getWidth() / 2, 20, {
       align: 'center',
     });

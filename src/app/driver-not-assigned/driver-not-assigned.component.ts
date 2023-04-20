@@ -1,5 +1,7 @@
 import { Component, OnInit,ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { ResetPasswordComponent } from '../reset-password/reset-password.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-driver-not-assigned',
@@ -9,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class DriverNotAssignedComponent implements OnInit {
 
-  constructor(public router: Router) { }
+  constructor(public router: Router, public dialog:MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -18,5 +20,7 @@ export class DriverNotAssignedComponent implements OnInit {
     localStorage.clear();
     this.router.navigate(['']);
   }
-
+  openDialog(){
+    this.dialog.open(ResetPasswordComponent)
+  }
 }

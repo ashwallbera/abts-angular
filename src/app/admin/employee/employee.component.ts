@@ -92,11 +92,13 @@ export class EmployeeComponent implements OnInit {
   filterByPosition(position: string) {
     if (position == 'all') {
       this.userList = this.userListTemp;
+      this.setPagination(this.userList)
     } else {
       var filtered = this.userListTemp.filter(function (e) {
         return e.position == position;
       });
       this.userList = filtered;
+      this.setPagination(this.userList)
       console.log(this.userList);
     }
   }
